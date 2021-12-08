@@ -1,2 +1,2 @@
 print("Hello, web programming")
-print("Bye, my hackthon...")
+print("Bye, my hackathon...")
