@@ -1,0 +1,12 @@
+{
+  "name": "web_final",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/chen77526/web_final.git",
+  "author": "陳嘉宏 <chen77526@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn start",
+    "server": "cd backend && yarn server"
+  }
+}
