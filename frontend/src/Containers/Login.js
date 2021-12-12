@@ -1,46 +1,71 @@
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Typography } from 'antd';
 import React from 'react';
-import { UserOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { UserOutlined, QuestionCircleOutlined, BulbOutlined } from '@ant-design/icons';
 import './css/Login.css'
 import LoginBoard from './LoginBoard';
 
-const { Header, Sider, Content } = Layout;
+const { Sider, Header, Content } = Layout;
+const { Text, Link } = Typography;
 
 const Login = () => {
-
     return (
         <Layout style={{height: '100vh'}}>
-            <Sider>
-                {/* <div className="logo" /> */}
-                <Menu
-                    theme="dark"
-                    mode="inline"
-                    defaultSelectedKeys={['1']}
-                    style={{
-                        position: 'absolute',
-                        top: '50%',
-                        transform: 'translate(0, -50%)'
-                    }}
-                >
-                    <Menu.Item key="1" icon={<UserOutlined />}>
-                        Login
-                    </Menu.Item>
-                    <Menu.Item key="2" icon={<QuestionCircleOutlined />}>
-                        About us
-                    </Menu.Item>
-                </Menu>
-            </Sider>
-            <Layout className="site-layout">
-                <Content
-                    className="site-layout-background"
-                    style={{
+            <Header style={{ position: 'fixed', zIndex: 1, width: '100%', padding: 0}}>
+                <div className="logo" />
+                <Menu theme="light" mode="horizontal">
+                    <BulbOutlined style={{
                         display: 'flex',
+                        fontSize: '24px',
+                        color: 'inherited',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        paddingLeft: '15px'
+                    }} />
+                    <Text strong style={{ fontSize: '24px', paddingLeft: '15px' }}>NTU JOBS</Text>
+                </Menu>
+            </Header>
+            <Layout>
+                <Sider
+                    breakpoint="lg"
+                    collapsedWidth="0"
+                    onBreakpoint={broken => {
+                        console.log(broken);
+                    }}
+                    onCollapse={(collapsed, type) => {
+                        console.log(collapsed, type);
                     }}
                 >
-                    <LoginBoard />
-                </Content>
+                    <div className="logo" />
+                    <Menu
+                        theme="dark"
+                        mode="inline"
+                        defaultSelectedKeys={['1']}
+                        style={{
+                            position: 'absolute',
+                            top: '50%',
+                            transform: 'translate(0, -50%)'
+                        }}
+                    >
+                        <Menu.Item key="1" icon={<UserOutlined />}>
+                            Login
+                        </Menu.Item>
+                        <Menu.Item key="2" icon={<QuestionCircleOutlined />}>
+                            About us
+                        </Menu.Item>
+                    </Menu>
+                </Sider>
+                <Layout className="site-layout">
+                    <Content
+                        className="site-layout-background"
+                        style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            backgroundColor: '#f0f0f0'
+                        }}
+                    >
+                        <LoginBoard />
+                    </Content>
+                </Layout>
             </Layout>
         </Layout>
     )

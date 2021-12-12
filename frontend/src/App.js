@@ -2,7 +2,7 @@ import 'antd/dist/antd.css';
 import Login from './Containers/Login';
 
 const App = () => {
-	document.title = 'Jobago'
+	document.title = 'NTU JOBS'
 
 	return (
 		<div className="App">

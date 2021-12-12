@@ -1,6 +1,5 @@
-import { Form, Input, Button, Checkbox, Typography } from 'antd'
+import { Form, Input, Button, Checkbox } from 'antd'
 import React from 'react';
-const { Title } = Typography;
 
 const LoginBoard = () => {
     const onFinish = (values) => {
@@ -21,15 +20,6 @@ const LoginBoard = () => {
             onFinishFailed={onFinishFailed}
             autoComplete="off"
         >
-            {/* <Title 
-                level={3}
-                style={{
-                    justifyContent: 'center'
-                }}
-            >
-                Login Jobago!
-            </Title> */}
-
             <Form.Item
                 label="Username"
                 name="username"
@@ -40,7 +30,6 @@ const LoginBoard = () => {
             >
                 <Input />
             </Form.Item>
-
             <Form.Item
                 label="Password"
                 name="password"
@@ -51,7 +40,6 @@ const LoginBoard = () => {
             >
                 <Input.Password />
             </Form.Item>
-
             <Form.Item
                 name="remember"
                 valuePropName="checked"
@@ -62,7 +50,6 @@ const LoginBoard = () => {
             >
                 <Checkbox>Remember me</Checkbox>
             </Form.Item>
-
             <Form.Item
                 wrapperCol={{
                     offset: 8,
