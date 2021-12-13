@@ -1,18 +1,14 @@
 import React from 'react';
 
 import { Layout, Form, Menu, Input, Button, Checkbox, Typography } from 'antd'
-import { UserOutlined, QuestionCircleOutlined, BulbOutlined } from '@ant-design/icons';
+import { UserOutlined, QuestionCircleOutlined, BulbOutlined, LockOutlined } from '@ant-design/icons';
 
 const { Sider, Content, Header } = Layout;
 const { Text, Link } = Typography;
 
 const LoginLayout = (props) => {
     const onFinish = (values) => {
-        console.log('Success:', values);
-    };
-    
-    const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
+        console.log('Received values of form: ', values);
     };
 
     const menuList = [{
@@ -78,53 +74,43 @@ const LoginLayout = (props) => {
                         }}
                     >
                         <Form
-                            name="login"
-                            labelCol={{ span: 8 }}
-                            wrapperCol={{ span: 16 }}
+                            name="normal_login"
+                            className="login-form"
                             initialValues={{ remember: false }}
                             onFinish={onFinish}
-                            onFinishFailed={onFinishFailed}
-                            autoComplete="off"
+                            style={{minWidth: '300px'}}
                         >
                             <Form.Item
-                                label="Username"
                                 name="username"
-                                rules={[{
-                                    required: true,
-                                    message: 'Please enter your username!',
-                                }]}
+                                rules={[{ required: true, message: 'Please enter your Username!' }]}
                             >
-                                <Input />
+                                <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
                             </Form.Item>
                             <Form.Item
-                                label="Password"
                                 name="password"
-                                rules={[{
-                                    required: true,
-                                    message: 'Please enter your password!',
-                                }]}
+                                rules={[{ required: true, message: 'Please enter your Password!' }]}
                             >
-                                <Input.Password />
+                                <Input
+                                    prefix={<LockOutlined className="site-form-item-icon" />}
+                                    type="password"
+                                    placeholder="Password"
+                                />
                             </Form.Item>
-                            <Form.Item
-                                name="remember"
-                                valuePropName="checked"
-                                wrapperCol={{
-                                    offset: 8,
-                                    span: 16
-                                }}
-                            >
-                                <Checkbox>Remember me</Checkbox>
+                            <Form.Item>
+                                <Form.Item name="remember" valuePropName="checked" noStyle>
+                                    <Checkbox>Remember me</Checkbox>
+                                </Form.Item>
+
+                                <a className="login-form-forgot" href="" style={{float: 'right'}}>
+                                    Forgot password
+                                </a>
                             </Form.Item>
-                            <Form.Item
-                                wrapperCol={{
-                                    offset: 8,
-                                    span: 16,
-                                }}
-                            >
-                                <Button type="primary" htmlType="submit">
-                                    Submit
+
+                            <Form.Item>
+                                <Button type="primary" htmlType="submit" className="login-form-button" style={{width: '100%'}}>
+                                    Log in
                                 </Button>
+                                Or <a href="">register now!</a>
                             </Form.Item>
                         </Form>
                     </Content>

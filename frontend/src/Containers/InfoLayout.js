@@ -1,12 +1,12 @@
 import React from 'react';
 
 import { Layout, Menu, Typography } from 'antd';
-import { UserOutlined, BulbOutlined } from '@ant-design/icons';
+import { UserOutlined, BulbOutlined, EnterOutlined } from '@ant-design/icons';
 
 const { Sider, Content, Header } = Layout;
 const { Text, Link } = Typography;
 
-const InfoLayout = () => {
+const InfoLayout = (props) => {
 
     const menuList = [{
         "content" : "邵家澤",
@@ -17,6 +17,9 @@ const InfoLayout = () => {
     }, {
         "content" : "陳嘉宏",
         "icon" : <UserOutlined />
+    }, {
+        "content" : "Login",
+        "icon" : <EnterOutlined />
     }]
 
     return (
@@ -57,7 +60,7 @@ const InfoLayout = () => {
                         }}
                     >
                         {menuList.map(item => {
-                            return <Menu.Item key={item.content} icon={item.icon} >
+                            return <Menu.Item key={item.content} icon={item.icon} onClick={() => props.navigate(`/${item.content}`)} >
                                 {item.content}
                             </Menu.Item>
                         })}

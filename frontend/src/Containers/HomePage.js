@@ -1,5 +1,4 @@
 import React from 'react';
-import './HomePage.css';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 
 import HomePageLayout from './HomePageLayout';
@@ -13,7 +12,7 @@ const HomePage = () => {
         <Routes>
             <Route path="/" element={ <HomePageLayout navigate={navigate} />} />
             <Route path="/Login" element={ <LoginLayout navigate={navigate} />} />
-            <Route path="/About%20us" element={ <InfoLayout />} />
+            <Route path="/About%20us" element={ <InfoLayout navigate={navigate} />} />
         </Routes>
     )
 
