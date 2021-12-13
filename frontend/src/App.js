@@ -1,13 +1,14 @@
 import 'antd/dist/antd.css';
-import Login from './Containers/Login';
+import Homepage from './Containers/HomePage';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const App = () => {
 	document.title = 'NTU JOBS'
 
 	return (
-		<div className="App">
-			<Login />
-		</div>
+		<Router>
+			<Homepage />
+		</Router>
 	);
 }
 

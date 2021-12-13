@@ -1,13 +1,24 @@
-import { Layout, Menu, Typography } from 'antd';
 import React from 'react';
-import { UserOutlined, QuestionCircleOutlined, BulbOutlined } from '@ant-design/icons';
-import './css/Login.css'
-import LoginBoard from './LoginBoard';
 
-const { Sider, Header, Content } = Layout;
+import { Layout, Menu, Typography } from 'antd';
+import { UserOutlined, BulbOutlined } from '@ant-design/icons';
+
+const { Sider, Content, Header } = Layout;
 const { Text, Link } = Typography;
 
-const Login = () => {
+const InfoLayout = () => {
+
+    const menuList = [{
+        "content" : "邵家澤",
+        "icon" : <UserOutlined />
+    }, {
+        "content" : "童子瑜",
+        "icon" : <UserOutlined />
+    }, {
+        "content" : "陳嘉宏",
+        "icon" : <UserOutlined />
+    }]
+
     return (
         <Layout style={{height: '100vh'}}>
             <Header style={{ position: 'fixed', zIndex: 1, width: '100%', padding: 0}}>
@@ -38,19 +49,18 @@ const Login = () => {
                     <Menu
                         theme="dark"
                         mode="inline"
-                        defaultSelectedKeys={['1']}
+                        defaultSelectedKeys={['邵家澤']}
                         style={{
                             position: 'absolute',
                             top: '50%',
                             transform: 'translate(0, -50%)'
                         }}
                     >
-                        <Menu.Item key="1" icon={<UserOutlined />}>
-                            Login
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<QuestionCircleOutlined />}>
-                            About us
-                        </Menu.Item>
+                        {menuList.map(item => {
+                            return <Menu.Item key={item.content} icon={item.icon} >
+                                {item.content}
+                            </Menu.Item>
+                        })}
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
@@ -63,13 +73,12 @@ const Login = () => {
                             backgroundColor: '#f0f0f0'
                         }}
                     >
-                        <LoginBoard />
+                        <h1>Hello, world!</h1>
                     </Content>
                 </Layout>
             </Layout>
         </Layout>
     )
-
 }
 
-export default Login;
+export default InfoLayout;
