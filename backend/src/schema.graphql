@@ -1,0 +1,127 @@
+type Query{
+    findJobs(filters: [String!], tags: [String!]): JobPost!
+}
+
+type Mutation{
+    createAccount(input: createUserInput!): User!
+    updateAccount(input: updateUserInput): User!
+
+    createJob(input: createJobInput): JobPost!
+    updateJob(input: updateJobInput): JobPost!
+    deleteJob(id: ID!): ID!
+
+    createCV(input: createCVInput): CV!
+    updateCV(input: updateCVInput): CV!
+    deleteCV(id: ID!): ID!  ##這個到時候寫要多考慮到user端也要處理
+}
+
+type Subscription{
+    JobPosted: JobPost!
+    JobUpdated: JobPost!
+    Jobdeleted: ID!
+}
+
+
+type User{
+    id: ID!
+    name: String!
+    username: String!   #應該會設成跟email一樣?
+    password: String!   #要經過bcrypt
+    department: String! #系所
+    grade: String!      #年級
+    cv: CV              #可有可無
+    ###optional
+    applied_posts: [id!]    #存他丟過哪些
+    interested_posts: [id!] #存他對那些有興趣
+}
+
+type Application{
+    id: ID!
+    name: String!
+    department: String!
+    grade: String!
+    cv: CV!
+}
+
+type CV{
+    Introduction: String!
+    research: String!
+    work_experience: String!
+    side_project: String!
+    courses: String
+}
+
+type JobPost{
+    status: String!     #表示還有沒有在收人
+    received_applications: [Application!]
+    title: String!
+    body: String!
+    tags: [String!]     #方便找相關工作
+    filters: [String!]  #限制誰看的到
+}
+
+input createUserInput{
+    id: ID!
+    name: String!
+    username: String!   #應該會設成跟email一樣?
+    password: String!   #要經過bcrypt
+    department: String! #系所
+    grade: String!      #年級
+    cv: CV              #可有可無
+    ###optional
+    applied_posts: [id!]    #存他丟過哪些
+    interested_posts: [id!] #存他對那些有興趣
+}
+
+input updateUserInput{
+    # id: ID!
+    name: String
+    # username: String   #應該會設成跟email一樣?
+    password: String   #要經過bcrypt
+    department: String #系所
+    grade: String      #年級
+    cv: CV              #可有可無
+    ###optional
+    applied_posts: [id!]    #存他丟過哪些
+    interested_posts: [id!] #存他對那些有興趣
+}
+
+input createJobInput{
+    status: String!     #表示還有沒有在收人
+    received_applications: [Application!]
+    title: String!
+    body: String!
+    tags: [String!]     #方便找相關工作
+    filters: [String!]  #限制誰看的到
+}
+
+input updateJobInput{
+    status: String     #表示還有沒有在收人
+    # received_applications: [Application!]
+    title: String
+    body: String
+    tags: [String!]     #方便找相關工作
+    filters: [String!]  #限制誰看的到    
+}
+
+input createCVInput{
+    Introduction: String!
+    research: String
+    work_experience: String
+    side_project: String
+    courses: String
+}
+
+input updateCVInput{
+    Introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    courses: String
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
