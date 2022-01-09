@@ -1,13 +1,21 @@
 import 'antd/dist/antd.css';
 import Homepage from './Containers/HomePage';
-import { BrowserRouter as Router } from 'react-router-dom'
+import GlobalStyle from './globalStyles';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import NavBar from './Containers/NavBar';
+import Home from './Containers/Home';
 
 const App = () => {
 	document.title = 'NTU JOBS'
 
 	return (
 		<Router>
-			<Homepage />
+			{/* <Homepage /> */}
+			<GlobalStyle />
+			<NavBar />
+			<Routes>
+				<Route path="/" exact element={<Home />} />
+			</Routes>
 		</Router>
 	);
 }

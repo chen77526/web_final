@@ -209,7 +209,7 @@ const SignUpLayout = (props) => {
                             </Form.Item>
 
                             <Form.Item {...tailFormItemLayout}>
-                                <Button type="primary" htmlType="submit">Register</Button>
+                                <Button type="primary" htmlType="submit" onClick={() => props.navigate('/')}>Register</Button>
                             </Form.Item>
                         </Form>
                     </Content>
