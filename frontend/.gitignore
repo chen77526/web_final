@@ -5,6 +5,9 @@
 /.pnp
 .pnp.js
 
+
+./src/Components/Canvas.js
+./src/Components/Connection.js
 # testing
 /coverage
 
