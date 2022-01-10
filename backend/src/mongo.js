@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
-import "dotenv-defaults/config.js";
+import dotenv from "dotenv-defaults";
 
-async function connect() {
+export default () => {
+  dotenv.config();
 
   if (!process.env.MONGO_URL) {
     console.error("Missing MONGO_URL");
@@ -23,5 +24,3 @@ async function connect() {
     console.log("Mongo database connected!");
   });
 }
-
-export default { connect };
