@@ -1,11 +1,15 @@
 import React from 'react';
 import Info from './Info';
-import { homeDataOne } from '../Components/Data';
+import {
+    dataOne,
+    dataTwo
+} from '../Components/Data/HomeData';
 
 const Home = () => {
     return (
         <>
-            <Info {...homeDataOne}/>
+            <Info {...dataOne}/>
+            <Info {...dataTwo}/>
         </>
     )
 }

@@ -60,7 +60,7 @@ export const Subtitle = styled.p`
     margin-bottom: 35px;
     font-size: 18px;
     line-height: 24px;
-    color: ${({light}) => (light ? '#a9b3c1' : '1c2237')};
+    color: ${({light}) => (light ? '#a9b3c1' : '#1c2237')};
 `;
 
 export const ImgWrapper = styled.div`

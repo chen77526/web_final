@@ -14,19 +14,19 @@ import {
 import { Link } from 'react-router-dom';
 
 const Info = ({
-    primary,
-    lightBg,
-    imgStart,
-    lightTopLine,
-    lightText,
-    lightTextDesc,
-    buttonLabel,
-    topLine,
-    description,
-    headline,
-    img,
-    alt,
-    start
+    primary,            // true -> primary button theme
+    lightBg,            // true -> light background theme
+    imgStart,           // true -> row start with images
+    lightTopLine,       // true -> light theme of top-line text 
+    lightText,          // true -> light theme of head-line text
+    lightTextDesc,      // true -> light theme of subtitle text
+    buttonLabel,        // button text
+    topLine,            // top-line text
+    description,        // subtitle text
+    headline,           // headline text
+    img,                // image source
+    alt,                // alternative text if image not show up
+    start               // true ->     
 }) => {
     return (
         <>
