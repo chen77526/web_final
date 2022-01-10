@@ -2,6 +2,10 @@ import React from 'react';
 
 import { Layout, Form, Menu, Input, Select, Button, Checkbox, Typography } from 'antd'
 import { UserOutlined, BulbOutlined, EnterOutlined } from '@ant-design/icons';
+import { CREATE_ACCOUNT_MUTATION } from "../graphql"
+import { useMutation } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 
 const { Sider, Content, Header } = Layout;
 const { Text } = Typography;
@@ -41,6 +45,25 @@ const tailFormItemLayout = {
 
 const SignUpLayout = (props) => {
     const [form] = Form.useForm();
+    const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [gender, setGender] = useState("");
+    const [nickname, setNickname] = useState("");
+
+    const handleCreateAccount = () => {
+        addAccount({
+            variables: {
+                input: {
+                    id: uuidv4(),
+                    email: email,
+                    password: password,   
+                    nickname: nickname, 
+                    gender: gender, 
+                }
+            }
+        })
+    };
 
     const onFinish = (values) => {
         console.log('Received values of form: ', values);
@@ -121,6 +144,7 @@ const SignUpLayout = (props) => {
                             <Form.Item
                                 name="email"
                                 label="E-mail"
+                                value={email}
                                 rules={[{
                                     type: 'email',
                                     message: 'The input is not valid E-mail!',
@@ -209,7 +233,7 @@ const SignUpLayout = (props) => {
                             </Form.Item>
 
                             <Form.Item {...tailFormItemLayout}>
-                                <Button type="primary" htmlType="submit">Register</Button>
+                                <Button type="primary" htmlType="submit" onClick={handleCreateAccount}>Register</Button>
                             </Form.Item>
                         </Form>
                     </Content>
