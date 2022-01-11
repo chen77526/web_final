@@ -5,6 +5,8 @@ import NavBar from './Containers/NavBar';
 import Home from './Containers/Home';
 import Footer from './Containers/Footer';
 import SignUp from './Containers/SignUp';
+import Resume from './Containers/Resume';
+import Login from './Containers/Login';
 
 const App = () => {
 	document.title = 'NTU JOBS'
@@ -16,7 +18,8 @@ const App = () => {
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp />} />
-				{/* <Route path="/footer" element={<Footer/>} /> */}
+				<Route path="/resume" element={<Resume/>} />
+				<Route path="/login" element={<Login/>} />
 			</Routes>
 			<Footer />
 		</Router>
