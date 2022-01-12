@@ -1,8 +1,8 @@
 const Query = {
 
-  users: async (parent, args, { UserModel }) => {
-    const users = await UserModel.find().sort({ id: -1 });
-    return users;
+  accounts: async (parent, args, { AccountModel }) => {
+    const accounts = await AccountModel.find().sort({ id: -1 });
+    return accounts;
   },
 
 };

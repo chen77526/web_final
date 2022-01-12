@@ -1,8 +1,8 @@
 const Subscription = {
     
-    userUpdated: {
+    accountUpdated: {
       subscribe: (parent, args, {pubSub}) => {
-        return pubSub.asyncIterator("USER_UPDATED");
+        return pubSub.asyncIterator("ACCOUNT_UPDATED");
       }
     }
 };

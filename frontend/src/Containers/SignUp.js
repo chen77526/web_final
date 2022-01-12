@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import  styled  from 'styled-components';
 import { Button } from '../globalStyles';
 import { Link } from 'react-router-dom';
@@ -81,52 +81,47 @@ const SignUp = () => {
     const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [gender, setGender] = useState("");
-    const [nickname, setNickname] = useState("");
+
 
     const handleCreateAccount = () => {
-        console.log("sadad");
         addAccount({
             variables: {
                 input: {
                     id: uuidv4(),
                     email: email,
-                    password: password,   
-                    nickname: nickname, 
-                    gender: gender, 
+                    password: password,
+                    resume: {
+                        name: "",
+                        username: "",
+                        major: "",
+                        grade: "",
+                    }
                 },
             },
         });
-        console.log("saasddad");
-
     };
 
-    const submit = () =>{
-        console.log(emailAddr)
-        console.log(password)
-    }
+
 
     return (
         <>
-            <InfoSec light={lightBg}>
-                <Container>
-                    <InfoRow imgStart={imgStart}>
-                        <InfoColumn>
-                            <Form>
-                                email <Input placeholder="Basic usage" onChange={e => setEmail(e.target.value)}/>
-                                password <Input placeholder="Basic usage" onChange={e => setPassword(e.target.value)}/>
-                                nickname <Input placeholder="Basic usage" onChange={e => setNickname(e.target.value)}/>
-                                gender <Input placeholder="Basic usage" onChange={e => setGender(e.target.value)}/>
-                                <Button onClick={handleCreateAccount}> Submit </Button>
-                            </Form>
-                        </InfoColumn>
-                        <InfoColumn>
-                            <ImgWrapper start={start}>
-                                <Img src={img} alt={alt} />
-                            </ImgWrapper>
-                        </InfoColumn>
-                    </InfoRow>
-                </Container>
+            <InfoSec>
+                <Form>
+                    <Wrapper> <Text> Sign Up </Text> </Wrapper>
+                    <Wrapper>
+                        <Text>UserName</Text>
+                        <FormInput name="email" type="email" placeholder="Email Address" onChange={e => setEmail(e.target.value)}/>
+                    </Wrapper>
+                    <Wrapper>
+                        <Text>Password</Text>
+                        <FormInput placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                    </Wrapper>                                 
+                    <Wrapper> 
+                        <Link to="/resume" state={{ email: email }}>
+                            <Button  onClick={handleCreateAccount} primary fontBig big> Submit </Button>
+                        </Link>
+                    </Wrapper>
+                </Form>
             </InfoSec>
         </>
     )

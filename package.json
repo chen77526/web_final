@@ -2,6 +2,7 @@
   "name": "web_final",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "repository": "https://github.com/chen77526/web_final.git",
   "author": "陳嘉宏 <chen77526@gmail.com>",
   "license": "MIT",

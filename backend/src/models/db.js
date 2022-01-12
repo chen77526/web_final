@@ -1,26 +1,12 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
-  {
-    id: { type: String, unique: true},
-    name: String,
-    username: String,   
-    password: String,  
-    department: String, 
-    grade: String,      
-    cv: [{ type: mongoose.Types.ObjectId, ref: "CV" }],           
-    // applied_posts: [id!],   
-    // interested_posts: [id!], 
-  }
-)
-
 const cvSchema = new mongoose.Schema(
   {
-    Introduction: String,
+    introduction: String,
     research: String,
     work_experience: String,
     side_project: String,
-    courses: String,
+    others: String,
   }
 )
 
@@ -28,20 +14,35 @@ const accountSchema = new mongoose.Schema(
   {
     id: { type: String, unique: true},
     email: String,
-    password: String,   
-    nickname: String, 
-    gender: String
+    password: String,
+    resume: { 
+      name: String,
+      username: String,
+      major: String,
+      grade: String,
+      cv: { type: mongoose.Types.ObjectId, ref: "Cv" },
+    },   
   }
 )
 
-const UserModel = mongoose.model("user", userSchema);
+const resumeSchema = new mongoose.Schema(
+  {
+    name: String,
+    username: String,
+    major: String,
+    grade: String,
+    cv: { type: mongoose.Types.ObjectId, ref: "Cv" },
+  }
+)
+
 const CvModel = mongoose.model("cv", cvSchema);
 const AccountModel = mongoose.model("account", accountSchema);
+const ResumeModel = mongoose.model("resume", resumeSchema);
 
 const db = {
-  UserModel,
   CvModel,
-  AccountModel
+  AccountModel,
+  ResumeModel
 }
 
 export default db;

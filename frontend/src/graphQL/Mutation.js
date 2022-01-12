@@ -59,8 +59,35 @@ export const CREATE_ACCOUNT_MUTATION = gql`
             id
             email
             password   
-            nickname 
-            gender 
+            resume {
+                name
+                username
+                major
+                grade
+            }
+        }
+    }
+`;
+
+export const CREATE_RESUME_MUTATION = gql`
+    mutation createResume($email: String! $input: createResumeInput!) {
+        createResume(email: $email input: $input) {
+            name
+            username
+            major
+            grade
+        }
+    }
+`;
+
+export const CREATE_CV_MUTATION = gql`
+    mutation createCv($email: String! $input: createCvInput!) {
+        createCv(email: $email input: $input) {
+            introduction
+            research
+            work_experience
+            side_project
+            others
         }
     }
 `;

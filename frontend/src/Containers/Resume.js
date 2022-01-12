@@ -1,9 +1,11 @@
-import React from 'react'
+import React from 'react';
 import  styled  from 'styled-components';
 import { Button } from '../globalStyles';
-import { Link } from 'react-router-dom';
+import { Link, useLocation} from 'react-router-dom';
 import { useState } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
+import { CREATE_RESUME_MUTATION, CREATE_CV_MUTATION} from "../graphql"
+import { useMutation } from "@apollo/client";
 
 const InfoSec = styled.div`
     color: #fff;
@@ -90,7 +92,7 @@ const SideText = styled(Text)`
 
 const Resume = () => {
 
-    const [userName, setUserName] = useState('');
+    const [username, setUsername] = useState('');
     const [name, setName] = useState('');
     const [major, setMajor] = useState('');
     const [grade, setGrade] = useState('');
@@ -100,14 +102,43 @@ const Resume = () => {
     const [side, setSide] = useState('');
     const [others, setOthers] = useState('');
 
+    const location = useLocation();
+    const accountData  = location.state;
+
     // info of department can be fetched from the email address?
+
+    const [addResume] = useMutation(CREATE_RESUME_MUTATION);
+    const [addCv] = useMutation(CREATE_CV_MUTATION);
+
+    const handleCreateResume = () => {
+        addResume({
+            variables: {
+                email: accountData.email,
+                input: {
+                    name: name,
+                    username: username,
+                    major: major,
+                    grade: grade
+                },
+            },
+        });
+        addCv({
+            variables: {
+                email: accountData.email,
+                input: {
+                    introduction: intro,
+                    research: research,
+                    work_experience: work,
+                    side_project: side,
+                    others: others
+                },
+            },
+        });
+
+    };
+
     
-    const submit = () =>{
-        console.log(name)
-        console.log(userName)
-        console.log(major)
-        console.log(grade)
-    }
+   
 
     return (
         <>
@@ -120,7 +151,7 @@ const Resume = () => {
                     </Wrapper>
                     <Wrapper>
                         <Text>UserName</Text>
-                        <FormInput placeholder="UserName" onChange={e => setUserName(e.target.value)}/>
+                        <FormInput placeholder="UserName" onChange={e => setUsername(e.target.value)}/>
                     </Wrapper>
                     <Wrapper>
                         <Text>Major</Text>
@@ -161,8 +192,8 @@ const Resume = () => {
                     style={{width: "100%"}}
                     placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}/>
                     <Wrapper>
-                        <Link to="/resume">
-                            <Button onClick={submit} primary fontBig big> Submit </Button>
+                        <Link to="/resume" >
+                            <Button onClick={handleCreateResume} primary fontBig big> Submit </Button>
                         </Link>
                     </Wrapper>
                 </BigForm>

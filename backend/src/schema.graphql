@@ -1,70 +1,63 @@
 type Query {
-  users: [User!]!
+  accounts: [Account!]!
 }
 
 type Mutation {
-  createUser(input: createUserInput!): User
-  updateUser(input: updateUserInput!): User
   createAccount(input: createAccountInput!): Account
+  createResume(email: String!, input: createResumeInput!): Resume
+  createCv(email: String!, input: createCvInput!): Cv
 }
 
 type Subscription {
-  userUpdated: User!
+  accountUpdated: Account!
 }
 
 
-type CV{
-    Introduction: String!
+type Cv{
+    introduction: String!
     research: String!
     work_experience: String!
     side_project: String!
-    courses: String
+    others: String
 }
 
-type User{
-    id: ID!
-    name: String!
-    username: String!   #應該會設成跟email一樣?
-    password: String!   #要經過bcrypt
-    department: String! #系所
-    grade: String!      #年級
-    # cv: CV              #可有可無
+input createCvInput {
+    introduction: String!
+    research: String!
+    work_experience: String!
+    side_project: String!
+    others: String            
 }
 
-input createUserInput{
-    id: ID!
-    name: String!
-    username: String!   #應該會設成跟email一樣?
-    password: String!   #要經過bcrypt
-    department: String! #系所
-    grade: String!      #年級
-    # cv: CV              #可有可無
-}
 
-input updateUserInput{
-    # id: ID!
+type Resume {
     name: String
-    # username: String   #應該會設成跟email一樣?
-    password: String   #要經過bcrypt
-    department: String #系所
-    grade: String      #年級
-    # cv: CV              #可有可無
+    username: String
+    major: String
+    grade: String     
+    cv: Cv             
+}
+
+input createResumeInput {
+    name: String
+    username: String
+    major: String
+    grade: String     
+    cv: createCvInput       
 }
 
 type Account {
     id: ID!
     email: String!
-    password: String!   
-    nickname: String! 
-    gender: String!      
+    password: String!
+    resume: Resume!     
 }
 
 input createAccountInput {
     id: ID!
     email: String!
-    password: String!   
-    nickname: String! 
-    gender: String!  
+    password: String! 
+    resume: createResumeInput!
 }
 
 
