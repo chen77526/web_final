@@ -1,5 +1,4 @@
 import React from 'react';
-import  styled  from 'styled-components';
 import { Button } from '../globalStyles';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
@@ -49,7 +48,7 @@ const SignUp = () => {
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Password</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper>                                 
                     <Link to="/resume" state={{ email: email }} style={{padding: "10px 20px"}}>
                         <Button onClick={handleCreateAccount} primary fontBig big>Submit</Button>

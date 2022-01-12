@@ -7,19 +7,21 @@ import Footer from './Containers/Footer';
 import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
+import { useState } from 'react';
 
 const App = () => {
 	document.title = 'NTU JOBS'
+	const [login, setLogin] = useState(false);
 
 	return (
 		<Router>
 			<GlobalStyle />
-			<NavBar />
+			<NavBar login={login} />
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp />} />
-				<Route path="/resume" element={<Resume/>} />
-				<Route path="/login" element={<Login/>} />
+				<Route path="/resume" element={<Resume />} />
+				<Route path="/login" element={<Login setLogin={setLogin} />} />
 			</Routes>
 			<Footer />
 		</Router>

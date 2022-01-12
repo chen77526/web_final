@@ -54,7 +54,7 @@ export const SignUpTitle = styled.h2`
     height: inherit;
 `;
 
-export const SignUpSubtitle = styled.div`
+export const SignUpSubtitle = styled.label`
     display: flex;
     align-items: center;
     color: #fff;

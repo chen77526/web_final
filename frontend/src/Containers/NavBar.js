@@ -20,7 +20,7 @@ import {
     ToggleIcon
 } from '../Components/NavBar_ele';
 
-const NavBar = () => {
+const NavBar = ({login}) => {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
 
@@ -58,14 +58,14 @@ const NavBar = () => {
                             <NavItem>
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
-                            <NavItem>
+                            <NavItem style={{display: login ? 'none': ''}}>
                                 <NavLinks to='/login'><AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN</NavLinks>
                             </NavItem>
                             <NavBtn>
                                 {button ? (
-                                <NavBtnLink to='/signup'>
-                                    <Button primary>SIGN UP</Button>
-                                </NavBtnLink>
+                                    <NavBtnLink to='/signup'>
+                                        <Button primary>SIGN UP</Button>
+                                    </NavBtnLink>
                                 ) : (
                                     <NavBtnLink to='/signup'>
                                         <Button fontBig primary>

@@ -11,6 +11,7 @@ import {
     FooterLinksTitle,
     FooterLinksItem,
     FooterLink,
+    FooterLinkFB,
     SocialIcon,
     SocialIconLink,
     SocialIcons,
@@ -45,11 +46,9 @@ const Footer = () => {
                     </FooterLinksItem>
                     <FooterLinksItem>
                         <FooterLinksTitle>Contact Us</FooterLinksTitle>
-                        <FooterLink to='/signup'>How it works</FooterLink>
-                        <FooterLink to='/'>Testimonials</FooterLink>
-                        <FooterLink to='/'>Careers</FooterLink>
-                        <FooterLink to='/'>Investors</FooterLink>
-                        <FooterLink to='/'>Terms of Service</FooterLink>
+                        <FooterLinkFB href='https://reurl.cc/DdZKYE' target='_blank' rel='noopener noreferrer'>陳嘉宏</FooterLinkFB>
+                        <FooterLinkFB href='https://reurl.cc/Opk5Qy' target='_blank' rel='noopener noreferrer'>童子瑜</FooterLinkFB>
+                        <FooterLinkFB href='https://reurl.cc/Qj65NM' target='_blank' rel='noopener noreferrer'>邵家澤</FooterLinkFB>
                     </FooterLinksItem>
                 </FooterLinksWrapper>
                 <FooterLinksWrapper>
@@ -71,10 +70,10 @@ const Footer = () => {
                     </SocialLogo>
                     <WebsiteRights>NTU JOBS © 2022</WebsiteRights>
                     <SocialIcons>
-                        <SocialIconLink href='https://www.facebook.com/groups/NTURicWebProg' target='_blank' arial-label='Facebook'>
+                        <SocialIconLink href='https://www.facebook.com/groups/NTURicWebProg' target='_blank' arial-label='Facebook' rel='noopener noreferrer'>
                             <FaFacebook />
                         </SocialIconLink>
-                        <SocialIconLink href='https://wp.ee.ntu.edu.tw/' target='_blank' arial-label='Website'>
+                        <SocialIconLink href='https://wp.ee.ntu.edu.tw/' target='_blank' arial-label='Website' rel='noopener noreferrer'>
                             <FaChrome />
                         </SocialIconLink>
                         <SocialIconLink href='https://www.youtube.com/' target='_blank' arial-label='Youtube' rel='noopener noreferrer'>
@@ -84,7 +83,7 @@ const Footer = () => {
                 </SocialMediaWrapper>
             </SocialMedia>
             <Form>
-                <FormInput name='company' type='company' placeholder='Search Company' />
+                <FormInput name='company' type='text' placeholder='Search Company' />
                 <Button fontBig>Subscribe</Button>
             </Form>    
         </FooterContainer>

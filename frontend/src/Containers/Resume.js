@@ -16,89 +16,6 @@ import {
     CvForm
 } from '../Components/Format_ele';
 
-// const InfoSec = styled.div`
-//     color: #fff;
-//     padding: 160px 0;
-//     background: #101522;
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     flex-direction: column;
-// `;
-
-// const InfoSec2 = styled(InfoSec)`
-//     background: #000;
-// `;
-
-// const Form = styled.form`
-//     border-radius: 50px;
-//     padding: 25px;
-//     background: #2D4263;
-//     height: 40%;
-//     display: flex;
-//     // justify-content: center;
-//     // align-items: center;
-//     flex-direction: column;
-//     width: 40%;
-//     @media screen and (max-width: 820px) {
-//         flex-direction: column;
-//         width: 80%;
-//     }
-// `;
-
-// const BigForm = styled(Form)`
-//     width:60%;
-//     justify-content: left;
-//     align-items: left;
-//     flex-direction: column;
-// `;
-
-// const FormInput = styled.input`
-//     padding: 10px 20px;
-//     border-radius: 2px;
-//     margin-right: 10px;
-//     outline: none;
-//     border: none;
-//     color: #000;
-//     font-size: 16px;
-//     border: 1px solid #fff;
-//     box-sizing: border-box;
-
-//     &::placeholder{
-//         color: #242424;
-//         opacity: 0.5;
-//     }
-
-//     @media screen and (max-width: 820px) {
-//         margin: 0 0 16px 0;
-//     }
-// `;
-
-// const Wrapper = styled.div`
-//     display: flex;
-//     flex-direction: row; 
-//     justify-content: center;
-//     // align-items: center;
-//     padding: 10px 20px;
-//     @media screen and (max-width: 820px) {
-//         flex-direction: column;
-//         width: 80%;
-//     }
-// `
-
-// const Text = styled.text`
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     margin-right: 10px;
-//     font-size: 16px;
-// `;
-
-// const SideText = styled(Text)`
-//     justify-content: left;
-//     align-items: left;
-// `
-
 const Resume = () => {
     const [username, setUsername] = useState('');
     const [name, setName] = useState('');
@@ -155,19 +72,19 @@ const Resume = () => {
                     <SignUpTitle> Step 1. Personal Info </SignUpTitle>
                     <SignUpWrapper>
                         <SignUpSubtitle>Name</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Name" onChange={e => setName(e.target.value)}/>
+                        <SignUpFormInput name="name" type="text" placeholder="Name" onChange={e => setName(e.target.value)}/>
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Username</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Username" onChange={e => setUsername(e.target.value)}/>
+                        <SignUpFormInput name="username" type="text" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Major</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Major" onChange={e => setMajor(e.target.value)}/>
+                        <SignUpFormInput name="major" type="text" placeholder="Major" onChange={e => setMajor(e.target.value)}/>
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Grade</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Grade" onChange={e => setGrade(e.target.value)}/>
+                        <SignUpFormInput name="grade" type="text" placeholder="Grade" onChange={e => setGrade(e.target.value)}/>
                     </SignUpWrapper>                         
                 </SignUpForm>
             </SignUpSec>

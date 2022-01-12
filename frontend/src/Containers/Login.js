@@ -11,13 +11,14 @@ import {
     SignUpWrapper
 } from '../Components/Format_ele';
 
-const Login = () => {
+const Login = ({setLogin}) => {
     const [emailAddr, setEmailAddr] = useState('');
     const [password, setPassword] = useState('');
 
-    const submit = () =>{
+    const loginHandler = () =>{
         console.log(emailAddr)
         console.log(password)
+        setLogin(true);
     }
 
     return (
@@ -31,10 +32,10 @@ const Login = () => {
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Password</SignUpSubtitle>
-                        <SignUpFormInput placeholder="Password" onChange={e => setPassword(e.target.value)}/>
+                        <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper>                                
                     <Link to="/" style={{padding: "10px 20px"}}> {/*userpage*/}
-                        <Button onClick={submit} primary fontBig big>Login</Button>
+                        <Button onClick={loginHandler} primary fontBig big>Login</Button>
                     </Link>
                 </SignUpForm>
             </SignUpSec>
