@@ -1,57 +1,81 @@
 import React from 'react'
-import { dataOne } from '../Components/Data/SignUpData'
-import Info from './Info'
-import { Input } from 'antd';
 import  styled  from 'styled-components';
-import { Container, Button } from '../globalStyles';
-import { 
-    InfoSec,
-    InfoRow,
-    InfoColumn,
-    TopLine,
-    Subtitle,
-    Head,
-    TextWrapper,
-    ImgWrapper,
-    Img
-} from '../Components/Info_ele';
+import { Button } from '../globalStyles';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { CREATE_ACCOUNT_MUTATION } from "../graphql"
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
 
-// const Wrapper = styled.div`
-//     background = white
-// `
 
-const Form = styled.form`
+const InfoSec = styled.div`
+    color: #fff;
+    padding: 160px 0;
+    background: #101522;
     display: flex;
     justify-content: center;
     align-items: center;
+`;
 
+const Form = styled.form`
+    border-radius: 50px;
+    padding: 25px;
+    background: #2D4263;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    flex-direction: column;
+    width: 40%;
     @media screen and (max-width: 820px) {
         flex-direction: column;
         width: 80%;
     }
 `;
 
-const SignUp = ({
-    primary,            // true -> primary button theme
-    lightBg,            // true -> light background theme
-    imgStart,           // true -> row start with images
-    lightTopLine,       // true -> light theme of top-line text 
-    lightText,          // true -> light theme of head-line text
-    lightTextDesc,      // true -> light theme of subtitle text
-    buttonLabel,        // button text
-    topLine,            // top-line text
-    description,        // subtitle text
-    headline,           // headline text
-    img,                // image source
-    alt,                // alternative text if image not show up
-    start               // true ->     
+const FormInput = styled.input`
+    padding: 10px 20px;
+    border-radius: 2px;
+    margin-right: 10px;
+    outline: none;
+    border: none;
+    color: #000;
+    font-size: 16px;
+    border: 1px solid #fff;
 
-}) => {
+    &::placeholder{
+        color: #242424;
+        opacity: 0.5;
+    }
+
+    @media screen and (max-width: 820px) {
+        margin: 0 0 16px 0;
+    }
+`;
+
+const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+    // align-items: center;
+    padding: 10px 20px;
+    @media screen and (max-width: 820px) {
+        flex-direction: column;
+        width: 80%;
+    }
+`
+
+const Text = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 16px;
+`;
+
+
+const SignUp = () => {
 
     // const [] = useState('');
     const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
@@ -77,6 +101,10 @@ const SignUp = ({
 
     };
 
+    const submit = () =>{
+        console.log(emailAddr)
+        console.log(password)
+    }
 
     return (
         <>
@@ -103,13 +131,6 @@ const SignUp = ({
         </>
     )
 }
-// const SignUp = () => {
-//     return (
-//         <>
-//             {/* <Info {...dataOne} /> */}
-//             <InputNumber min = {1} max = {10} 
-//         </>
-//     )
-// }
+
 
 export default SignUp
