@@ -59,7 +59,7 @@ type Account {
     gender: String!      
 }
 
-input createAccountInput{
+input createAccountInput {
     id: ID!
     email: String!
     password: String!   

@@ -17,6 +17,9 @@ import {
 } from '../Components/Info_ele';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { CREATE_ACCOUNT_MUTATION } from "../graphql"
+import { useMutation } from "@apollo/client";
+import { v4 as uuidv4 } from "uuid";
 
 // const Wrapper = styled.div`
 //     background = white
@@ -51,8 +54,28 @@ const SignUp = ({
 }) => {
 
     // const [] = useState('');
-    const [userName, setUserName] = useState('');
-    const [password, setPassword] = useState('');
+    const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [gender, setGender] = useState("");
+    const [nickname, setNickname] = useState("");
+
+    const handleCreateAccount = () => {
+        console.log("sadad");
+        addAccount({
+            variables: {
+                input: {
+                    id: uuidv4(),
+                    email: email,
+                    password: password,   
+                    nickname: nickname, 
+                    gender: gender, 
+                },
+            },
+        });
+        console.log("saasddad");
+
+    };
 
 
     return (
@@ -62,9 +85,11 @@ const SignUp = ({
                     <InfoRow imgStart={imgStart}>
                         <InfoColumn>
                             <Form>
-                                UserName <Input placeholder="Basic usage" onChange={e => setUserName(e.target.value)}/>
-                                Password <Input placeholder="Basic usage" onChange={e => setPassword(e.target.value)}/>
-                                <Button> Submit </Button>
+                                email <Input placeholder="Basic usage" onChange={e => setEmail(e.target.value)}/>
+                                password <Input placeholder="Basic usage" onChange={e => setPassword(e.target.value)}/>
+                                nickname <Input placeholder="Basic usage" onChange={e => setNickname(e.target.value)}/>
+                                gender <Input placeholder="Basic usage" onChange={e => setGender(e.target.value)}/>
+                                <Button onClick={handleCreateAccount}> Submit </Button>
                             </Form>
                         </InfoColumn>
                         <InfoColumn>
