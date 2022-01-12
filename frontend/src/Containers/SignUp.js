@@ -20,10 +20,11 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
 
     const handleCreateAccount = () => {
+        const id = uuidv4()
         addAccount({
             variables: {
                 input: {
-                    id: uuidv4(),
+                    id: id,
                     email: email,
                     password: password,
                     resume: {

@@ -1,5 +1,12 @@
-const newAccount = (db, input) => {
-    return new db.AccountModel(input).save();
+import SendEmail from '../email/SendEmail.js';
+import EmailTemplate from '../email/EmailTemplate.js';
+
+const newAccount = async(db, input) => {
+    input = {...input, confirm: 'false'}
+    console.log(input.email)
+    await new db.AccountModel(input).save()
+
+    SendEmail(input.email, EmailTemplate.confirm(input.id))
 };
 
 const newCv = (db, input) => {
@@ -15,9 +22,15 @@ const checkAccount = async (db, email) => {
     return db.AccountModel.findOne({ email: email });
 }
 
+const checkId = async (db, id) => {
+    if (!id) throw new Error("Missing id for check account");
+    return db.AccountModel.findOne({ id: id });
+}
+
 export {
     newAccount,
     checkAccount,
     newResume,
-    newCv
+    newCv,
+    checkId
 };

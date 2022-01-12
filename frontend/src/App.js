@@ -7,6 +7,7 @@ import Footer from './Containers/Footer';
 import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
+import Confirm from './Containers/Confirm';
 import { useState } from 'react';
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
 				<Route path="/signup" element={<SignUp />} />
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
+				<Route path='/confirm' element={<Confirm />} />
 			</Routes>
 			<Footer />
 		</Router>
