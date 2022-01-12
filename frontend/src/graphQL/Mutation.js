@@ -91,3 +91,19 @@ export const CREATE_CV_MUTATION = gql`
         }
     }
 `;
+
+export const UPDATE_CONFIRMATION = gql`
+    mutation setConfirm($id: String!) {
+        setConfirm(id: $id) {
+            id
+            email
+            password   
+            resume {
+                name
+                username
+                major
+                grade
+            }
+        }
+    }
+`
