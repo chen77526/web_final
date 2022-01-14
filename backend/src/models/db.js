@@ -21,7 +21,8 @@ const accountSchema = new mongoose.Schema(
       major: String,
       grade: String,
       cv: { type: mongoose.Types.ObjectId, ref: "Cv" },
-    },   
+    },
+    confirm: Boolean
   }
 )
 

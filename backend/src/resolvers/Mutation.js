@@ -1,4 +1,4 @@
-import { newAccount, newResume, findAccount, newCv, checkAccount} from "./utility.js";
+import { newAccount, newResume, findAccount, newCv, checkAccount, checkId} from "./utility.js";
 
 const Mutation = {
 
@@ -53,7 +53,19 @@ const Mutation = {
     
     await account.save();
 
+  },
+
+  async setConfirm(parent, {id}, {db}, info) {
+    // console.log("id = " + id)
+    const account = await checkId(db, id);
+    if(!account) throw new Error("Account id not found: " + id);
+
+    account.confirm = true;
+
+    await account.save();
+    
   }
+
 };
 
 export default Mutation;
