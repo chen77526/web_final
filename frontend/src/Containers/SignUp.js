@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '../globalStyles';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
 import { CREATE_ACCOUNT_MUTATION } from "../graphql"
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
@@ -14,28 +14,35 @@ import {
     SignUpWrapper
 } from '../Components/Format_ele';
 
-const SignUp = () => {
+const SignUp = ({ displayStatus }) => {
     const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [inputcorrect, setInputcorrect] = useState(false);
+
+    useEffect(() => {
+        setInputcorrect(email && password);
+    })
 
     const handleCreateAccount = () => {
+        
         addAccount({
-            variables: {
-                input: {
-                    id: uuidv4(),
-                    email: email,
-                    password: password,
-                    resume: {
-                        name: "",
-                        username: "",
-                        major: "",
-                        grade: "",
-                    }
+                variables: {
+                    input: {
+                        id: uuidv4(),
+                        email: email,
+                        password: password,
+                        resume: {
+                            name: "",
+                            username: "",
+                            major: "",
+                            grade: "",
+                        }
+                    },
                 },
-            },
-        });
-    };
+            });
+        };
+        
 
     return (
         <>
@@ -49,9 +56,19 @@ const SignUp = () => {
                     <SignUpWrapper>
                         <SignUpSubtitle>Password</SignUpSubtitle>
                         <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
-                    </SignUpWrapper>                                 
-                    <Link to="/resume" state={{ email: email }} style={{padding: "10px 20px"}}>
-                        <Button onClick={handleCreateAccount} primary fontBig big>Submit</Button>
+                    </SignUpWrapper> 
+                                                    
+                    <Link to={(inputcorrect)? "/resume": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
+                        <Button onClick={()=>{
+                            if(!email || !password) {
+                                displayStatus({
+                                    type: "error",
+                                    msg: "Missing email or password, try again!!.",
+                                });
+                            } else {
+                                handleCreateAccount();
+                            }
+                            }} primary fontBig big>Submit</Button>
                     </Link>
                 </SignUpForm>
             </SignUpSec>

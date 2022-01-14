@@ -1,4 +1,4 @@
-import { newAccount, newResume, checkAccount, newCv} from "./utility.js";
+import { newAccount, newResume, findAccount, newCv, checkAccount} from "./utility.js";
 
 const Mutation = {
 
@@ -26,13 +26,13 @@ const Mutation = {
   // },
 
   async createAccount(parent, {input}, {db}, info) {
+    
     let newAcc = await newAccount(db, input);
-
     return newAcc;
   },
 
   async createCv(parent, {email, input}, {db}, info) {
-    const account = await checkAccount(db, email);
+    const account = await findAccount(db, email);
     if(!account) throw new Error("Account email not found: " + email);
     let newC = await newCv(db, input);
     account.resume.cv = newC;
@@ -42,7 +42,7 @@ const Mutation = {
   },
 
   async createResume(parent, {email, input}, {db}, info) {
-    const account = await checkAccount(db, email);
+    const account = await findAccount(db, email);
     if(!account) throw new Error("Account email not found: " + email);
 
     // const newRe = await newResume(db, input);

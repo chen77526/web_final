@@ -8,10 +8,26 @@ import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
 import { useState } from 'react';
+import { message } from 'antd'
 
 const App = () => {
 	document.title = 'NTU JOBS'
 	const [login, setLogin] = useState(false);
+
+	const displayStatus = (payload) => {
+		if (payload.msg) {
+			const { type, msg } = payload
+			const content = {
+				content: msg, duration: 0.5 }
+			switch (type) {
+				case 'success':
+					message.success(content)
+				break
+				case 'error':
+				default:
+					message.error(content)
+				break
+	}}}
 
 	return (
 		<Router>
@@ -19,7 +35,7 @@ const App = () => {
 			<NavBar login={login} />
 			<Routes>
 				<Route path="/" exact element={<Home />} />
-				<Route path="/signup" element={<SignUp />} />
+				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 			</Routes>

@@ -12,12 +12,12 @@ import {
 } from '../Components/Format_ele';
 
 const Login = ({setLogin}) => {
-    const [emailAddr, setEmailAddr] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [user, setUser] = useState('');
 
     const loginHandler = () =>{
-        console.log(emailAddr)
-        console.log(password)
+        setUser()
         setLogin(true);
     }
 
@@ -28,7 +28,7 @@ const Login = ({setLogin}) => {
                     <SignUpTitle> Login </SignUpTitle>
                     <SignUpWrapper>
                         <SignUpSubtitle>Email</SignUpSubtitle>
-                        <SignUpFormInput name="email" type="email" placeholder="Email Address" onChange={e => setEmailAddr(e.target.value)}/>
+                        <SignUpFormInput name="email" type="email" placeholder="Email Address" onChange={e => setEmail(e.target.value)}/>
                     </SignUpWrapper>
                     <SignUpWrapper>
                         <SignUpSubtitle>Password</SignUpSubtitle>
