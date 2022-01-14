@@ -9,8 +9,10 @@ import Resume from './Containers/Resume';
 import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
 import { useState } from 'react';
-import { message } from 'antd'
+import { message } from 'antd';
+import Post from './Containers/Post';
 import Verify from './Containers/Verify';
+import Personalpage from './Containers/PersonalPage';
 import QueryPosts from './Containers/QueryPosts';
 
 const App = () => {
@@ -43,7 +45,9 @@ const App = () => {
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path="/verify" element={<Verify />} />
+				<Route path='/post' element={<Post />}/>
 				<Route path="/post/:uid" element={<QueryPosts />} />
+				<Route path="/personalpage" element={<Personalpage/>} />
 			</Routes>
 			<Footer />
 		</Router>
