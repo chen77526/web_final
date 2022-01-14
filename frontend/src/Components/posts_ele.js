@@ -39,4 +39,8 @@ export const PostLink = styled(Link)`
     display: flex;
     justify-content: flex-start;
     text-decoration: none;
+
+    h1 {
+        color: #1e8ef7;
+    }
 `;
