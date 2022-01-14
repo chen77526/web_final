@@ -1,16 +1,20 @@
 type Query {
-  accounts: [Account!]!
+  account (email: String, password: String): Account!
+  posts: [Post!]!
 }
 
 type Mutation {
   createAccount(input: createAccountInput!): Account
   createResume(email: String!, input: createResumeInput!): Resume
   createCv(email: String!, input: createCvInput!): Cv
+  createPost(email: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
+
 }
 
 type Subscription {
-  accountUpdated: Account!
+  postCreated: Post!
+  postUpdated: Post!
 }
 
 
@@ -52,7 +56,8 @@ type Account {
     email: String!
     password: String!
     resume: Resume!
-    confirm: Boolean!     
+    confirm: Boolean! 
+    posts: [Post!]
 }
 
 input createAccountInput {
@@ -62,8 +67,20 @@ input createAccountInput {
     resume: createResumeInput!
 }
 
-type Userinfo {
-    username: String! 
+type Post {
+    title: String!
+    company: String!
+    description: String!
+    tags: [String!]
+    required: [String!] 
+}
+
+input createPostInput {
+    title: String!
+    company: String!
+    description: String!
+    tags: [String!]
+    required: [String!]  
 }
 
 
