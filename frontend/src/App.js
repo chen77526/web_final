@@ -10,6 +10,7 @@ import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
 import { useState } from 'react';
 import { message } from 'antd'
+import Verify from './Containers/Verify';
 
 const App = () => {
 	document.title = 'NTU JOBS'
@@ -40,6 +41,7 @@ const App = () => {
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 				<Route path='/confirm' element={<Confirm />} />
+				<Route path="/verify" element={<Verify />} />
 			</Routes>
 			<Footer />
 		</Router>
