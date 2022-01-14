@@ -57,7 +57,7 @@ const SignUp = ({ displayStatus }) => {
                         <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper> 
                                                     
-                    <Link to={(inputcorrect)? "/resume": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
+                    <Link to={(inputcorrect)? "/verify": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
                         <Button onClick={()=>{
                             if(!email || !password) {
                                 displayStatus({
