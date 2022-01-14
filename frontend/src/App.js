@@ -11,6 +11,7 @@ import Confirm from './Containers/Confirm';
 import { useState } from 'react';
 import { message } from 'antd'
 import Verify from './Containers/Verify';
+import QueryPosts from './Containers/QueryPosts';
 
 const App = () => {
 	document.title = 'NTU JOBS'
@@ -42,6 +43,7 @@ const App = () => {
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path="/verify" element={<Verify />} />
+				<Route path="/post/:uid" element={<QueryPosts />} />
 			</Routes>
 			<Footer />
 		</Router>
