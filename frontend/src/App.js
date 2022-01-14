@@ -8,6 +8,7 @@ import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
+import Post from './Containers/Post'
 import { useState } from 'react';
 import { message } from 'antd'
 
@@ -40,6 +41,7 @@ const App = () => {
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 				<Route path='/confirm' element={<Confirm />} />
+				<Route path='/post' element={<Post />}/>
 			</Routes>
 			<Footer />
 		</Router>
