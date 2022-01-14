@@ -10,6 +10,7 @@ import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
 import Post from './Containers/Post'
 import Verify from './Containers/Verify';
+import Personalpage from './Containers/PersonalPage';
 import { useState } from 'react';
 import { message } from 'antd'
 
@@ -44,6 +45,7 @@ const App = () => {
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path='/post' element={<Post />}/>
 				<Route path="/verify" element={<Verify />} />
+				<Route path="/personalpage" element={<Personalpage/>}/>
 			</Routes>
 			<Footer />
 		</Router>
