@@ -1,4 +1,4 @@
-import 'antd/dist/antd.css';
+import 'antd/dist/antd.css'
 import GlobalStyle from './globalStyles';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavBar from './Containers/NavBar';
@@ -8,11 +8,12 @@ import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
-import Post from './Containers/Post'
+import { useState } from 'react';
+import { message } from 'antd';
+import Post from './Containers/Post';
 import Verify from './Containers/Verify';
 import Personalpage from './Containers/PersonalPage';
-import { useState } from 'react';
-import { message } from 'antd'
+import QueryPosts from './Containers/QueryPosts';
 
 const App = () => {
 	document.title = 'NTU JOBS'
@@ -43,9 +44,10 @@ const App = () => {
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} />} />
 				<Route path='/confirm' element={<Confirm />} />
-				<Route path='/post' element={<Post />}/>
+				<Route path='/post/:pid' element={<Post />}/>
+				<Route path='/:uid' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
-				<Route path="/personalpage" element={<Personalpage/>}/>
+				<Route path="/personalpage" element={<Personalpage/>} />
 			</Routes>
 			<Footer />
 		</Router>
