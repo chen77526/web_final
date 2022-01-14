@@ -4,6 +4,8 @@ import React, { useState } from 'react'
 import styled from "styled-components"
 import { useQuery } from "@apollo/client"
 import { Link, useSearchParams } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 //CP company and position
 
@@ -33,6 +35,7 @@ const Header = styled.div`
 `
 
 const CP = styled.h3`
+    font-size: 18px;
     display: flex;
     justify-content: right;
     align-items: center;
@@ -47,42 +50,34 @@ const Box = styled.div`
     padding: 10px 10px;
     border: 5px solid gray;
     margin: 20px;
+
 `
 
-const Text = styled.h4`
+const Text = styled.div`
+    font-size: 16px;
     color: #fff;
 `;
 
 const Tags = styled.h5`
+    font-size: 14px;
     color: #FFFEEE;
 `;
 
-const Button = styled.button`
-    border-radius: 4px;
-    background: #1e8ef7;
-    white-space: nowrap;
-    padding: ${({big}) => (big ? '12px 64px' : '10px 20px')};
-    color: #fff;
-    font-size: ${({fontBig}) => (fontBig ? '20px' : '16px')};
-    outline: none;
-    border: none;
-    cursor: pointer;
-
-    &:hover {
-        transition: all 0.3s ease-out;
-        background: #fff;
-        background: ${({primary}) => (primary ? '#1e8ef7' : '#0467fb')};
-    }
-
-    @media screen and (max-width: 960px) {
-        width: 100%;
-    }
-`;
+const LikeButton = styled(Button)`
+    justify-content: right;
+    align-items: right;
+`
 
 
 const Post = () => {
 
     const [btnstate, setBtnstate] = useState(true);
+    const [interested, setInterested] = useState(false);
+
+    const handleLike = () =>{
+        setInterested(!interested)
+        //if(interested)  useMutation to put postID to interested list
+    }
 
     const handlebtn = () => {
         setBtnstate(false)
@@ -102,14 +97,20 @@ const Post = () => {
                     <Header>
                         <Title>Title here</Title>
                         <CP>Wo Jia Neo Pie</CP>
+                        <LikeButton onClick={handleLike}>Follow</LikeButton>
                     </Header>
-                    <Text>Text Here max Well
-                    </Text>
+                    {/* <Content> */}
+                        <Text>Text Here max Well</Text>
+                    {/* </Content> */}
                     <Tags>#win</Tags>
                 </Box>
                 {btnstate?
-                <Button onClick={handlebtn} disabled={!btnstate}> Apply! </Button>  :
-                <Button onClick={handlebtn} disabled={!btnstate}> Applied! </Button>}
+                    <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn}>
+                    Apply
+                    </Button>  :
+                    <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn} disabled={!btnstate}>
+                    Applied
+                    </Button>}
             </Wrapper>
         </>
     )
