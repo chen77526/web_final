@@ -6,6 +6,7 @@ type Mutation {
   createAccount(input: createAccountInput!): Account
   createResume(email: String!, input: createResumeInput!): Resume
   createCv(email: String!, input: createCvInput!): Cv
+  setConfirm(id: String!): Account 
 }
 
 type Subscription {
@@ -50,7 +51,8 @@ type Account {
     id: ID!
     email: String!
     password: String!
-    resume: Resume!     
+    resume: Resume!
+    confirm: Boolean!     
 }
 
 input createAccountInput {

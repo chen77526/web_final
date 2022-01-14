@@ -25,23 +25,23 @@ const SignUp = ({ displayStatus }) => {
     })
 
     const handleCreateAccount = () => {
-        
+        const id = uuidv4()
         addAccount({
-                variables: {
-                    input: {
-                        id: uuidv4(),
-                        email: email,
-                        password: password,
-                        resume: {
-                            name: "",
-                            username: "",
-                            major: "",
-                            grade: "",
-                        }
-                    },
+            variables: {
+                input: {
+                    id: id,
+                    email: email,
+                    password: password,
+                    resume: {
+                        name: "",
+                        username: "",
+                        major: "",
+                        grade: "",
+                    }
                 },
-            });
-        };
+            },
+        });
+    }
         
 
     return (
