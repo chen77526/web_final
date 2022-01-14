@@ -1,5 +1,6 @@
 import svgfileA from '../../images/HappyNews.svg';
 import svgfileB from '../../images/DigitalNomad.svg';
+import svgfileC from '../../images/Certificate.svg';
 
 export const dataOne = {
     primary: true,
