@@ -1,4 +1,4 @@
-import { newAccount, newResume, findAccount, newCv, checkAccount, checkId} from "./utility.js";
+import { newAccount, newResume, findAccount, newCv, checkAccount, checkId, newPost} from "./utility.js";
 
 const Mutation = {
 
@@ -55,6 +55,18 @@ const Mutation = {
 
   },
 
+  async createPost(parent, {email, input }, {db,}, info) {
+
+    const account = await findAccount(db, email);
+    if(!account) throw new Error("Account email not found: " + email);;
+
+    const newPost = await newPoste(db, input);
+    account.posts.push(newPost);
+    await account.save();
+
+    return newPost;
+  },
+
   async setConfirm(parent, {id}, {db}, info) {
     // console.log("id = " + id)
     const account = await checkId(db, id);
@@ -64,7 +76,7 @@ const Mutation = {
 
     await account.save();
     
-  }
+  },
 
 };
 

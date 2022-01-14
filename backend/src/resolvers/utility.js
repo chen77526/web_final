@@ -3,14 +3,13 @@ import EmailTemplate from '../email/EmailTemplate.js';
 
 const newAccount = async(db, input) => {
     input = {...input, confirm: 'false'}
-    console.log(input.email)
     await new db.AccountModel(input).save()
 
     SendEmail(input.email, EmailTemplate.confirm(input.id))
 };
 
-const checkAccount = (db, input) => {
-    return db.ChatBoxModel.findOne({ email: input.email, password: input.password });
+const checkAccount = (db, email, password) => {
+    return db.AccountModel.findOne({ email: email, password: password });
 }
 
 const newCv = (db, input) => {
@@ -19,6 +18,10 @@ const newCv = (db, input) => {
 
 const newResume = (db, input) => {
     return new db.ResumeModel(input).save();
+};
+
+const newPost = (db, input) => {
+    return new db.PostModel(input).save();
 };
 
 // find account by email
@@ -34,9 +37,10 @@ const checkId = async (db, id) => {
 
 export {
     newAccount,
-    findAccount,
     newResume,
+    newPost,
     newCv,
+    findAccount,
     checkAccount,
     checkId
 };
