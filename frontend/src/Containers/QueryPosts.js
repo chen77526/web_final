@@ -108,11 +108,12 @@ const QueryPosts = () => {
                             <PostMenu> 
                                 { loading ? 
                                     <h1>loading posts...</h1>:
+                                    data? 
                                     data.posts.map((post) => {
                                         return <PostBloc>
                                             <PostLink to={`/post/?title=${post.title}`}><h1>{post.title}</h1></PostLink>
                                         </PostBloc>
-                                    })
+                                    }) : <h1>no posts yet</h1>
                                 }
                             </PostMenu>
                         </TabPanel>
