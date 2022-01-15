@@ -24,6 +24,12 @@ const checkAccount = async (db, email, password) => {
     else return null
 }
 
+const validAccount =  async(db, email) => {
+    const account = await db.AccountModel.findOne({ email: email});
+    if(!account) return null;
+    else return account;
+}
+
 const findResume = async(db, id) => {
     const account = db.AccountModel.findOne({ id: id });
     return db.AccountModel.findOne({ id: id });
@@ -66,5 +72,6 @@ export {
     findPost,
     checkAccount,
     checkId,
+    validAccount,
     findResume
 };
