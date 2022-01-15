@@ -1,6 +1,6 @@
 type Query {
   account (email: String, password: String): Account
-  posts: [Post!]!
+  posts (id: String): [Post!]!
 }
 
 type Mutation {

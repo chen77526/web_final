@@ -41,11 +41,11 @@ const App = () => {
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
-				<Route path="/resume/:uid" element={<Resume />} />
+				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
-				<Route path='/post/:pid' element={<Post />}/>
-				<Route path='/:uid' element={<QueryPosts />}/>
+				<Route path='/post' element={<Post />}/>
+				<Route path='/allpost' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
 				<Route path="/creatPost" element={<Verify />} />
 				<Route path="/personalpage" element={<Personalpage/>} />

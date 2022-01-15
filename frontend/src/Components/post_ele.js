@@ -52,8 +52,3 @@ export const PostText = styled.div`
     font-size: 16px;
     color: #fff;
 `;
-
-// export const PostLikeButton = styled(Button)`
-//     justify-content: right;
-//     align-items: right;
-// `
