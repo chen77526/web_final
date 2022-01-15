@@ -37,7 +37,7 @@ const App = () => {
 	return (
 		<Router>
 			<GlobalStyle />
-			<NavBar login={login} />
+			<NavBar login={login} setLogin={setLogin} />
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
@@ -47,7 +47,7 @@ const App = () => {
 				<Route path='/post' element={<Post />}/>
 				<Route path='/allpost' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
-				<Route path="/createPost" element={<Verify />} />
+				<Route path="/creatPost" element={<Verify />} />
 				<Route path="/personalpage" element={<Personalpage/>} />
 			</Routes>
 			<Footer />

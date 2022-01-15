@@ -8,9 +8,9 @@ import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import {
     PostDivSec,
+    PostTitle,
     PostBox,
     PostCompany,
-    PostTitle,
     PostHeader,
     PostText
 } from '../Components/post_ele';

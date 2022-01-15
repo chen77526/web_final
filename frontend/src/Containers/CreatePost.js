@@ -4,7 +4,7 @@ import { SignUpSec } from '../Components/Format_ele'
 const CreatePost = () => {
     return (
         <>
-            <SignUpSec light={true}>
+            {/* <SignUpSec light={true}>
                 <CvForm light={false}>
                     <SignUpTitle>New Post</SignUpTitle>
                     <SideText>Title</SideText>
@@ -46,7 +46,7 @@ const CreatePost = () => {
                         <Button onClick={handleCreateResume} primary fontBig big>Create</Button>
                     </Link>
                 </CvForm>
-            </SignUpSec>
+            </SignUpSec> */}
         </>
     )
 }
