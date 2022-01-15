@@ -7,6 +7,7 @@ import { Link, useLocation} from 'react-router-dom';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
+import { RESUME_QUERY } from "../graphql"
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -19,7 +20,7 @@ import {
 } from '../Components/Format_ele';
 import { useEffect } from 'react';
 
-const Personalpage = () =>{
+const Personalpage = (token) =>{
 
     const [username, setUsername] = useState('');
     const [name, setName] = useState('');
@@ -36,6 +37,17 @@ const Personalpage = () =>{
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
+
+    const id = token.token;
+
+    const { loading, data, subscribeToMore } = useQuery(RESUME_QUERY, {
+        variables: {
+            id: id
+        }
+    });
+
+    console.log(data);
+
 
     return(
         <>

@@ -40,8 +40,8 @@ export const POSTS_QUERY = gql`
 `;
 
 export const POST_QUERY = gql`
-    query post($id: String) {
-        post (id: $id) {
+    query resume($id: String) {
+        resume (id: $id) {
             id
             owner
             title
@@ -53,6 +53,25 @@ export const POST_QUERY = gql`
         }
     }
 `;
+
+export const RESUME_QUERY = gql`
+    query resume($id: String) {
+        resume (id: $id) {
+            name
+            username
+            major
+            grade
+            cv {
+                introduction
+                research
+                work_experience
+                side_project
+                others
+            }
+        }
+    }
+`;
+
 
 export const CHECK_ACCOUNT_QUERY = gql`
     query checkaccount ($email: String) {
