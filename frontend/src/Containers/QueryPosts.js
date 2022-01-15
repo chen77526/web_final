@@ -29,6 +29,7 @@ const QueryPosts = () => {
         }
     });
 
+<<<<<<< HEAD
     console.log(id);
     console.log(data);
     // console.log(data.posts);
@@ -45,6 +46,12 @@ const QueryPosts = () => {
     // })
 
     // for create post
+=======
+    // for create post
+
+    // console.log(id);
+    // console.log(data);
+>>>>>>> origin/master
 
     // useEffect(() => {
     //     try {
@@ -97,16 +104,54 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
+<<<<<<< HEAD
                                     <Link component="button" to={`/createPost/?id=${id}`} style={{height: '65%'}}>
+=======
+                                    <Link component="button" to='/createPost' style={{height: '65%'}}>
+>>>>>>> origin/master
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
+<<<<<<< HEAD
                             <PostMenu> 
                                 {
                                 }
+=======
+                            <PostMenu>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
+                                </PostBloc>
+>>>>>>> origin/master
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>

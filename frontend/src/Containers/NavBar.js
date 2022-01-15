@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { IconContext } from 'react-icons/lib';
-import { Button } from '../globalStyles'
+import { Button } from '../globalStyles';
+import { useSearchParams } from 'react-router-dom';
 import { 
     AiOutlineBars,
     AiOutlineClose,
     AiOutlineHome,
-    AiOutlineLogin
+    AiOutlineLogin,
+    AiOutlineLogout,
+    AiOutlineUser,
+    AiFillDatabase
 } from 'react-icons/ai';
 import { 
     Nav,
@@ -20,9 +24,13 @@ import {
     ToggleIcon
 } from '../Components/NavBar_ele';
 
-const NavBar = ({login}) => {
+const NavBar = ({token, setToken}) => {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
+    const [searchParams, setSearchParams] = useSearchParams();
+    
+    const id = searchParams.get("id")
+    // console.log(id)
 
     const clickHandler = () => {
         setClick(!click);
@@ -33,6 +41,10 @@ const NavBar = ({login}) => {
         } else {
             setButton(true)
         }
+    }
+    const logoutHandler = () => {
+        localStorage.clear()
+        setToken('');
     }
     const textColor = '#1e8ef7';
 
@@ -58,8 +70,19 @@ const NavBar = ({login}) => {
                             <NavItem>
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
-                            <NavItem style={{display: login ? 'none': ''}}>
-                                <NavLinks to='/login'><AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN</NavLinks>
+                            <NavItem style={{display: (login ? '' : 'none')}}>
+                                <NavLinks to={`/Allpost/?id=${id}`}><AiFillDatabase style={{marginRight: "0.5rem"}}/>POSTS</NavLinks>
+                            </NavItem>
+                            <NavItem style={{display: (login ? '' : 'none')}}>
+                                <NavLinks to={`/personalpage/?id=${id}`}><AiOutlineUser style={{marginRight: "0.5rem"}}/>YOU</NavLinks>
+                            </NavItem>
+                            <NavItem>
+                                { token ? <NavLinks to='/' onClick={logoutHandler}>
+                                        <AiOutlineLogout style={{marginRight: "0.5rem"}}/>LOGOUT
+                                    </NavLinks> : <NavLinks to='/login'>
+                                        <AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN
+                                    </NavLinks>
+                                }
                             </NavItem>
                             <NavBtn>
                                 {button ? (

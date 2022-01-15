@@ -1,74 +1,21 @@
 // apply 按下去後要記錄他投過了所以APPLY要變成APPLIED然後不給點
 
 import React, { useState } from 'react'
-import styled from "styled-components"
-import { useQuery } from "@apollo/client"
-import { Link, useSearchParams } from 'react-router-dom'
+// import styled from "styled-components"
+// import { useQuery } from "@apollo/client"
+// import { Link, useSearchParams } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
-
-const Wrapper = styled.div`
-    flex-direction: column;
-    background: #151515;
-    padding: 50px 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`;
-
-const Title = styled.h2`
-    font-size: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    padding: 20px;
-`;
-
-const Header = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-`
-
-const CP = styled.h3`
-    font-size: 18px;
-    display: flex;
-    justify-content: right;
-    align-items: center;
-    color: #fff;
-    height: inherit;
-`;
-
-const Box = styled.div`
-    flex-direction: column;
-    width: 80%;
-    height: 80vh;
-    padding: 10px 10px;
-    border: 5px solid gray;
-    margin: 20px;
-
-`
-
-const Text = styled.div`
-    font-size: 16px;
-    color: #fff;
-`;
-
-const Tags = styled.h5`
-    font-size: 14px;
-    color: #FFFEEE;
-`;
-
-const LikeButton = styled(Button)`
-    justify-content: right;
-    align-items: right;
-`
-
+import {
+    PostDivSec,
+    PostTitle,
+    PostBox,
+    PostCompany,
+    PostHeader,
+    PostText
+} from '../Components/post_ele';
 
 const Post = () => {
-
     const [btnstate, setBtnstate] = useState(true);
     const [interested, setInterested] = useState(false);
 
@@ -90,26 +37,26 @@ const Post = () => {
     // const handlePost = query()
     return(
         <>
-            <Wrapper>
-                <Box>
-                    <Header>
-                        <Title>Title here</Title>
-                        <CP>Wo Jia Neo Pie</CP>
-                        <LikeButton onClick={handleLike}>Follow</LikeButton>
-                    </Header>
+            <PostDivSec>
+                <PostBox>
+                    <PostHeader>
+                        <PostTitle>Title here</PostTitle>
+                        <PostCompany>Wo Jia Neo Pie</PostCompany>
+                        <Button onClick={handleLike}>Follow</Button>
+                    </PostHeader>
                     {/* <Content> */}
-                        <Text>Text Here max Well</Text>
+                        <PostText>Text Here max Well</PostText>
                     {/* </Content> */}
-                    <Tags>#win</Tags>
-                </Box>
+                    {/* <Tags>#win</Tags> */}
+                </PostBox>
                 {btnstate?
                     <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn}>
-                    Apply
+                        Apply
                     </Button>  :
                     <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn} disabled={!btnstate}>
-                    Applied
+                        Applied
                     </Button>}
-            </Wrapper>
+            </PostDivSec>
         </>
     )
 }
