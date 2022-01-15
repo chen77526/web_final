@@ -4,6 +4,7 @@ import { GraphQLServer, PubSub } from "graphql-yoga";
 import Query from "./resolvers/Query.js";
 import Mutation from "./resolvers/Mutation.js";
 import Subscription from "./resolvers/Subscription.js";
+import DateResolver from "./resolvers/Date.js";
 
 // db
 import db from "./models/db.js";
@@ -15,6 +16,7 @@ const server = new GraphQLServer({
         Query,
         Mutation,
         Subscription,
+        Date: DateResolver,
     },
     context: {
         pubSub,

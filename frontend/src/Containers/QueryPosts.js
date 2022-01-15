@@ -97,7 +97,7 @@ const QueryPosts = (token) => {
                                     data? 
                                     data.posts.map((post) => {
                                         return <PostBloc>
-                                            <PostLink to={`/post/?title=${post.title}`}><h1>{post.title}</h1></PostLink>
+                                            <PostLink to={`/post/?id=${post.id}`}><h1>{post.title}</h1></PostLink>
                                         </PostBloc>
                                     }) : <h1>no posts yet</h1>
                                 }

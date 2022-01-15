@@ -127,11 +127,14 @@ export const UPDATE_CONFIRMATION = gql`
 export const  CREATE_POST_MUTATION = gql`
     mutation createPost($id: String! $input: createPostInput!) {
         createPost(id: $id input: $input) {
+            id
+            owner
             title
             company
             description
             tags
             limitations
+            duedate
         }
     }
 `
