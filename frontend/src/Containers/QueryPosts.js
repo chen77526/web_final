@@ -91,41 +91,41 @@ const QueryPosts = () => {
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                    <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
                             <PostMenu>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID' limited={true}><h1>limited</h1></PostLink>
+                                    <PostLink to='/post' limited={true}><h1>limited</h1></PostLink>
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
@@ -133,7 +133,7 @@ const QueryPosts = () => {
                         <TabPanel value="4" align='center'>
                             <PostMenu>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID' closed={true}><h1>Closed</h1></PostLink>
+                                    <PostLink to='/post' closed={true}><h1>Closed</h1></PostLink>
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
