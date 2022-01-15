@@ -14,6 +14,7 @@ import Post from './Containers/Post';
 import Verify from './Containers/Verify';
 import Personalpage from './Containers/PersonalPage';
 import QueryPosts from './Containers/QueryPosts';
+import CreatePost from './Containers/CreatePost';
 
 const App = () => {
 	document.title = 'NTU JOBS'
@@ -47,7 +48,7 @@ const App = () => {
 				<Route path='/post' element={<Post />}/>
 				<Route path='/allpost' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
-				<Route path="/createPost" element={<Verify />} />
+				<Route path="/createPost" element={<CreatePost />} />
 				<Route path="/personalpage" element={<Personalpage/>} />
 			</Routes>
 			<Footer />

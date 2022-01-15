@@ -18,22 +18,33 @@ const QueryPosts = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
-    console.log(id)
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
 
-    const { loading, data, refetch } = useQuery(POSTS_QUERY, {
+    const { loading, {data}, subscribeToMore } = useQuery(POSTS_QUERY, {
         variables: {
             id: id
         }
     });
 
-    // for create post
-
     console.log(id);
     console.log(data);
+    // console.log(data.posts);
+
+    // if (data !== null) {
+    //     // console.log(data.posts);
+    //     data.posts.map(({ title }, i) => {
+    //        console.log(title);
+    //     })
+    // }
+
+    // data.posts.map(({ title: {title}}) => {
+    //     console.log(title);
+    // })
+
+    // for create post
 
     // useEffect(() => {
     //     try {
@@ -48,6 +59,10 @@ const QueryPosts = () => {
     //         })
     //     } catch (e) {}
     // }, [subscribeToMore]);
+
+    // useEffect(() => {
+
+    // }, [data]);
 
     return (
         <>
@@ -82,50 +97,22 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
-                                    <Link component="button" to='/:uid/createPost' style={{height: '65%'}}>
+                                    <Link component="button" to={`/createPost/?id=${id}`} style={{height: '65%'}}>
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
-                            <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
-                                </PostBloc>
+                            <PostMenu> 
+                                {
+                                }
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
                             <PostMenu>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID' limited={true}><h1>limited</h1></PostLink>
+                                    <PostLink to='/post' limited={true}><h1>limited</h1></PostLink>
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
@@ -133,7 +120,7 @@ const QueryPosts = () => {
                         <TabPanel value="4" align='center'>
                             <PostMenu>
                                 <PostBloc>
-                                    <PostLink to='/post/:pID' closed={true}><h1>Closed</h1></PostLink>
+                                    <PostLink to='/post' closed={true}><h1>Closed</h1></PostLink>
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>

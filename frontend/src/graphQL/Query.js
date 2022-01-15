@@ -18,7 +18,7 @@ export const ACCOUNT_QUERY = gql`
                 company
                 description
                 tags
-                required
+                limitations
             }
         }
     }
@@ -31,7 +31,7 @@ export const POSTS_QUERY = gql`
             company
             description
             tags
-            required
+            limitations
         }
     }
 `;
