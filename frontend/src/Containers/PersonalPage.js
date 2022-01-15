@@ -10,7 +10,8 @@ import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
-import { useQuery } from "@apollo/client";
+import { useQuery , useMutation } from "@apollo/client";
+import { RESUME_QUERY } from "../graphql"
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -63,6 +64,17 @@ const Personalpage = (token) =>{
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
+
+    const id = token.token;
+
+    const { loading, data, subscribeToMore } = useQuery(RESUME_QUERY, {
+        variables: {
+            id: id
+        }
+    });
+
+    console.log(data);
+
 
     return(
         <>

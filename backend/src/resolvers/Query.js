@@ -1,5 +1,4 @@
-import {checkAccount, findAccount, findPost, validAccount} from "./utility.js";
-
+import {checkAccount, findAccount, findPost, validAccount, findResume} from "./utility.js";
 const Query = {
 
   account: async (parent, {email, password}, {db}, info) => {
