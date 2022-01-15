@@ -32,6 +32,7 @@ export const PostTitle = styled.h2`
 
 export const PostHeader = styled.div`
     display: flex;
+    height: 20%;
     justify-content: center;
     align-items: center;
     color: #fff;
@@ -41,14 +42,13 @@ export const PostCompany = styled.h3`
     font-size: 18px;
     display: flex;
     justify-content: right;
-    align-items: center;
-    color: #fff;
-    height: inherit;
+    align-items: right;
+    color: #1e8ef7;
     margin: 0;
 `;
 
 
-export const PostText = styled.div`
+export const PostText = styled.span`
     font-size: 16px;
     color: #fff;
 `;
