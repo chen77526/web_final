@@ -7,7 +7,7 @@ export const POST_CREATED_SUBSCRIPTION = gql`
       company
       description
       tags
-      requireds
+      required
     }
   }
 `;

@@ -44,8 +44,8 @@ const App = () => {
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
-				<Route path='/post/:pid' element={<Post />}/>
-				<Route path='/:uid' element={<QueryPosts />}/>
+				<Route path='/post' element={<Post />}/>
+				<Route path='/allpost' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
 				<Route path="/createPost" element={<Verify />} />
 				<Route path="/personalpage" element={<Personalpage/>} />

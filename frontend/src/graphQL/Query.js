@@ -25,8 +25,8 @@ export const ACCOUNT_QUERY = gql`
 `;
 
 export const POSTS_QUERY = gql`
-    query posts($email: String) {
-        posts {
+    query posts($id: String) {
+        posts (id: $id) {
             title
             company
             description

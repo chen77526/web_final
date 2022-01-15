@@ -5,7 +5,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { useQuery } from "@apollo/client";
-import { Link, useLocation} from 'react-router-dom';
+import { useLocation, useSearchParams} from 'react-router-dom';
 import { useEffect } from 'react';
 import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
 import Fab from '@mui/material/Fab';
@@ -14,33 +14,39 @@ import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
 const QueryPosts = () => {
     const [value, setValue] = useState('1');
-    const location = useLocation();
-    const accountData  = location.state;
+
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id = searchParams.get("id")
+    console.log(id)
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
 
-    const { data, loading, subscribeToMore } = useQuery(POSTS_QUERY, {
+    const { loading, data, refetch } = useQuery(POSTS_QUERY, {
         variables: {
-            email: accountData.email
+            id: id
         }
     });
 
     // for create post
-    useEffect(() => {
-        try {
-            subscribeToMore({
-                document: POST_CREATED_SUBSCRIPTION,
-                updateQuery: (prev, {subscriptionData}) => {
-                    if (!subscriptionData.data) return prev;
-                    return {
-                        posts: [...prev.posts, subscriptionData.data.postCreated],
-                    };
-                }
-            })
-        } catch (e) {}
-    }, [subscribeToMore]);
+
+    console.log(id);
+    console.log(data);
+
+    // useEffect(() => {
+    //     try {
+    //         subscribeToMore({
+    //             document: POST_CREATED_SUBSCRIPTION,
+    //             updateQuery: (prev, {subscriptionData}) => {
+    //                 if (!subscriptionData.data) return prev;
+    //                 return {
+    //                     posts: [...prev.posts, subscriptionData.data.postCreated],
+    //                 };
+    //             }
+    //         })
+    //     } catch (e) {}
+    // }, [subscribeToMore]);
 
     return (
         <>

@@ -1,15 +1,15 @@
-import {checkAccount} from "./utility.js";
+import {checkAccount, findAccount} from "./utility.js";
 const Query = {
 
-  async account(parent, {email, password}, {db}, info) {
+  account: async (parent, {email, password}, {db}, info) => {
     
     let account = await checkAccount(db, email, password);
     if (account) return account;
     
   },
 
-  posts: async (parent, {email, password}, {db}) => {
-    let account = await checkAccount(db, email, password);
+  posts: async (parent, {id}, {db}) => {
+    let account = await findAccount(db, id);
     if (!account) throw new Error ("Account does not exist!!");
     return account.posts;
   },
