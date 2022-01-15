@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const cvSchema = new mongoose.Schema(
   {
+    owner: String,
     introduction: String,
     research: String,
     work_experience: String,
@@ -46,6 +47,7 @@ const PostSchema = new mongoose.Schema({
     tags: String,
     limitations: String,
     duedate: Date,
+    applicants: [String]
 });
 
 const CvModel = mongoose.model("cv", cvSchema);

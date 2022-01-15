@@ -3,6 +3,7 @@ scalar Date
 type Query {
   account (email: String, password: String): Account
   checkaccount (email: String): Account
+  resume (id: String): Resume
   posts (id: String): [Post!]!
   post (id: String): Post!
 }
@@ -11,12 +12,9 @@ type Mutation {
   createAccount(input: createAccountInput!): Account
   createResume(id: String!, input: createResumeInput!): Resume
   createCv(id: String!, input: createCvInput!): Cv
-#   createPost(email: String!, input: createPostInput!): Post
-#   setConfirm(id: String!): Account
-#   updatePostApps:(id: String!, input: createAppInput): Post
+  updatePostApps(postid: String!, appid: String!): Post
   createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
-  updateOnline(email: String!, password: String!): Account
 
 }
 
@@ -27,19 +25,21 @@ type Subscription {
 
 
 type Cv{
-    introduction: String!
-    research: String!
-    work_experience: String!
-    side_project: String!
-    others: String!
+    owner: String
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
 }
 
 input createCvInput {
+    owner: String!
     introduction: String!
     research: String!
     work_experience: String!
     side_project: String!
-    others: String            
+    others: String!            
 }
 
 
@@ -85,25 +85,8 @@ type Post {
     tags: String
     limitations: String
     duedate: Date
-
+    applicants: [ID]
 }
-
-type Apps {
-    name: String!
-    email: String!
-    personCV: Cv!
-}
-
-# input createAppInput {
-#     name: String!
-#     email: String!
-#     personCV: Cv!
-#     title: String
-#     company: String
-#     description: String
-#     tags: String
-#     limitations: String
-# }
 
 input createPostInput {
     id: ID!

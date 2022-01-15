@@ -1,4 +1,5 @@
 import {checkAccount, findAccount, findPost, validAccount} from "./utility.js";
+
 const Query = {
 
   account: async (parent, {email, password}, {db}, info) => {
@@ -20,9 +21,18 @@ const Query = {
     return db.PostModel.find({});
   },
 
+
   post: async (parent, {id}, {db}) => {
     let post = await findPost(db, id);
     return post;
+  },
+
+  resume: async (parent, {id}, {db}) => {
+    
+    let account = await findAccount(db, id);
+    
+    return account.resume;
+
   },
 
 };
