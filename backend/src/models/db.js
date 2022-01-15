@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const cvSchema = new mongoose.Schema(
   {
+    owner: String,
     introduction: String,
     research: String,
     work_experience: String,

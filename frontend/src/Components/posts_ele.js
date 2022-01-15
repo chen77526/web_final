@@ -41,11 +41,15 @@ export const PostLink = styled(Link)`
     display: flex;
     justify-content: center;
     text-decoration: none;
-    height: 100%;
     width: 100%;
+    height: 100%;
     opacity: 0.8;
 
     h1 {
+        color: ${({closed, limited}) => (limited) ? '#F5CE00' : ((closed) ? '#F50057' : '#1e8ef7') };
+    }
+
+    &:hover {
         color: ${({closed, limited}) => (limited) ? '#F5CE00' : ((closed) ? '#F50057' : '#1e8ef7') };
     }
 `;

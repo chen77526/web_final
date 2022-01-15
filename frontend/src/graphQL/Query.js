@@ -53,3 +53,22 @@ export const POST_QUERY = gql`
         }
     }
 `;
+
+export const RESUME_QUERY = gql`
+    query resume($id: String) {
+        resume (id: $id) {
+            name
+            username
+            major
+            grade     
+            cv {
+                owner
+                introduction
+                research
+                work_experience
+                side_project
+                others
+            }
+        }
+    }
+`;

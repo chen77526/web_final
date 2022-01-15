@@ -30,6 +30,7 @@ export const CREATE_RESUME_MUTATION = gql`
 export const CREATE_CV_MUTATION = gql`
     mutation createCv($id: String! $input: createCvInput!) {
         createCv(id: $id input: $input) {
+            owner
             introduction
             research
             work_experience

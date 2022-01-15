@@ -5,6 +5,8 @@ import React, { useState } from 'react'
 // import { useQuery } from "@apollo/client"
 // import { Link, useSearchParams } from 'react-router-dom'
 import Button from '@mui/material/Button';
+import Fab from '@mui/material/Fab';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import SendIcon from '@mui/icons-material/Send';
 import { useQuery } from "@apollo/client";
 import { useLocation, useSearchParams} from 'react-router-dom';
@@ -20,7 +22,6 @@ import {
 } from '../Components/post_ele';
 
 const Post = () => {
-    const [btnstate, setBtnstate] = useState(true);
     const [interested, setInterested] = useState(false);
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -39,7 +40,6 @@ const Post = () => {
     }
 
     const handlebtn = () => {
-        setBtnstate(false)
 
         //這邊要mutate 加進 user 的 applied posts 
     }
@@ -58,21 +58,25 @@ const Post = () => {
                         <PostBox>
                             <PostHeader>
                                 <PostTitle>{data.post.title}</PostTitle>
-                                <PostCompany>{data.post.company}</PostCompany>
-                                <Button onClick={handleLike}>Follow</Button>
                             </PostHeader>
                             {/* <Content> */}
-                                <PostText>{data.post.description}</PostText>
+                            <PostCompany>company: {data.post.company}</PostCompany>
+                            <PostText>{data.post.description}</PostText>
                             {/* </Content> */}
                             {/* <Tags>#win</Tags> */}
                         </PostBox>
-                        {btnstate?
-                            <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn}>
-                                Apply
-                            </Button>  :
-                            <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn} disabled={!btnstate}>
-                                Applied
-                            </Button>}
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <div style={{height: 'inherit', margin:'10px 10px'}}>
+                                <Button variant="contained" endIcon={<SendIcon />} onClick={handlebtn}>
+                                    Apply
+                                </Button>
+                            </div>
+                            <div>
+                                <Fab aria-label="like">
+                                    <FavoriteIcon />
+                                </Fab>
+                            </div>
+                        </div>
                     </PostDivSec>
             }
         </>

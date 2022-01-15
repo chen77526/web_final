@@ -1,12 +1,16 @@
-//todo: 做tab
-
 import React, { useState } from 'react'
-import styled from "styled-components"
 import { Button } from '../globalStyles';
-import { Link, useLocation} from 'react-router-dom';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import Box from '@mui/material/Box';
+import { Link, useSearchParams } from 'react-router-dom';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
+import Fab from '@mui/material/Fab';
+import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
-import { useQuery , useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -17,10 +21,17 @@ import {
     SideText,
     CvForm
 } from '../Components/Format_ele';
+import {
+    PostBloc,
+    PostLink,
+    PostSec,
+    PostMenu
+} from '../Components/posts_ele';
 import { useEffect } from 'react';
+import { RESUME_QUERY } from '../graphql';
 
-const Personalpage = () =>{
-
+const Personalpage = (token) =>{
+    const [value, setValue] = useState('1');
     const [username, setUsername] = useState('');
     const [name, setName] = useState('');
     const [major, setMajor] = useState('');
@@ -32,6 +43,22 @@ const Personalpage = () =>{
     const [others, setOthers] = useState('');
 
     //GET_USER_INFO: TODO: QUERY
+    // const id = token.token;
+    // console.log(id)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id = token.token
+    // console.log(id)
+    // console.log("dsffsfs");
+
+    const { loading, data, error} = useQuery(RESUME_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
+
+    const changeHandler = (event, newValue) => {
+        setValue(newValue);
+    };
     
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
@@ -39,8 +66,89 @@ const Personalpage = () =>{
 
     return(
         <>
-            <SignUpSec>
-                <CvForm>
+            <PostSec>
+                {loading ? <SignUpSubtitle>
+                    loading cv...
+                </SignUpSubtitle>
+                : <Box sx={{
+                    borderBottom: 1,
+                    borderColor: 'divider',
+                    background: '#2D4263',
+                    width: '80%',
+                    minHeight: '500px',
+                    maxHeight: '1000px',
+                    borderRadius: '10px',
+                    borderColor: 'divider',
+                    typography: 'body1',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    color:'fff',
+                }}>
+                    <TabContext value={value}>
+                        <Box sx={{
+                            borderBottom: 1,
+                            borderColor: 'divider'
+                        }}>
+                            <TabList onChange={changeHandler} aria-label="lab API tabs example" textColor='#fff' sx={{justifyContent: 'space-between'}}>
+                                <Tab label="My_CV" value='1' />
+                                <Tab label="Owned" value='2' />
+                                <Tab label="Applied" value='3' />
+                                <Tab label="Inerested" value='4' />
+                                {/* <Tab label={<AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />} value='5'/> */}
+                                {/* <IconButton color='primary' aria-label='Add'>
+                                    <Link to='/createPost' style={{height: 'inherit', padding: '0', margin: '0'}}>
+                                        <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
+                                    </Link>
+                                </IconButton> */}
+                                <Fab color="primary" aria-label="edit">
+                                    <Link component="button" to={`/createCV/?id=${id}`} style={{height: '65%'}}>
+                                        <EditIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
+                                    </Link>
+                                </Fab>
+                            </TabList>
+                        </Box>
+                        <TabPanel value="1" alignitems='center' sx={{overflow: 'auto'}}>
+                            <PostMenu>
+                                { loading ? 
+                                    <h1>loading cv...</h1>
+                                    : data ? console.log(data)
+                                    // data.resume.map((ele) => {
+                                        
+                                    //     return <CvForm light={true}>
+                                    //         <SignUpWrapper>
+                                    //             <SignUpSubtitle>Name : </SignUpSubtitle>
+                                    //             <SideText>ele.name</SideText>
+                                    //         </SignUpWrapper>
+                                        
+                                    //         <SignUpWrapper>
+                                    //             <SignUpSubtitle>Name : </SignUpSubtitle>
+                                    //             <SideText>ele.name</SideText>
+                                    //         </SignUpWrapper>
+                                    //     </CvForm>
+                                    // })
+                                     : <h1>no cv yet</h1>
+                                }
+                            </PostMenu>
+                        </TabPanel>
+                        <TabPanel value="2" align='center'>
+                            <PostMenu>
+                                <PostBloc>
+                                    <PostLink to='/post' limited={true}><h1>limited</h1></PostLink>
+                                </PostBloc>
+                            </PostMenu>
+                        </TabPanel>
+                        <TabPanel value="3" align='center'>Ongoing</TabPanel>
+                        <TabPanel value="4" align='center'>
+                            <PostMenu>
+                                <PostBloc>
+                                    <PostLink to='/post' closed={true}><h1>Closed</h1></PostLink>
+                                </PostBloc>
+                            </PostMenu>
+                        </TabPanel>
+                        {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
+                    </TabContext>
+                </Box>
+                /* <CvForm>
                     <SignUpTitle> Personal Info </SignUpTitle>
                     <SignUpWrapper>
                         <SignUpSubtitle>Name</SignUpSubtitle>
@@ -97,8 +205,8 @@ const Personalpage = () =>{
                     <Link to="/resume" style={{padding: "20px", alignSelf: "center"}}>
                         <Button onClick={handleModify} primary fontBig big>Modify</Button>
                     </Link>
-                </CvForm>
-            </SignUpSec>
+                </CvForm> */}
+            </PostSec>
         </>
     )
 }

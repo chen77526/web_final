@@ -54,6 +54,7 @@ const Resume = () => {
             variables: {
                 id: id,
                 input: {
+                    owner: id,
                     introduction: intro,
                     research: research,
                     work_experience: work,
