@@ -32,8 +32,8 @@ const QueryPosts = () => {
 
     // for create post
 
-    console.log(id);
-    console.log(data);
+    // console.log(id);
+    // console.log(data);
 
     // useEffect(() => {
     //     try {
@@ -82,7 +82,7 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
-                                    <Link component="button" to='/:uid/createPost' style={{height: '65%'}}>
+                                    <Link component="button" to='/createPost' style={{height: '65%'}}>
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>

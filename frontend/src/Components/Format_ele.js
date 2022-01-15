@@ -34,6 +34,7 @@ export const SignUpFormInput = styled.input`
     border: none;
     font-size: 16px;
     border: 1px solid #fff;
+    max-width: 60%;
 
     &::placeholder{
         color: #242424;
@@ -43,6 +44,7 @@ export const SignUpFormInput = styled.input`
     @media screen and (max-width: 820px) {
         margin: 0 0 10px 0;
         justify-content: center;
+        max-width: 100%;
     }
 `;
 
@@ -94,8 +96,8 @@ export const CvForm = styled.form`
     background: ${({light}) => (light) ? '#101522' : '#2D4263' };
     height: 40%;
     display: flex;
-    justify-content: left;
-    align-items: left;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     width: 60%;
     margin: 0 auto;
