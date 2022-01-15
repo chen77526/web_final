@@ -41,7 +41,7 @@ const SignUp = ({ setToken, displayStatus }) => {
                 },
             },
         });
-        setToken({email: email, password: password})
+        setToken(id)
     }   
 
     return (

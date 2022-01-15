@@ -29,7 +29,7 @@ const QueryPosts = (token) => {
         }
     });
 
-    console.log(data)
+    console.log(id)
 
     // for create post
 
@@ -113,9 +113,7 @@ const QueryPosts = (token) => {
                         </TabPanel>
                         <TabPanel value="2" align='center'>
                             <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post' limited={true}><h1>limited</h1></PostLink>
-                                </PostBloc>
+
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="3" align='center'>
@@ -162,7 +160,6 @@ const QueryPosts = (token) => {
                         </TabPanel>
                         {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
                     </TabContext>
-                    
                 </Box>
             </PostSec>
         </>

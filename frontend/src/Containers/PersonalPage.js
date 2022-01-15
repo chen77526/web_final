@@ -29,6 +29,7 @@ import {
 } from '../Components/posts_ele';
 import { useEffect } from 'react';
 import { RESUME_QUERY } from '../graphql';
+import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
     const [value, setValue] = useState('1');
@@ -47,8 +48,6 @@ const Personalpage = (token) =>{
     // console.log(id)
     const [searchParams, setSearchParams] = useSearchParams();
     const id = token.token
-    // console.log(id)
-    // console.log("dsffsfs");
 
     const { loading, data, error} = useQuery(RESUME_QUERY, {
         variables: {
@@ -59,7 +58,8 @@ const Personalpage = (token) =>{
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
-    
+    if(!loading) console.log(id, data.resume.cv)
+
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
@@ -67,10 +67,7 @@ const Personalpage = (token) =>{
     return(
         <>
             <PostSec>
-                {loading ? <SignUpSubtitle>
-                    loading cv...
-                </SignUpSubtitle>
-                : <Box sx={{
+                <Box sx={{
                     borderBottom: 1,
                     borderColor: 'divider',
                     background: '#2D4263',
@@ -101,7 +98,7 @@ const Personalpage = (token) =>{
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="edit">
-                                    <Link component="button" to={`/createCV/?id=${id}`} style={{height: '65%'}}>
+                                    <Link component="button" to={`/modifyCV/?id=${id}`} style={{height: '65%'}}>
                                         <EditIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
@@ -111,23 +108,58 @@ const Personalpage = (token) =>{
                             <PostMenu>
                                 { loading ? 
                                     <h1>loading cv...</h1>
-                                    : data ? console.log(data)
-                                    // data.resume.map((ele) => {
-                                        
-                                    //     return <CvForm light={true}>
+                                : (data ? 
+                                <>
+                                    <CvForm light={true} style={{margin: '5px 0'}}>
+                                        <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.name}</SignUpSubtitle>
+                                        </ul>
+                                    </CvForm>
+                                    <CvForm light={true} style={{margin: '5px 0'}}>
+                                        <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>Username : </SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.username}</SignUpSubtitle>
+                                        </ul>
+                                    </CvForm>
+                                    <CvForm light={true} style={{margin: '5px 0'}}>
+                                        <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>Major : </SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.major}</SignUpSubtitle>
+                                        </ul>
+                                    </CvForm>
+                                    <CvForm light={true} style={{margin: '5px 0'}}>
+                                        <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>Grade : </SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.grade}</SignUpSubtitle>
+                                        </ul>
+                                    </CvForm>
+                                    <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
+                                        <PostHeader>introduction</PostHeader>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.introduction}</PostText>
+                                    </PostMenu>
+                                    <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
+                                        <PostHeader>research</PostHeader>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.research}</PostText>
+                                    </PostMenu>
+                                    <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
+                                        <PostHeader>work experience</PostHeader>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.work_experience}</PostText>
+                                    </PostMenu>
+                                    <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
+                                        <PostHeader>side project</PostHeader>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.side_project}</PostText>
+                                    </PostMenu>
+                                    <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
+                                        <PostHeader>others</PostHeader>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.others}</PostText>
+                                    </PostMenu>
+                                </> : ' ')}
+                                            {/* <CvForm light={true}>
                                     //         <SignUpWrapper>
                                     //             <SignUpSubtitle>Name : </SignUpSubtitle>
-                                    //             <SideText>ele.name</SideText>
-                                    //         </SignUpWrapper>
-                                        
-                                    //         <SignUpWrapper>
-                                    //             <SignUpSubtitle>Name : </SignUpSubtitle>
-                                    //             <SideText>ele.name</SideText>
-                                    //         </SignUpWrapper>
-                                    //     </CvForm>
-                                    // })
-                                     : <h1>no cv yet</h1>
-                                }
+                                    //             <SideText>{ele.name}</SideText>
+                                    //         </SignUpWrapper> */}
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
@@ -148,7 +180,7 @@ const Personalpage = (token) =>{
                         {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
                     </TabContext>
                 </Box>
-                /* <CvForm>
+                {/* <CvForm>
                     <SignUpTitle> Personal Info </SignUpTitle>
                     <SignUpWrapper>
                         <SignUpSubtitle>Name</SignUpSubtitle>
@@ -170,6 +202,7 @@ const Personalpage = (token) =>{
                     <SideText>Introduction</SideText>
                     <TextareaAutosize 
                         minRows={3}
+                        style={{width: "100%"}}
                         placeholder="Brief introduction of yourself..." onChange={e => setIntro(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={intro}
@@ -177,6 +210,7 @@ const Personalpage = (token) =>{
                     <SideText>Research Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
+                        style={{width: "100%"}}
                         placeholder="Research experiences?" onChange={e => setResearch(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={research}
@@ -184,6 +218,7 @@ const Personalpage = (token) =>{
                     <SideText>Work Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
+                        style={{width: "100%"}}
                         placeholder="Tell me about the jobs you have done..." onChange={e => setWork(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={work}
@@ -191,6 +226,7 @@ const Personalpage = (token) =>{
                     <SideText>Side Projects</SideText>
                     <TextareaAutosize 
                         minRows={3}
+                        style={{width: "100%"}}
                         placeholder="Any side projects?" onChange={e => setSide(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={side}
@@ -198,6 +234,7 @@ const Personalpage = (token) =>{
                     <SideText>Others</SideText>
                     <TextareaAutosize 
                         minRows={3}
+                        style={{width: "100%"}}
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={others}

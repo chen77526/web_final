@@ -3,7 +3,7 @@ scalar Date
 type Query {
   account (email: String, password: String): Account
   resume (id: String): Resume
-  posts (id: String): [Post!]!
+  posts (id: String): [Post!]
   post (id: String): Post!
 }
 
@@ -27,7 +27,7 @@ type Subscription {
 
 
 type Cv{
-    owner: String
+    owner: ID
     introduction: String
     research: String
     work_experience: String
@@ -36,7 +36,7 @@ type Cv{
 }
 
 input createCvInput {
-    owner: String!
+    owner: ID!
     introduction: String!
     research: String!
     work_experience: String!
@@ -90,11 +90,11 @@ type Post {
 
 }
 
-type Apps {
-    name: String!
-    email: String!
-    personCV: Cv!
-}
+# type Apps {
+#     name: String!
+#     email: String!
+#     personCV: Cv!
+# }
 
 # input createAppInput {
 #     name: String!

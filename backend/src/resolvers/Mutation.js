@@ -52,7 +52,6 @@ const Mutation = {
     account.resume.grade = input.grade;
     
     await account.save();
-
   },
 
   async createPost(parent, {id, input}, {db,pubSub}, info) {
@@ -61,7 +60,6 @@ const Mutation = {
     if(!account) throw new Error("Account id not found: " + id);;
 
     const newPo = await newPost(db, input);
-    console.log("post!")
     account.posts.push(newPo);
     await account.save();
     pubSub.publish("POST_CREATED", {
@@ -86,7 +84,6 @@ const Mutation = {
 
     const account = await checkAccount(db, email, password)
     if(account) {
-      console.log("yo")
       account.online = !account.online
       await account.save()
       return(account)
