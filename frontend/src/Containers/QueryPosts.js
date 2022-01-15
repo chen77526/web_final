@@ -42,14 +42,55 @@ const QueryPosts = () => {
                                 <Tab label="Closed" value='4' />
                             </TabList>
                         </Box>
-                        <TabPanel value="1" alignItems='center' sx={{display: 'flex', flexDirection: 'column'}}>
+                        <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
-                                <PostBloc><PostLink to='/post/:pID'><h1>All</h1></PostLink></PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID'><h1>All</h1></PostLink>
+                                </PostBloc>
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="2" align='center'>Limited</TabPanel>
+                        <TabPanel value="2" align='center'>
+                            <PostMenu>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID' limited={true}><h1>limited</h1></PostLink>
+                                </PostBloc>
+                            </PostMenu>
+                        </TabPanel>
                         <TabPanel value="3" align='center'>Ongoing</TabPanel>
-                        <TabPanel value="4" align='center'>Closed</TabPanel>
+                        <TabPanel value="4" align='center'>
+                            <PostMenu>
+                                <PostBloc>
+                                    <PostLink to='/post/:pID' closed={true}><h1>Closed</h1></PostLink>
+                                </PostBloc>
+                            </PostMenu>
+                        </TabPanel>
                         {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
                     </TabContext>
                 </Box>
