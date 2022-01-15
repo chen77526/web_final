@@ -70,10 +70,10 @@ const NavBar = ({token, setToken}) => {
                             <NavItem>
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
-                            <NavItem style={{display: (login ? '' : 'none')}}>
+                            <NavItem style={{display: (token ? '' : 'none')}}>
                                 <NavLinks to={`/Allpost/?id=${id}`}><AiFillDatabase style={{marginRight: "0.5rem"}}/>POSTS</NavLinks>
                             </NavItem>
-                            <NavItem style={{display: (login ? '' : 'none')}}>
+                            <NavItem style={{display: (token ? '' : 'none')}}>
                                 <NavLinks to={`/personalpage/?id=${id}`}><AiOutlineUser style={{marginRight: "0.5rem"}}/>YOU</NavLinks>
                             </NavItem>
                             <NavItem>
