@@ -6,7 +6,7 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { useQuery } from "@apollo/client";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useSearchParams} from 'react-router-dom';
 import { useEffect } from 'react';
 import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
 import Fab from '@mui/material/Fab';
@@ -16,8 +16,9 @@ import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 const QueryPosts = () => {
     const [value, setValue] = useState('1');
 
-    const location = useLocation();
-    const id = location.pathname.substring(2, 100);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id = searchParams.get("id")
+    console.log(id)
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
