@@ -5,6 +5,8 @@ import { useState, useEffect} from 'react';
 import { CREATE_ACCOUNT_MUTATION } from "../graphql"
 import { useMutation } from "@apollo/client";
 import { v4 as uuidv4 } from "uuid";
+import { CHECK_ACCOUNT_QUERY } from "../graphql";
+import { useQuery } from "@apollo/client";
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -24,24 +26,38 @@ const SignUp = ({ setToken, displayStatus }) => {
         setInputcorrect(email && password);
     })
 
+    const { loading, data, refetch} = useQuery(CHECK_ACCOUNT_QUERY, {
+        variables: {
+            email: email  
+        },
+    });
+
     const handleCreateAccount = () => {
         const id = uuidv4()
-        addAccount({
-            variables: {
-                input: {
-                    id: id,
-                    email: email,
-                    password: password,
-                    resume: {
-                        name: "",
-                        username: "",
-                        major: "",
-                        grade: "",
-                    }
+        console.log(data);
+        if (data.checkaccount !== null) {
+            displayStatus({
+                type: "error",
+                msg: "Existed account!!",
+            });
+        } else {
+            addAccount({
+                variables: {
+                    input: {
+                        id: id,
+                        email: email,
+                        password: password,
+                        resume: {
+                            name: "",
+                            username: "",
+                            major: "",
+                            grade: "",
+                        }
+                    },
                 },
-            },
-        });
-        setToken({email: email, password: password})
+            });
+        }
+        setToken(id)
     }   
 
     return (
@@ -57,19 +73,43 @@ const SignUp = ({ setToken, displayStatus }) => {
                         <SignUpSubtitle>Password</SignUpSubtitle>
                         <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper> 
-                                                    
-                    <Link to={(inputcorrect)? "/verify": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
-                        <Button onClick={()=>{
-                            if(!email || !password) {
-                                displayStatus({
-                                    type: "error",
-                                    msg: "Missing email or password, try again!!.",
-                                });
-                            } else {
-                                handleCreateAccount();
-                            }
-                            }} primary fontBig big>Submit</Button>
-                    </Link>
+                    {
+                        (!loading)?
+                            (!data.checkaccount)?
+                                (email.substring(email.length-10) === "@gmail.com")?
+                                    <Link to={(inputcorrect)? "/verify": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
+                                        <Button onClick={()=>{
+                                            if(!email || !password) {
+                                                displayStatus({
+                                                    type: "error",
+                                                    msg: "Missing email or password, try again!!.",
+                                                });
+                                            } else {
+                                                handleCreateAccount();
+                                            }
+                                            }} primary fontBig big>Submit</Button>
+                                    </Link>
+                                :<Link to="#" state={{ email: email }} style={{padding: "10px 20px"}}>
+                                    <Button onClick={()=>{
+                                        displayStatus({
+                                            type: "error",
+                                            msg: "invalid email, try again!!.",
+                                        });
+                                        }} primary fontBig big>Submit</Button>
+                                </Link>
+                            
+                            :<Link to="#" state={{ email: email }} style={{padding: "10px 20px"}}>
+                                <Button onClick={()=>{
+                                    displayStatus({
+                                        type: "error",
+                                        msg: "Existed account!!",
+                                    });
+                                    }} primary fontBig big>Submit</Button>
+                            </Link>:
+                        <Link to="#" state={{ email: email }} style={{padding: "10px 20px"}}>
+                            <Button onClick={()=>{}} primary fontBig big>Submit</Button>
+                        </Link>
+                    }                              
                 </SignUpForm>
             </SignUpSec>
         </>
