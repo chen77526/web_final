@@ -5,14 +5,41 @@ import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
+import { useQuery } from "@apollo/client";
+import { Link, useLocation} from 'react-router-dom';
+import { useEffect } from 'react';
+import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
 import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
 const QueryPosts = () => {
     const [value, setValue] = useState('1');
+    const location = useLocation();
+    const accountData  = location.state;
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
+
+    const { data, loading, subscribeToMore } = useQuery(POSTS_QUERY, {
+        variables: {
+            email: accountData.email
+        }
+    });
+
+    // for create post
+    useEffect(() => {
+        try {
+            subscribeToMore({
+                document: POST_CREATED_SUBSCRIPTION,
+                updateQuery: (prev, {subscriptionData}) => {
+                    if (!subscriptionData.data) return prev;
+                    return {
+                        posts: [...prev.posts, subscriptionData.data.postCreated],
+                    };
+                }
+            })
+        } catch (e) {}
+    }, [subscribeToMore]);
 
     return (
         <>

@@ -55,14 +55,18 @@ const Mutation = {
 
   },
 
-  async createPost(parent, {email, input }, {db,}, info) {
+  async createPost(parent, {email, input}, {db,pubSub}, info) {
 
     const account = await findAccount(db, email);
     if(!account) throw new Error("Account email not found: " + email);;
 
-    const newPost = await newPoste(db, input);
+    const newPost = await newPost(db, input);
     account.posts.push(newPost);
     await account.save();
+
+    pubSub.publish("POST_CREATED", {
+      postCreated: newPost,
+    });
 
     return newPost;
   },
