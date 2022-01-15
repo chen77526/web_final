@@ -13,11 +13,10 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
-const QueryPosts = () => {
+const QueryPosts = (token) => {
     const [value, setValue] = useState('1');
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const id = searchParams.get("id")
+    const id = token.token
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
@@ -29,20 +28,7 @@ const QueryPosts = () => {
         }
     });
 
-    console.log(id);
-    console.log(data);
-    // console.log(data.posts);
-
-    // if (data !== null) {
-    //     // console.log(data.posts);
-    //     data.posts.map(({ title }, i) => {
-    //        console.log(title);
-    //     })
-    // }
-
-    // data.posts.map(({ title: {title}}) => {
-    //     console.log(title);
-    // })
+    console.log(id)
 
     // for create post
 
