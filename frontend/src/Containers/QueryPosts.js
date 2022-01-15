@@ -1,5 +1,5 @@
 import React, { useState }from 'react';
-// import Pagination from '@mui/material/Pagination';
+import { Link } from 'react-router-dom';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
@@ -9,6 +9,8 @@ import { useQuery } from "@apollo/client";
 import { Link, useLocation} from 'react-router-dom';
 import { useEffect } from 'react';
 import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
 const QueryPosts = () => {
@@ -67,6 +69,17 @@ const QueryPosts = () => {
                                 <Tab label="Limited" value='2' />
                                 <Tab label="Ongoing" value='3' />
                                 <Tab label="Closed" value='4' />
+                                {/* <Tab label={<AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />} value='5'/> */}
+                                {/* <IconButton color='primary' aria-label='Add'>
+                                    <Link to='/createPost' style={{height: 'inherit', padding: '0', margin: '0'}}>
+                                        <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
+                                    </Link>
+                                </IconButton> */}
+                                <Fab color="primary" aria-label="add">
+                                    <Link component="button" to='/:uid/createPost' style={{height: '65%'}}>
+                                        <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
+                                    </Link>
+                                </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
@@ -120,6 +133,7 @@ const QueryPosts = () => {
                         </TabPanel>
                         {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
                     </TabContext>
+                    
                 </Box>
             </PostSec>
         </>
