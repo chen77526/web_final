@@ -45,7 +45,7 @@ const App = () => {
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/resume" element={<Resume />} />
-				<Route path="/login" element={<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/login" element={<Login setToken={setToken}  displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path='/post' element={token?<Post />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path='/allpost' element={token? <QueryPosts token={token}/>:<Login setToken={setToken} displayStatus={displayStatus}/>}/>

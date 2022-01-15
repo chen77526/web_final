@@ -1,15 +1,29 @@
 import SendEmail from '../email/SendEmail.js';
 import EmailTemplate from '../email/EmailTemplate.js';
+import bcrypt from 'bcrypt'
 
 const newAccount = async(db, input) => {
+    // console.log(input)
+    console.log(input.password)
+    const hash = bcrypt.hashSync(input.password, 10)
+    input.password = hash
+    console.log(input.password)
     input = {...input, confirm: 'false'}
     await new db.AccountModel(input).save()
 
-    SendEmail(input.email, EmailTemplate.confirm(input.id))
+    // SendEmail(input.email, EmailTemplate.confirm(input.id))
 };
 
-const checkAccount = (db, email, password) => {
-    return db.AccountModel.findOne({ email: email, password: password });
+const checkAccount = async (db, email, password) => {
+    const account = await db.AccountModel.findOne({ email: email})
+    if(!account) return ({account: "null"})
+    console.log(account.password)
+    // return account
+    if(bcrypt.compareSync(account.password, password)){
+        console.log(true)
+        return account
+    }
+    else return ({account: "null"})
 }
 
 const newCv = (db, input) => {

@@ -4,6 +4,7 @@ const Query = {
   account: async (parent, {email, password}, {db}, info) => {
     
     let account = await checkAccount(db, email, password);
+    console.log(account);
     if (account) return account;
     
   },
