@@ -39,7 +39,7 @@ const Confirm = () => {
                                 <TopLine light={true}></TopLine>
                                 <Head light={true}>Thanks for your signing</Head>
                                 <Subtitle light={true}>I need sleeping...</Subtitle>
-                                <Link to={'/resume'}>
+                                <Link to={`/resume/:${id}`}>
                                     <Button onClick={handleConfirm} big fontBig primary={true}>
                                         Verify
                                     </Button>
