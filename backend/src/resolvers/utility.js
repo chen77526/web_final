@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt'
 
 const newAccount = async(db, input) => {
     // console.log(input)
-    console.log(input.password)
+    // console.log(input.password)
     const hash = bcrypt.hashSync(input.password, 10)
     input.password = hash
-    console.log(input.password)
-    input = {...input, confirm: 'false'}
+    // console.log(input.password)
+    input = {...input, confirm: 'false', interested: [], applied: []}
     await new db.AccountModel(input).save()
 
     SendEmail(input.email, EmailTemplate.confirm(input.id))

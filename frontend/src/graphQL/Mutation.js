@@ -48,6 +48,14 @@ export const UPDATE_POST = gql`
     }
 `
 
+export const UPDATE_INTEREST = gql`
+    mutation updateInterested($postid: String!, $appid: String!) {
+        updateInterested(postid: $postid, appid: $appid) {
+            id
+        }
+    }
+`
+
 export const UPDATE_CONFIRMATION = gql`
     mutation setConfirm($id: String!) {
         setConfirm(id: $id) {
