@@ -27,11 +27,29 @@ export const ACCOUNT_QUERY = gql`
 export const POSTS_QUERY = gql`
     query posts($id: String) {
         posts (id: $id) {
+            id
+            owner
             title
             company
             description
             tags
             limitations
+            duedate
+        }
+    }
+`;
+
+export const POST_QUERY = gql`
+    query post($id: String) {
+        post (id: $id) {
+            id
+            owner
+            title
+            company
+            description
+            tags
+            limitations
+            duedate
         }
     }
 `;

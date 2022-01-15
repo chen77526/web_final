@@ -42,12 +42,17 @@ const newPost = (db, input) => {
 const findAccount = async (db, id) => {
     if (!id) throw new Error("Missing id for check account");
     return db.AccountModel.findOne({ id: id });
+};
+
+const findPost = async (db, id) => {
+    if (!id) throw new Error("Missing id for check post");
+    return db.PostModel.findOne({ id: id });
 }
 
 const checkId = async (db, id) => {
     if (!id) throw new Error("Missing id for check account");
     return db.AccountModel.findOne({ id: id });
-}
+};
 
 export {
     newAccount,
@@ -55,6 +60,7 @@ export {
     newPost,
     newCv,
     findAccount,
+    findPost,
     checkAccount,
     checkId
 };

@@ -97,37 +97,32 @@ const Resume = () => {
                     <SideText>Introduction</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Brief introduction of yourself..." onChange={e => setIntro(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />          
                     <SideText>Research Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Research experiences?" onChange={e => setResearch(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>Work Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Tell me about the jobs you have done..." onChange={e => setWork(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>Side Projects</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Any side projects?" onChange={e => setSide(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>Others</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <Link to={`/allpost/?id=${id}`} style={{padding: "20px", alignSelf: "center"}}>
                         <Button onClick={handleCreateResume} primary fontBig big>Submit</Button>
