@@ -30,7 +30,7 @@ const NavBar = ({login, setLogin}) => {
     const [searchParams, setSearchParams] = useSearchParams();
     
     const id = searchParams.get("id")
-    console.log(id)
+    // console.log(id)
 
     const clickHandler = () => {
         setClick(!click);
@@ -52,7 +52,6 @@ const NavBar = ({login, setLogin}) => {
     }, [])
 
     window.addEventListener('resize', buttonHandler);
-    console.log(login)
 
     return (
         <>
@@ -71,10 +70,10 @@ const NavBar = ({login, setLogin}) => {
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
                             <NavItem style={{display: (login ? '' : 'none')}}>
-                                <NavLinks to={`/personalpage/?id=${id}`}><AiFillDatabase style={{marginRight: "0.5rem"}}/>POSTS</NavLinks>
+                                <NavLinks to={`/Allpost/?id=${id}`}><AiFillDatabase style={{marginRight: "0.5rem"}}/>POSTS</NavLinks>
                             </NavItem>
                             <NavItem style={{display: (login ? '' : 'none')}}>
-                                <NavLinks to={`/Allpost/?id=${id}`}><AiOutlineUser style={{marginRight: "0.5rem"}}/>YOUR PAGE</NavLinks>
+                                <NavLinks to={`/personalpage/?id=${id}`}><AiOutlineUser style={{marginRight: "0.5rem"}}/>YOU</NavLinks>
                             </NavItem>
                             <NavItem>
                                 { login ? <NavLinks to='/' onClick={logoutHandler}>

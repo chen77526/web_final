@@ -32,8 +32,8 @@ const QueryPosts = () => {
 
     // for create post
 
-    console.log(id);
-    console.log(data);
+    // console.log(id);
+    // console.log(data);
 
     // useEffect(() => {
     //     try {
