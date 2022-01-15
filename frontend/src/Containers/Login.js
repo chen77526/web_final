@@ -14,7 +14,7 @@ import {
 } from '../Components/Format_ele';
 
 
-const Login = ({setLogin, displayStatus}) => {
+const Login = ({ setToken, displayStatus}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState('');
@@ -36,16 +36,11 @@ const Login = ({setLogin, displayStatus}) => {
                 type: "error",
                 msg: "Error username or password, try again!!.",
             });
-            setLogin(false);
         } else {
-            setLogin(true);
+            setToken({email: email,password: password})
         } 
     }
 
-    // useEffect(() => {
-    // }, [data]);
-
-    
 
     return (
         <>

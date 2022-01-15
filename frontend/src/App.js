@@ -8,16 +8,18 @@ import SignUp from './Containers/SignUp';
 import Resume from './Containers/Resume';
 import Login from './Containers/Login';
 import Confirm from './Containers/Confirm';
-import { useState } from 'react';
 import { message } from 'antd';
 import Post from './Containers/Post';
 import Verify from './Containers/Verify';
 import Personalpage from './Containers/PersonalPage';
 import QueryPosts from './Containers/QueryPosts';
+import { useToken } from './Hooks/useToken';
+
+
 
 const App = () => {
 	document.title = 'NTU JOBS'
-	const [login, setLogin] = useState(false);
+	const {token, setToken} = useToken()
 
 	const displayStatus = (payload) => {
 		if (payload.msg) {
@@ -37,18 +39,18 @@ const App = () => {
 	return (
 		<Router>
 			<GlobalStyle />
-			<NavBar login={login} setLogin={setLogin} />
+			<NavBar token={token} setToken={setToken}/>
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
 				<Route path="/resume" element={<Resume />} />
-				<Route path="/login" element={<Login setLogin={setLogin} displayStatus={displayStatus}/>} />
+				<Route path="/login" element={<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
-				<Route path='/post' element={<Post />}/>
-				<Route path='/allpost' element={<QueryPosts />}/>
-				<Route path="/verify" element={<Verify />} />
-				<Route path="/creatPost" element={<Verify />} />
-				<Route path="/personalpage" element={<Personalpage/>} />
+				<Route path='/post' element={token?<Post />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
+				<Route path='/allpost' element={token? <QueryPosts />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
+				<Route path="/verify" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/creatPost" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/personalpage" element={token?<Personalpage/>:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 			</Routes>
 			<Footer />
 		</Router>
