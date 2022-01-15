@@ -138,3 +138,19 @@ export const  CREATE_POST_MUTATION = gql`
         }
     }
 `
+export const  SET_ONLINE_MUTATION = gql`
+    mutation updateOnline($email: String! $password: createPostInput!) {
+        updateOnline(email: $email password: $password) {
+            id
+            email
+            password   
+            resume {
+                name
+                username
+                major
+                grade
+            }
+            online
+        }
+    }
+`

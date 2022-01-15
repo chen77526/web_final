@@ -15,6 +15,7 @@ type Mutation {
 #   updatePostApps:(id: String!, input: createAppInput): Post
   createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
+  updateOnline(email: String!, password: String!): Account
 
 }
 
@@ -58,13 +59,13 @@ input createResumeInput {
 }
 
 type Account {
-    id: ID!
-    email: String!
-    password: String!
-    resume: Resume!
-    confirm: Boolean! 
+    id: ID
+    email: String
+    password: String
+    resume: Resume
+    confirm: Boolean
     posts: [Post]
-    interested: [ID]!
+    interested: [ID]
 }
 
 input createAccountInput {

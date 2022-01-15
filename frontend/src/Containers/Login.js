@@ -36,7 +36,7 @@ const Login = ({ setToken, displayStatus}) => {
                 msg: "Error username or password, try again!!.",
             });
         } else {
-            setToken({email: email,password: password, id: data.account.id})
+            setToken(data.account.id)
         }
     }
 

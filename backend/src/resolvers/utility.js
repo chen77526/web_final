@@ -16,14 +16,12 @@ const newAccount = async(db, input) => {
 
 const checkAccount = async (db, email, password) => {
     const account = await db.AccountModel.findOne({ email: email})
-    if(!account) return ({account: "null"})
-    console.log(account.password)
+    if(!account) return null
     // return account
-    if(bcrypt.compareSync(account.password, password)){
-        console.log(true)
-        return account
+    if(bcrypt.compareSync(password, account.password)){
+        return db.AccountModel.findOne({ email: email})
     }
-    else return ({account: "null"})
+    else return null
 }
 
 const newCv = (db, input) => {
