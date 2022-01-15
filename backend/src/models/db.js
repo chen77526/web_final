@@ -24,7 +24,9 @@ const accountSchema = new mongoose.Schema(
       cv: { type: mongoose.Types.ObjectId, ref: "Cv" },
     },
     posts: [{ type: mongoose.Types.ObjectId, ref: "Post" }],
-    confirm: Boolean
+    confirm: Boolean,
+    interested: [String],
+    applied: [String]
   }
 )
 
@@ -47,6 +49,7 @@ const PostSchema = new mongoose.Schema({
     tags: String,
     limitations: String,
     duedate: Date,
+    applicants: [String]
 });
 
 const CvModel = mongoose.model("cv", cvSchema);

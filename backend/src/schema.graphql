@@ -2,21 +2,24 @@ scalar Date
 
 type Query {
   account (email: String, password: String): Account
+  checkaccount (email: String): Account
   resume (id: String): Resume
   posts (id: String): [Post!]
   post (id: String): Post!
+  queryInterested (id: String): [Post!]
+  queryApplied (id: String): [Post!]
+  queryApplicants (id: String): [Account!]
+
 }
 
 type Mutation {
   createAccount(input: createAccountInput!): Account
   createResume(id: String!, input: createResumeInput!): Resume
   createCv(id: String!, input: createCvInput!): Cv
-#   createPost(email: String!, input: createPostInput!): Post
-#   setConfirm(id: String!): Account
-#   updatePostApps:(id: String!, input: createAppInput): Post
+  updatePostApps(postid: String!, appid: String!): Post
   createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
-  updateOnline(email: String!, password: String!): Account
+  updateInterested(postid: String!, appid: String!): Account
 
 }
 
@@ -87,9 +90,10 @@ type Post {
     tags: String
     limitations: String
     duedate: Date
-
+    applicants: [ID]
 }
 
+<<<<<<< HEAD
 # type Apps {
 #     name: String!
 #     email: String!
@@ -107,6 +111,8 @@ type Post {
 #     limitations: String
 # }
 
+=======
+>>>>>>> 477d13bd2d0e03d21243a4fe58134a560b1a7d74
 input createPostInput {
     id: ID!
     owner: String!

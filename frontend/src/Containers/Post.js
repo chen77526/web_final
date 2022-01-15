@@ -8,9 +8,9 @@ import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import SendIcon from '@mui/icons-material/Send';
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import { useLocation, useSearchParams} from 'react-router-dom';
-import { POST_QUERY } from "../graphql";
+import { POST_QUERY, UPDATE_POST, UPDATE_INTEREST } from "../graphql";
 import { useEffect } from 'react';
 import {
     PostDivSec,
@@ -21,11 +21,15 @@ import {
     PostText
 } from '../Components/post_ele';
 
-const Post = () => {
+const Post = (token) => {
     const [interested, setInterested] = useState(false);
+    const [addApplicants] = useMutation(UPDATE_POST)
+    const [addInterest] = useMutation(UPDATE_INTEREST)
 
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
+    const appid = token.token
+    console.log(appid)
 
     const { loading, data, subscribeToMore } = useQuery(POST_QUERY, {
         variables: {
@@ -35,12 +39,23 @@ const Post = () => {
     console.log(data);
 
     const handleLike = () =>{
-        setInterested(!interested)
+        // setInterested(!interested)
+        addInterest({
+            variables:{
+                postid: id,
+                appid: appid
+            }
+        })
         //if(interested)  useMutation to put postID to interested list
     }
 
     const handlebtn = () => {
-
+        addApplicants({
+            variables:{
+                postid: id,
+                appid: appid
+            }
+        })
         //這邊要mutate 加進 user 的 applied posts 
     }
 
@@ -73,7 +88,7 @@ const Post = () => {
                             </div>
                             <div>
                                 <Fab aria-label="like">
-                                    <FavoriteIcon />
+                                    <FavoriteIcon onClick={handleLike}/>
                                 </Fab>
                             </div>
                         </div>

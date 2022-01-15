@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt'
 
 const newAccount = async(db, input) => {
     // console.log(input)
-    console.log(input.password)
+    // console.log(input.password)
     const hash = bcrypt.hashSync(input.password, 10)
     input.password = hash
-    console.log(input.password)
-    input = {...input, confirm: 'false'}
+    // console.log(input.password)
+    input = {...input, confirm: 'false', interested: [], applied: []}
     await new db.AccountModel(input).save()
 
     SendEmail(input.email, EmailTemplate.confirm(input.id))
@@ -22,6 +22,12 @@ const checkAccount = async (db, email, password) => {
         return db.AccountModel.findOne({ email: email})
     }
     else return null
+}
+
+const validAccount =  async(db, email) => {
+    const account = await db.AccountModel.findOne({ email: email});
+    if(!account) return null;
+    else return account;
 }
 
 const findResume = async(db, id) => {
@@ -58,6 +64,11 @@ const checkId = async (db, id) => {
     return db.AccountModel.findOne({ id: id });
 };
 
+const findResume = async (db, id) => {
+    const account = await db.AccountModel.findOne({ id: id});
+    return account.resume;
+}
+
 export {
     newAccount,
     newResume,
@@ -65,7 +76,9 @@ export {
     newCv,
     findAccount,
     findPost,
+    findResume,
     checkAccount,
     checkId,
+    validAccount,
     findResume
 };

@@ -49,7 +49,7 @@ const App = () => {
 				<Route path="/modifyCV" element={<ModifyResume />} />
 				<Route path="/login" element={<Login token={token} setToken={setToken}  displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
-				<Route path='/post' element={token?<Post />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
+				<Route path='/post' element={token?<Post token={token}/>:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path='/allpost' element={token? <QueryPosts token={token}/>:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path="/verify" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/createPost" element={token?<CreatePost token={token} />:<Login setToken={setToken} displayStatus={displayStatus}/>} />

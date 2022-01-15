@@ -1,29 +1,6 @@
-import { newAccount, newResume, findAccount, newCv, checkAccount, checkId, newPost} from "./utility.js";
+import { newAccount, newResume, findAccount, newCv, checkAccount, checkId, newPost, findPost} from "./utility.js";
 
 const Mutation = {
-
-  // async createUser(parent, {input}, {db}, info) {
-  //   let newUsr = await newUser(db, input);
-
-  //   return newUsr;
-  // },
-
-  // async updateUser(parent, {id, input}, {db}, info) {
-  //   const user = await db.UserModel.findOneAndUpdate(
-  //     { id },
-  //     {
-  //       $set: {
-  //         id,
-  //         input,
-  //       },
-  //     },
-  //     { returnDocument: "after" }
-  //   );
-  //   pubSub.publish("USER_UPDATED", {
-  //     userUpdated: user,
-  //   });
-  //   return user;
-  // },
 
   async createAccount(parent, {input}, {db}, info) {
     
@@ -58,7 +35,7 @@ const Mutation = {
 
     const account = await findAccount(db, id);
     if(!account) throw new Error("Account id not found: " + id);;
-
+    input = {...input, Applicants:[]}
     const newPo = await newPost(db, input);
     account.posts.push(newPo);
     await account.save();
@@ -80,15 +57,39 @@ const Mutation = {
     
   },
 
-  async updateOnline(parent, {email, password}, {db}, info) {
-
-    const account = await checkAccount(db, email, password)
-    if(account) {
-      account.online = !account.online
-      await account.save()
-      return(account)
+  async updatePostApps(parent, {postid, appid}, {db}, info) {
+    const post = await findPost(db, postid)
+    const check = post.applicants.find(e => e == appid)
+    if(!check){
+      post.applicants.push(appid)
+      await post.save()
+      const user = await findAccount(db, appid)
+      user.applied.push(postid)
+      await user.save()
+      return (post)
     }
-    else return ("User not found!")
+    else {
+      return(post)
+    }
+  },
+
+  async updateInterested(parent, {postid, appid}, {db}, info) {
+    const account = await findAccount(db, appid)
+    if(!account.interested == null){
+      account.interested.push(postid)
+      await account.save()
+      return account
+    }
+    const check = account.interested.find(e => e == postid)
+    if(!check){
+      account.interested.push(postid)
+      await account.save()
+    }
+    else{
+      account.interested.pop(postid)
+      await account.save()
+    }
+    return account
   }
 
 };
