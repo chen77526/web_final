@@ -5,42 +5,48 @@ export const PostSec = styled.div`
     display: flex;
     color: #fff;
     padding: 60px 0;
-    background: #101522;
+    background: ${({light}) => (light) ? '#fff' : '#101522' };
     width: "90%";
     justify-content: center;
 `;
 
 export const PostMenu = styled.ul`
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     list-style: none;
     text-align: center;
-    margin-right: 2em; 
     margin-bottom: 2em;
+    margin-top: 2em;
+    flex-direction: column;
 `;
 
 export const PostBloc = styled.li`
     background-color: #101522;
     border-radius: 5px;
-    padding: 5px;
+    /* padding: 5px; */
+    margin: 5px 0;
     height: 120px;
     width: 85%;
 
     &:hover {
         border: 2px solid #D4D4D4;
         transition: all 0.3s ease;
+        opacity: 0.5;
     }
 `;
 
 export const PostLink = styled(Link)`
-    color: #1e8ef7;
-    height: 100%;
+    color: ${({closed, limited}) => (limited) ? '#F5CE00' : ((closed) ? '#F50057' : '#1e8ef7') };
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     text-decoration: none;
+    height: 100%;
+    width: 100%;
+    opacity: 0.8;
 
     h1 {
-        color: #1e8ef7;
+        color: ${({closed, limited}) => (limited) ? '#F5CE00' : ((closed) ? '#F50057' : '#1e8ef7') };
     }
 `;
