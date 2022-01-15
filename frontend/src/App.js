@@ -43,14 +43,14 @@ const App = () => {
 			<NavBar token={token} setToken={setToken}/>
 			<Routes>
 				<Route path="/" exact element={<Home />} />
-				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
+				<Route path="/signup" element={<SignUp setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/resume" element={<Resume />} />
 				<Route path="/login" element={<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path='/post' element={token?<Post />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path='/allpost' element={token? <QueryPosts />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path="/verify" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
-				<Route path="/creatPost" element={token?<CreatePost />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/createPost" element={token?<CreatePost />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/personalpage" element={token?<Personalpage/>:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 			</Routes>
 			<Footer />

@@ -16,12 +16,11 @@ import {
 } from '../Components/Info_ele';
 import svgfileC from '../images/Certificate.svg';
 
-const Confirm = ({setLogin}) => {
+const Confirm = () => {
     const [accConfirm] = useMutation(UPDATE_CONFIRMATION)
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
     const handleConfirm = () => {
-        setLogin(true)
         accConfirm({
             variables: {
                 id: id

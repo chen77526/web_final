@@ -23,13 +23,12 @@ const QueryPosts = () => {
         setValue(newValue);
     };
 
-    const { loading, {data}, subscribeToMore } = useQuery(POSTS_QUERY, {
+    const { loading, data, subscribeToMore } = useQuery(POSTS_QUERY, {
         variables: {
             id: id
         }
     });
 
-<<<<<<< HEAD
     console.log(id);
     console.log(data);
     // console.log(data.posts);
@@ -46,26 +45,21 @@ const QueryPosts = () => {
     // })
 
     // for create post
-=======
-    // for create post
 
-    // console.log(id);
-    // console.log(data);
->>>>>>> origin/master
-
-    // useEffect(() => {
-    //     try {
-    //         subscribeToMore({
-    //             document: POST_CREATED_SUBSCRIPTION,
-    //             updateQuery: (prev, {subscriptionData}) => {
-    //                 if (!subscriptionData.data) return prev;
-    //                 return {
-    //                     posts: [...prev.posts, subscriptionData.data.postCreated],
-    //                 };
-    //             }
-    //         })
-    //     } catch (e) {}
-    // }, [subscribeToMore]);
+    useEffect(() => {
+        try {
+            subscribeToMore({
+                document: POST_CREATED_SUBSCRIPTION,
+                updateQuery: (prev, {subscriptionData}) => {
+                    if (!subscriptionData.data) return prev;
+                    console.log(subscriptionData.data)
+                    return {
+                        posts: [...prev.posts, subscriptionData.data.postCreated],
+                    };
+                }
+            })
+        } catch (e) {}
+    }, [subscribeToMore]);
 
     // useEffect(() => {
 
@@ -104,54 +98,22 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
-<<<<<<< HEAD
                                     <Link component="button" to={`/createPost/?id=${id}`} style={{height: '65%'}}>
-=======
-                                    <Link component="button" to='/createPost' style={{height: '65%'}}>
->>>>>>> origin/master
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
-<<<<<<< HEAD
                             <PostMenu> 
-                                {
+                                { loading ? 
+                                    <h1>loading posts...</h1>:
+                                    data.posts.map((post) => {
+                                        return <PostBloc>
+                                            <PostLink to={`/post/?title=${post.title}`}><h1>{post.title}</h1></PostLink>
+                                        </PostBloc>
+                                    })
                                 }
-=======
-                            <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
-                                <PostBloc>
-                                    <PostLink to='/post'><h1>All</h1></PostLink>
-                                </PostBloc>
->>>>>>> origin/master
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
