@@ -7,8 +7,6 @@ import { Link, useSearchParams } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
-//CP company and position
-
 const Wrapper = styled.div`
     flex-direction: column;
     background: #151515;

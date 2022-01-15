@@ -6,7 +6,6 @@ export const PostSec = styled.div`
     color: #fff;
     padding: 60px 0;
     background: ${({light}) => (light) ? '#fff' : '#101522' };
-    width: "90%";
     justify-content: center;
 `;
 
