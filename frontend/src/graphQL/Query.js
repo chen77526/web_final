@@ -96,3 +96,21 @@ export const RESUME_QUERY = gql`
         }
     }
 `;
+
+export const INTEREST_QUERY = gql`
+    query queryInterested($id: String) {
+        queryInterested (id: $id) {
+            id,
+            title
+        }
+    }
+`;
+
+export const APPLIED_QUERY = gql`
+    query queryApplied($id: String) {
+        queryApplied (id: $id) {
+            id,
+            title
+        }
+    }
+`;

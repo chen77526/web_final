@@ -31,6 +31,30 @@ const Query = {
     return account.resume;
   },
 
+  queryInterested: async(parent, {id}, {db}) => {
+    let account = await findAccount(db, id)
+    console.log(account.interested)
+    var posts = []
+    account.interested.map(e => {
+      console.log(e)
+      posts.push(findPost(db, e))
+    })
+    console.log(posts)
+    return posts
+  },
+
+  queryApplied: async(parent, {id}, {db}) => {
+    let account = await findAccount(db, id)
+    console.log(account.applied)
+    var posts = []
+    account.applied.map(e => {
+      console.log(e)
+      posts.push(findPost(db, e))
+    })
+    console.log(posts)
+    return posts
+  }
+
 };
 
 export default Query;
