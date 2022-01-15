@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '../globalStyles';
-import { Link, useLocation} from 'react-router-dom';
+import { Link, useLocation, useSearchParams} from 'react-router-dom';
 import { useState } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
 import { CREATE_RESUME_MUTATION, CREATE_CV_MUTATION} from "../graphql"
@@ -27,8 +27,11 @@ const Resume = () => {
     const [side, setSide] = useState('');
     const [others, setOthers] = useState('');
 
+    // const location = useLocation();
+    // const accountData  = location.state;
+
     const location = useLocation();
-    const accountData  = location.state;
+    const id = location.pathname.substring(9, 100);
 
     // info of department can be fetched from the email address?
 
@@ -38,7 +41,7 @@ const Resume = () => {
     const handleCreateResume = () => {
         addResume({
             variables: {
-                email: accountData.email,
+                id: id,
                 input: {
                     name: name,
                     username: username,
@@ -49,7 +52,7 @@ const Resume = () => {
         });
         addCv({
             variables: {
-                email: accountData.email,
+                id: id,
                 input: {
                     introduction: intro,
                     research: research,
