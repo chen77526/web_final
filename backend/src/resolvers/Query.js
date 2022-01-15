@@ -1,4 +1,4 @@
-import {checkAccount, findAccount, findPost} from "./utility.js";
+import {checkAccount, findAccount, findPost, validAccount} from "./utility.js";
 const Query = {
 
   account: async (parent, {email, password}, {db}, info) => {
@@ -6,6 +6,13 @@ const Query = {
     let account = await checkAccount(db, email, password);
     // console.log(account);
     if (account) return account;
+    
+  },
+
+  checkaccount: async (parent, {email}, {db}, info) => {
+    
+    let account = await validAccount(db, email);
+    return account;
     
   },
 

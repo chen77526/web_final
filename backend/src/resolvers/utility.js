@@ -11,7 +11,7 @@ const newAccount = async(db, input) => {
     input = {...input, confirm: 'false'}
     await new db.AccountModel(input).save()
 
-    // SendEmail(input.email, EmailTemplate.confirm(input.id))
+    SendEmail(input.email, EmailTemplate.confirm(input.id))
 };
 
 const checkAccount = async (db, email, password) => {
@@ -22,6 +22,12 @@ const checkAccount = async (db, email, password) => {
         return db.AccountModel.findOne({ email: email})
     }
     else return null
+}
+
+const validAccount =  async(db, email) => {
+    const account = await db.AccountModel.findOne({ email: email});
+    if(!account) return null;
+    else return account;
 }
 
 const newCv = (db, input) => {
@@ -60,5 +66,6 @@ export {
     findAccount,
     findPost,
     checkAccount,
-    checkId
+    checkId,
+    validAccount
 };
