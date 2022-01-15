@@ -13,11 +13,10 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
-const QueryPosts = () => {
+const QueryPosts = (token) => {
     const [value, setValue] = useState('1');
 
-    const [searchParams, setSearchParams] = useSearchParams();
-    const id = searchParams.get("id")
+    const id = token.token
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
@@ -29,20 +28,7 @@ const QueryPosts = () => {
         }
     });
 
-    console.log(id);
-    console.log(data);
-    // console.log(data.posts);
-
-    // if (data !== null) {
-    //     // console.log(data.posts);
-    //     data.posts.map(({ title }, i) => {
-    //        console.log(title);
-    //     })
-    // }
-
-    // data.posts.map(({ title: {title}}) => {
-    //     console.log(title);
-    // })
+    console.log(id)
 
     // for create post
 
@@ -108,11 +94,12 @@ const QueryPosts = () => {
                             <PostMenu> 
                                 { loading ? 
                                     <h1>loading posts...</h1>:
+                                    data? 
                                     data.posts.map((post) => {
                                         return <PostBloc>
                                             <PostLink to={`/post/?id=${post.id}`}><h1>{post.title}</h1></PostLink>
                                         </PostBloc>
-                                    })
+                                    }) : <h1>no posts yet</h1>
                                 }
                             </PostMenu>
                         </TabPanel>

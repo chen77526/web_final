@@ -61,6 +61,7 @@ const Mutation = {
     if(!account) throw new Error("Account id not found: " + id);;
 
     const newPo = await newPost(db, input);
+    console.log("post!")
     account.posts.push(newPo);
     await account.save();
     pubSub.publish("POST_CREATED", {

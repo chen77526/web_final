@@ -23,7 +23,7 @@ import {
     CvForm
 } from '../Components/Format_ele';
 
-const CreatePost = () => {
+const CreatePost = (token) => {
     const [addPost] = useMutation(CREATE_POST_MUTATION);
     const [title, setTitle] = useState("");
     const [company, setCompany] = useState("");
@@ -32,10 +32,8 @@ const CreatePost = () => {
     const [limitations, setLimitations] = useState("");
     const [duedate, setDuedate] = useState("");
 
-
-    const [searchParams, setSearchParams] = useSearchParams();
-    const id = searchParams.get("id")
     const Id = uuidv4()
+    const id = token.token
 
     const navigate = useNavigate();
 
@@ -117,6 +115,7 @@ const CreatePost = () => {
                     </SignUpWrapper>
                    
                     <Link to={`/allpost/?id=${id}`} style={{padding: "20px", alignSelf: "center"}}>
+
                         <Button onClick={handleCreatePost} primary fontBig big>Create</Button>
                     </Link>
                     
