@@ -1,4 +1,4 @@
-import { newAccount, newResume, findAccount, newCv, checkAccount, checkId, newPost} from "./utility.js";
+import { newAccount, newResume, findAccount, newCv, checkAccount, checkId, newPost, findPost} from "./utility.js";
 
 const Mutation = {
 
@@ -59,7 +59,7 @@ const Mutation = {
 
     const account = await findAccount(db, id);
     if(!account) throw new Error("Account id not found: " + id);;
-
+    input = {...input, Applicants:[]}
     const newPo = await newPost(db, input);
     account.posts.push(newPo);
     await account.save();
@@ -81,16 +81,11 @@ const Mutation = {
     
   },
 
-  async updateOnline(parent, {email, password}, {db}, info) {
-
-    const account = await checkAccount(db, email, password)
-    if(account) {
-      console.log("yo")
-      account.online = !account.online
-      await account.save()
-      return(account)
-    }
-    else return ("User not found!")
+  async updatePostApps(parent, {postid, appid}, {db}, info) {
+    const post = await findPost(db, postid)
+    post.applicants.push(appid)
+    await post.save()
+    return (post.id)
   }
 
 };

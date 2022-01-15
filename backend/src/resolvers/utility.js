@@ -30,6 +30,11 @@ const validAccount =  async(db, email) => {
     else return account;
 }
 
+const findResume = async(db, id) => {
+    const account = db.AccountModel.findOne({ id: id });
+    return db.AccountModel.findOne({ id: id });
+}
+
 const newCv = (db, input) => {
     return new db.CvModel(input).save();
 };
@@ -73,5 +78,6 @@ export {
     findResume,
     checkAccount,
     checkId,
-    validAccount
+    validAccount,
+    findResume
 };
