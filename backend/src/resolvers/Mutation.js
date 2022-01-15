@@ -43,7 +43,7 @@ const Mutation = {
 
   async createResume(parent, {id, input}, {db}, info) {
     const account = await findAccount(db, id);
-    if(!account) throw new Error("Account email not found: " + email);
+    if(!account) throw new Error("Account id not found: " + id);
 
     // const newRe = await newResume(db, input);
     account.resume.name = input.name;
@@ -55,20 +55,19 @@ const Mutation = {
 
   },
 
-  async createPost(parent, {email, input}, {db,pubSub}, info) {
+  async createPost(parent, {id, input}, {db,pubSub}, info) {
 
-    const account = await findAccount(db, email);
-    if(!account) throw new Error("Account email not found: " + email);;
+    const account = await findAccount(db, id);
+    if(!account) throw new Error("Account id not found: " + id);;
 
-    const newPost = await newPost(db, input);
-    account.posts.push(newPost);
+    const newPo = await newPost(db, input);
+    account.posts.push(newPo);
     await account.save();
-
     pubSub.publish("POST_CREATED", {
-      postCreated: newPost,
+      postCreated: newPo,
     });
 
-    return newPost;
+    return newPo;
   },
 
   async setConfirm(parent, {id}, {db}, info) {

@@ -20,7 +20,6 @@ const Confirm = ({setLogin}) => {
     const [accConfirm] = useMutation(UPDATE_CONFIRMATION)
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
-    console.log(id)
     const handleConfirm = () => {
         setLogin(true)
         accConfirm({

@@ -38,8 +38,11 @@ const resumeSchema = new mongoose.Schema(
 )
 
 const PostSchema = new mongoose.Schema({
-    name: String,
-    required: String,
+    title: String,
+    company: String,
+    description: String,
+    tags: String,
+    limitations: String,
 });
 
 const CvModel = mongoose.model("cv", cvSchema);

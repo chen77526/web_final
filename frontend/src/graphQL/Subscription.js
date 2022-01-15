@@ -7,7 +7,7 @@ export const POST_CREATED_SUBSCRIPTION = gql`
       company
       description
       tags
-      required
+      limitations
     }
   }
 `;
@@ -19,7 +19,7 @@ export const POST_UPDATED_SUBSCRIPTION = gql`
       company
       description
       tags
-      required
+      limitations
     }
   }
 `;

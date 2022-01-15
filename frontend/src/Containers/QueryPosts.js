@@ -18,22 +18,40 @@ const QueryPosts = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
-    console.log(id)
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
 
-    const { loading, data, refetch } = useQuery(POSTS_QUERY, {
+    const { loading, {data}, subscribeToMore } = useQuery(POSTS_QUERY, {
         variables: {
             id: id
         }
     });
 
+<<<<<<< HEAD
+    console.log(id);
+    console.log(data);
+    // console.log(data.posts);
+
+    // if (data !== null) {
+    //     // console.log(data.posts);
+    //     data.posts.map(({ title }, i) => {
+    //        console.log(title);
+    //     })
+    // }
+
+    // data.posts.map(({ title: {title}}) => {
+    //     console.log(title);
+    // })
+
+    // for create post
+=======
     // for create post
 
     // console.log(id);
     // console.log(data);
+>>>>>>> origin/master
 
     // useEffect(() => {
     //     try {
@@ -48,6 +66,10 @@ const QueryPosts = () => {
     //         })
     //     } catch (e) {}
     // }, [subscribeToMore]);
+
+    // useEffect(() => {
+
+    // }, [data]);
 
     return (
         <>
@@ -82,13 +104,22 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
+<<<<<<< HEAD
+                                    <Link component="button" to={`/createPost/?id=${id}`} style={{height: '65%'}}>
+=======
                                     <Link component="button" to='/createPost' style={{height: '65%'}}>
+>>>>>>> origin/master
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
+<<<<<<< HEAD
+                            <PostMenu> 
+                                {
+                                }
+=======
                             <PostMenu>
                                 <PostBloc>
                                     <PostLink to='/post'><h1>All</h1></PostLink>
@@ -120,6 +151,7 @@ const QueryPosts = () => {
                                 <PostBloc>
                                     <PostLink to='/post'><h1>All</h1></PostLink>
                                 </PostBloc>
+>>>>>>> origin/master
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
