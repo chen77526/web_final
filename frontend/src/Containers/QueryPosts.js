@@ -82,7 +82,7 @@ const QueryPosts = () => {
                                     </Link>
                                 </IconButton> */}
                                 <Fab color="primary" aria-label="add">
-                                    <Link component="button" to='/:uid/createPost' style={{height: '65%'}}>
+                                    <Link component="button" to='/createPost' style={{height: '65%'}}>
                                         <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
                                     </Link>
                                 </Fab>
