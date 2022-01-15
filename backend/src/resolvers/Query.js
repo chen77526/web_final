@@ -10,8 +10,7 @@ const Query = {
 
   posts: async (parent, {id}, {db}) => {
     let account = await findAccount(db, id);
-    if (!account) throw new Error ("Account does not exist!!");
-    return account.posts;
+    return account.posts.title;
   },
 
 };

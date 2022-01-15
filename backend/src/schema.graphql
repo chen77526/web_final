@@ -7,7 +7,7 @@ type Mutation {
   createAccount(input: createAccountInput!): Account
   createResume(id: String!, input: createResumeInput!): Resume
   createCv(id: String!, input: createCvInput!): Cv
-  createPost(email: String!, input: createPostInput!): Post
+  createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
 
 }
@@ -23,7 +23,7 @@ type Cv{
     research: String!
     work_experience: String!
     side_project: String!
-    others: String
+    others: String!
 }
 
 input createCvInput {
@@ -68,19 +68,19 @@ input createAccountInput {
 }
 
 type Post {
-    title: String!
-    company: String!
-    description: String!
-    tags: [String!]
-    required: [String!] 
+    title: String
+    company: String
+    description: String
+    tags: String
+    limitations: String
 }
 
 input createPostInput {
     title: String!
     company: String!
     description: String!
-    tags: [String!]
-    required: [String!]  
+    tags: String!
+    limitations: String!  
 }
 
 

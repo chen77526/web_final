@@ -32,7 +32,6 @@ const Resume = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
     const id = searchParams.get("id")
-    console.log(id)
 
     // info of department can be fetched from the email address?
 

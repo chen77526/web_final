@@ -13,6 +13,7 @@ import Post from './Containers/Post';
 import Verify from './Containers/Verify';
 import Personalpage from './Containers/PersonalPage';
 import QueryPosts from './Containers/QueryPosts';
+import CreatePost from './Containers/CreatePost';
 import { useToken } from './Hooks/useToken';
 
 
@@ -49,7 +50,7 @@ const App = () => {
 				<Route path='/post' element={token?<Post />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path='/allpost' element={token? <QueryPosts />:<Login setToken={setToken} displayStatus={displayStatus}/>}/>
 				<Route path="/verify" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
-				<Route path="/creatPost" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/creatPost" element={token?<CreatePost />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/personalpage" element={token?<Personalpage/>:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 			</Routes>
 			<Footer />
