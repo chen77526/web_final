@@ -92,6 +92,22 @@ export const CREATE_CV_MUTATION = gql`
     }
 `;
 
+export const UPDATE_ONLINE = gql`
+    mutation setOnline($email: String!) {
+        setOnline(email: $email) {
+            id
+            email
+            password   
+            resume {
+                name
+                username
+                major
+                grade
+            }
+        }
+    }
+`
+
 export const UPDATE_CONFIRMATION = gql`
     mutation setConfirm($id: String!) {
         setConfirm(id: $id) {

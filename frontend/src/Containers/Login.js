@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from '../globalStyles';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { useLazyQuery } from "@apollo/client";
+import { useState, useEffect, useRef} from 'react';
+import { useQuery } from "@apollo/client";
 import { ACCOUNT_QUERY } from "../graphql";
 import { 
     SignUpSec,
@@ -19,18 +19,19 @@ const Login = ({setLogin, displayStatus}) => {
     const [password, setPassword] = useState('');
     const [user, setUser] = useState('');
 
-    const [checkLogin, { data }] = useLazyQuery(ACCOUNT_QUERY, {
+ 
+
+    const { loading, data, refetch} = useQuery(ACCOUNT_QUERY, {
         variables: {
             email: email,
-            password: password    
+            password: password   
         },
     });
     
 
     const loginHandler = () => {
-        checkLogin({ variables: {email: email, password: password}});
         console.log(data);
-        if(!data) {
+        if(data.account === null) {
             displayStatus({
                 type: "error",
                 msg: "Error username or password, try again!!.",
@@ -59,7 +60,7 @@ const Login = ({setLogin, displayStatus}) => {
                         <SignUpSubtitle>Password</SignUpSubtitle>
                         <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper>                                
-                    <Link to="/" style={{padding: "10px 20px"}}> {/*userpage*/}
+                    <Link to={(!data)? '#': ((!data.account)? "#": `/:${data.account.id}`)} style={{padding: "10px 20px"}} > {/*userpage*/}
                         <Button onClick={loginHandler} primary fontBig big>Login</Button>
                     </Link>
                 </SignUpForm>

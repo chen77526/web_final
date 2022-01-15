@@ -1,5 +1,5 @@
 type Query {
-  account (email: String, password: String): Account!
+  account (email: String, password: String): Account
   posts: [Post!]!
 }
 
