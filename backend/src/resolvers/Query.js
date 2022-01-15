@@ -10,7 +10,7 @@ const Query = {
 
   posts: async (parent, {id}, {db}) => {
     let account = await findAccount(db, id);
-    console.log("fdsfsf");
+    // console.log("fdsfsf");
     return db.PostModel.find({});
   },
 

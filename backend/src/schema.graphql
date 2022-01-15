@@ -60,7 +60,7 @@ type Account {
     password: String!
     resume: Resume!
     confirm: Boolean! 
-    posts: [Post!]
+    posts: [Post]
     interested: [ID]!
 }
 
@@ -72,11 +72,11 @@ input createAccountInput {
 }
 
 type Post {
-    title: String!
-    company: String!
-    description: String!
-    tags: String!
-    limitations: String!
+    title: String
+    company: String
+    description: String
+    tags: String
+    limitations: String
     # applicants: [Apps!]
 }
 
