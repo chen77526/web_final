@@ -41,7 +41,7 @@ const App = () => {
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
-				<Route path="/resume" element={<Resume />} />
+				<Route path="/resume/:uid" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} displayStatus={displayStatus}/>} />
 				<Route path='/confirm' element={<Confirm />} />
 				<Route path='/post/:pid' element={<Post />}/>
