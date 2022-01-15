@@ -5,8 +5,8 @@ type Query {
 
 type Mutation {
   createAccount(input: createAccountInput!): Account
-  createResume(email: String!, input: createResumeInput!): Resume
-  createCv(email: String!, input: createCvInput!): Cv
+  createResume(id: String!, input: createResumeInput!): Resume
+  createCv(id: String!, input: createCvInput!): Cv
   createPost(email: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
 

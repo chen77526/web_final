@@ -14,7 +14,7 @@ import {
     SignUpWrapper
 } from '../Components/Format_ele';
 
-const SignUp = ({ displayStatus }) => {
+const SignUp = ({ setLogin, displayStatus }) => {
     const [addAccount] = useMutation(CREATE_ACCOUNT_MUTATION);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +26,7 @@ const SignUp = ({ displayStatus }) => {
 
     const handleCreateAccount = () => {
         const id = uuidv4()
+        setLogin(true)
         addAccount({
             variables: {
                 input: {

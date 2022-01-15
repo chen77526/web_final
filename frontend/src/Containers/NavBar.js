@@ -5,7 +5,8 @@ import {
     AiOutlineBars,
     AiOutlineClose,
     AiOutlineHome,
-    AiOutlineLogin
+    AiOutlineLogin,
+    AiOutlineLogout
 } from 'react-icons/ai';
 import { 
     Nav,
@@ -59,7 +60,12 @@ const NavBar = ({login}) => {
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
                             <NavItem style={{display: login ? 'none': ''}}>
-                                <NavLinks to='/login'><AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN</NavLinks>
+                                {   login ? <NavLinks to='/'>
+                                        <AiOutlineLogout style={{marginRight: "0.5rem"}}/>LOGOUT
+                                    </NavLinks> : <NavLinks to='/login'>
+                                        <AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN
+                                    </NavLinks>
+                                }
                             </NavItem>
                             <NavBtn>
                                 {button ? (

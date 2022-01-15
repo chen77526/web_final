@@ -25,9 +25,9 @@ const newPost = (db, input) => {
 };
 
 // find account by email
-const findAccount = async (db, email) => {
-    if (!email) throw new Error("Missing email for check account");
-    return db.AccountModel.findOne({ email: email });
+const findAccount = async (db, id) => {
+    if (!id) throw new Error("Missing id for check account");
+    return db.AccountModel.findOne({ id: id });
 }
 
 const checkId = async (db, id) => {
