@@ -110,7 +110,7 @@ const QueryPosts = () => {
                                     <h1>loading posts...</h1>:
                                     data.posts.map((post) => {
                                         return <PostBloc>
-                                            <PostLink to={`/post/?title=${post.title}`}><h1>{post.title}</h1></PostLink>
+                                            <PostLink to={`/post/?id=${post.id}`}><h1>{post.title}</h1></PostLink>
                                         </PostBloc>
                                     })
                                 }

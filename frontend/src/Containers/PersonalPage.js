@@ -62,7 +62,6 @@ const Personalpage = () =>{
                     <SideText>Introduction</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Brief introduction of yourself..." onChange={e => setIntro(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={intro}
@@ -70,7 +69,6 @@ const Personalpage = () =>{
                     <SideText>Research Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Research experiences?" onChange={e => setResearch(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={research}
@@ -78,7 +76,6 @@ const Personalpage = () =>{
                     <SideText>Work Experience</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Tell me about the jobs you have done..." onChange={e => setWork(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={work}
@@ -86,7 +83,6 @@ const Personalpage = () =>{
                     <SideText>Side Projects</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Any side projects?" onChange={e => setSide(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={side}
@@ -94,7 +90,6 @@ const Personalpage = () =>{
                     <SideText>Others</SideText>
                     <TextareaAutosize 
                         minRows={3}
-                        style={{width: "100%"}}
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
                         style={{borderRadius: "5px", width: '95%'}}
                         value={others}

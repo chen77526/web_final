@@ -1,6 +1,9 @@
+scalar Date
+
 type Query {
   account (email: String, password: String): Account
   posts (id: String): [Post!]!
+  post (id: String): Post!
 }
 
 type Mutation {
@@ -68,19 +71,25 @@ input createAccountInput {
 }
 
 type Post {
+    id: ID
+    owner: String
     title: String
     company: String
     description: String
     tags: String
     limitations: String
+    duedate: Date
 }
 
 input createPostInput {
+    id: ID!
+    owner: String!
     title: String!
     company: String!
     description: String!
     tags: String!
     limitations: String!  
+    duedate: Date!
 }
 
 
