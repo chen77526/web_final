@@ -48,7 +48,7 @@ const CreatePost = () => {
 
     return (
         <>
-            {/* <SignUpSec light={true}>
+            <SignUpSec light={true}>
                 <CvForm light={false}>
                     <SignUpTitle>New Post</SignUpTitle>
                     <SideText>Title</SideText>
@@ -91,7 +91,7 @@ const CreatePost = () => {
                     </Link>
                     
                 </CvForm>
-            </SignUpSec> */}
+            </SignUpSec>
         </>
     )
 }
