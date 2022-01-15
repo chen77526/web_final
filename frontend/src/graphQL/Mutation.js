@@ -70,8 +70,8 @@ export const CREATE_ACCOUNT_MUTATION = gql`
 `;
 
 export const CREATE_RESUME_MUTATION = gql`
-    mutation createResume($email: String! $input: createResumeInput!) {
-        createResume(email: $email input: $input) {
+    mutation createResume($id: String! $input: createResumeInput!) {
+        createResume(id: $id input: $input) {
             name
             username
             major
@@ -81,8 +81,8 @@ export const CREATE_RESUME_MUTATION = gql`
 `;
 
 export const CREATE_CV_MUTATION = gql`
-    mutation createCv($email: String! $input: createCvInput!) {
-        createCv(email: $email input: $input) {
+    mutation createCv($id: String! $input: createCvInput!) {
+        createCv(id: $id input: $input) {
             introduction
             research
             work_experience

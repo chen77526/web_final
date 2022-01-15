@@ -31,9 +31,9 @@ const Mutation = {
     return newAcc;
   },
 
-  async createCv(parent, {email, input}, {db}, info) {
-    const account = await findAccount(db, email);
-    if(!account) throw new Error("Account email not found: " + email);
+  async createCv(parent, {id, input}, {db}, info) {
+    const account = await findAccount(db, id);
+    if(!account) throw new Error("Account id not found: " + email);
     let newC = await newCv(db, input);
     account.resume.cv = newC;
     await account.save();
@@ -41,8 +41,8 @@ const Mutation = {
     return newC;
   },
 
-  async createResume(parent, {email, input}, {db}, info) {
-    const account = await findAccount(db, email);
+  async createResume(parent, {id, input}, {db}, info) {
+    const account = await findAccount(db, id);
     if(!account) throw new Error("Account email not found: " + email);
 
     // const newRe = await newResume(db, input);
