@@ -21,7 +21,7 @@ import {
     ToggleIcon
 } from '../Components/NavBar_ele';
 
-const NavBar = ({login, setLogin}) => {
+const NavBar = ({token, setToken}) => {
     const [click, setClick] = useState(false);
     const [button, setButton] = useState(true);
 
@@ -36,7 +36,8 @@ const NavBar = ({login, setLogin}) => {
         }
     }
     const logoutHandler = () => {
-        setLogin(!login)
+        localStorage.clear()
+        setToken('');
     }
     const textColor = '#1e8ef7';
 
@@ -63,7 +64,7 @@ const NavBar = ({login, setLogin}) => {
                                 <NavLinks to='/'><AiOutlineHome style={{marginRight: "0.5rem"}}/>HOME</NavLinks>
                             </NavItem>
                             <NavItem>
-                                { login ? <NavLinks to='/' onClick={logoutHandler}>
+                                { token ? <NavLinks to='/' onClick={logoutHandler}>
                                         <AiOutlineLogout style={{marginRight: "0.5rem"}}/>LOGOUT
                                     </NavLinks> : <NavLinks to='/login'>
                                         <AiOutlineLogin style={{marginRight: "0.5rem"}}/>LOGIN
