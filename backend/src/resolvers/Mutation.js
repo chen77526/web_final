@@ -38,7 +38,6 @@ const Mutation = {
     if(!account) throw new Error("Account id not found: " + id);;
     input = {...input, Applicants:[]}
     const newPo = await newPost(db, input);
-    console.log("post!")
     account.posts.push(newPo);
     await account.save();
     pubSub.publish("POST_CREATED", {
