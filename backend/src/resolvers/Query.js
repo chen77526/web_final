@@ -1,4 +1,4 @@
-import {checkAccount} from "./utility.js";
+import {checkAccount, findAccount} from "./utility.js";
 const Query = {
 
   account: async (parent, {email, password}, {db}, info) => {
@@ -10,7 +10,6 @@ const Query = {
 
   posts: async (parent, {id}, {db}) => {
     let account = await findAccount(db, id);
-    console.log("sdfsdfsdfsdf");
     if (!account) throw new Error ("Account does not exist!!");
     return account.posts;
   },

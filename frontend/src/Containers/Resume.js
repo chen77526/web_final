@@ -30,8 +30,9 @@ const Resume = () => {
     // const location = useLocation();
     // const accountData  = location.state;
 
-    const location = useLocation();
-    const id = location.pathname.substring(9, 100);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const id = searchParams.get("id")
+    console.log(id)
 
     // info of department can be fetched from the email address?
 
@@ -129,7 +130,7 @@ const Resume = () => {
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
                         style={{borderRadius: "5px"}}
                     />
-                    <Link to="/resume" style={{padding: "20px", alignSelf: "center"}}>
+                    <Link to={`/allpost/?id=${id}`} style={{padding: "20px", alignSelf: "center"}}>
                         <Button onClick={handleCreateResume} primary fontBig big>Submit</Button>
                     </Link>
                 </CvForm>

@@ -1,9 +1,9 @@
 // apply 按下去後要記錄他投過了所以APPLY要變成APPLIED然後不給點
 
 import React, { useState } from 'react'
-import styled from "styled-components"
-import { useQuery } from "@apollo/client"
-import { Link, useSearchParams } from 'react-router-dom'
+// import styled from "styled-components"
+// import { useQuery } from "@apollo/client"
+// import { Link, useSearchParams } from 'react-router-dom'
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 import {
@@ -16,7 +16,6 @@ import {
 } from '../Components/post_ele';
 
 const Post = () => {
-
     const [btnstate, setBtnstate] = useState(true);
     const [interested, setInterested] = useState(false);
 
