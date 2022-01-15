@@ -66,7 +66,6 @@ type Account {
     confirm: Boolean
     posts: [Post]
     interested: [ID]
-    online: Boolean
 }
 
 input createAccountInput {

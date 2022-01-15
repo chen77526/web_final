@@ -28,8 +28,6 @@ const QueryPosts = (token) => {
         }
     });
 
-    console.log(id)
-
     // for create post
 
     useEffect(() => {

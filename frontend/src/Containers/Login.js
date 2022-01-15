@@ -30,14 +30,13 @@ const Login = ({ setToken, displayStatus}) => {
     
 
     const loginHandler = () => {
-        console.log(data)
         if(data.account === null) {
             displayStatus({
                 type: "error",
                 msg: "Error username or password, try again!!.",
             });
         } else {
-            setToken({email: email,password: password, id: data.account.id})
+            setToken(data.account.id)
         }
     }
 
