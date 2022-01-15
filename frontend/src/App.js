@@ -47,6 +47,7 @@ const App = () => {
 				<Route path='/post/:pid' element={<Post />}/>
 				<Route path='/:uid' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
+				<Route path="/createPost" element={<Verify />} />
 				<Route path="/personalpage" element={<Personalpage/>} />
 			</Routes>
 			<Footer />
