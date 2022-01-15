@@ -7,12 +7,8 @@ export const useToken = () =>{
         const tokenString = localStorage.getItem('token')
         // console.log(tokenString)
         const userToken = JSON.parse(tokenString)
-<<<<<<< HEAD
-        return userToken
-=======
         
-        return userToken.id
->>>>>>> ahong
+        return userToken
     }
 
     const [token, setToken] = useState(getToken());
