@@ -6,9 +6,10 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { useQuery } from "@apollo/client";
-import { useLocation, useSearchParams} from 'react-router-dom';
 import { useEffect } from 'react';
 import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import moment from "moment";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
@@ -93,13 +94,21 @@ const QueryPosts = (token) => {
                         <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
                             <PostMenu> 
                                 { loading ? 
-                                    <h1>loading posts...</h1>:
-                                    data? 
-                                    data.posts.map((post) => {
-                                        return <PostBloc>
-                                            <PostLink to={`/post/?id=${post.id}`}><h1>{post.title}</h1></PostLink>
+                                    <h1>loading posts...</h1>
+                                : data ? 
+                                    data.posts.filter((post) => moment(post.duedate).isAfter(moment())).map(po => (
+                                        <PostBloc key={po.id}>
+                                            <PostLink to={`/post/?id=${po.id}`}>
+                                                <ul>
+                                                    <h1 style={{marginTop:'16px'}}>{po.title}</h1>
+                                                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                        <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                        {moment(po.duedate).fromNow()}
+                                                    </div>
+                                                </ul>
+                                            </PostLink>
                                         </PostBloc>
-                                    }) : <h1>no posts yet</h1>
+                                    )) : <h1>no posts yet</h1>
                                 }
                             </PostMenu>
                         </TabPanel>
@@ -110,12 +119,46 @@ const QueryPosts = (token) => {
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="3" align='center'>Ongoing</TabPanel>
+                        <TabPanel value="3" align='center'>
+                            <PostMenu>
+                                { loading ? 
+                                    <h1>loading posts...</h1>
+                                : data ? 
+                                    data.posts.filter((post) => (moment(post.duedate).diff(moment(), 'days') >= 0 && moment(post.duedate).diff(moment(), 'days') < 1)).map(po => (
+                                        <PostBloc key={po.id}>
+                                            <PostLink to={`/post/?id=${po.id}`} style={{color: '#fff'}}>
+                                                <ul>
+                                                    <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                        <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                        {moment(po.duedate).fromNow()}
+                                                    </div>
+                                                </ul>
+                                            </PostLink>
+                                        </PostBloc>
+                                    )) : <h1>no posts yet</h1>
+                                }
+                            </PostMenu>
+                        </TabPanel>
                         <TabPanel value="4" align='center'>
                             <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post' closed={true}><h1>Closed</h1></PostLink>
-                                </PostBloc>
+                                { loading ? 
+                                    <h1>loading posts...</h1>
+                                : data ? 
+                                    data.posts.filter((post) => moment(post.duedate).isBefore(moment())).map(po => (
+                                        <PostBloc key={po.id}>
+                                            <PostLink to={`/post/?id=${po.id}`} closed={true}>
+                                                <ul>
+                                                    <h1 style={{marginTop:'16px'}}>{po.title}</h1>
+                                                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                        <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                        {moment(po.duedate).fromNow()}
+                                                    </div>
+                                                </ul>
+                                            </PostLink>
+                                        </PostBloc>
+                                    )) : <h1>no posts yet</h1>
+                                }
                             </PostMenu>
                         </TabPanel>
                         {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
