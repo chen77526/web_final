@@ -30,6 +30,7 @@ const Login = ({ setToken, displayStatus}) => {
     
 
     const loginHandler = () => {
+        console.log(data)
         if(data.account === null) {
             displayStatus({
                 type: "error",

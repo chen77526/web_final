@@ -82,6 +82,18 @@ const Mutation = {
     
   },
 
+  async updateOnline(parent, {email, password}, {db}, info) {
+
+    const account = await checkAccount(db, email, password)
+    if(account) {
+      console.log("yo")
+      account.online = !account.online
+      await account.save()
+      return(account)
+    }
+    else return ("User not found!")
+  }
+
 };
 
 export default Mutation;
