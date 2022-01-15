@@ -56,7 +56,7 @@ const Login = ({ setToken, displayStatus}) => {
                         <SignUpSubtitle>Password</SignUpSubtitle>
                         <SignUpFormInput name="password" type="password" placeholder="Password" onChange={e => setPassword(e.target.value)}/>
                     </SignUpWrapper>                                
-                    <Link to={(!data)? '#': ((!data.account)? "#": `/allpost/?id=${data.account.id}`)} style={{padding: "10px 20px"}} > {/*userpage*/}
+                    <Link to={ (!data)? '#': ((!data.account)? "#": `/allpost/?id=${data.account.id}`)} style={{padding: "10px 20px"}} > {/*userpage*/}
                         <Button onClick={loginHandler} primary fontBig big>Login</Button>
                     </Link>
                 </SignUpForm>
