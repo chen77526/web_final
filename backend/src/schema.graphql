@@ -1,5 +1,6 @@
 type Query {
   account (email: String, password: String): Account
+  resume (id: String): Resume
   posts (id: String): [Post!]!
 }
 
@@ -22,19 +23,21 @@ type Subscription {
 
 
 type Cv{
-    introduction: String!
-    research: String!
-    work_experience: String!
-    side_project: String!
-    others: String!
+    owner: String
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
 }
 
 input createCvInput {
+    owner: String!
     introduction: String!
     research: String!
     work_experience: String!
     side_project: String!
-    others: String            
+    others: String!            
 }
 
 

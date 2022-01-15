@@ -54,35 +54,35 @@ const CreatePost = (token) => {
                         minRows={3}
                         style={{width: "100%"}}
                         placeholder="Brief introduction of yourself..." onChange={e => setTitle(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />          
                     <SideText>Company</SideText>
                     <TextareaAutosize 
                         minRows={3}
                         style={{width: "100%"}}
                         placeholder="Research experiences?" onChange={e => setCompany(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>description</SideText>
                     <TextareaAutosize 
                         minRows={3}
                         style={{width: "100%"}}
                         placeholder="Tell me about the jobs you have done..." onChange={e => setDescription(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>tags</SideText>
                     <TextareaAutosize 
                         minRows={3}
                         style={{width: "100%"}}
                         placeholder="Any side projects?" onChange={e => setTags(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <SideText>limitations</SideText>
                     <TextareaAutosize 
                         minRows={3}
                         style={{width: "100%"}}
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setLimitations(e.target.value)}
-                        style={{borderRadius: "5px"}}
+                        style={{borderRadius: "5px", width: "95%"}}
                     />
                     <Link to={"/allpost/"} style={{padding: "20px", alignSelf: "center"}}>
                         <Button onClick={handleCreatePost} primary fontBig big>Create</Button>

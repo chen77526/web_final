@@ -12,6 +12,11 @@ const checkAccount = (db, email, password) => {
     return db.AccountModel.findOne({ email: email, password: password });
 }
 
+const findResume = async(db, id) => {
+    const account = db.AccountModel.findOne({ id: id });
+    return db.AccountModel.findOne({ id: id });
+}
+
 const newCv = (db, input) => {
     return new db.CvModel(input).save();
 };
@@ -42,5 +47,6 @@ export {
     newCv,
     findAccount,
     checkAccount,
-    checkId
+    checkId,
+    findResume
 };

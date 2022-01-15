@@ -15,7 +15,7 @@ import { PostSec, PostBloc, PostMenu, PostLink } from '../Components/posts_ele';
 
 const QueryPosts = (token) => {
     const [value, setValue] = useState('1');
-
+    console.log(token.token)
     const id = token.token
 
     const changeHandler = (event, newValue) => {
@@ -28,7 +28,7 @@ const QueryPosts = (token) => {
         }
     });
 
-    console.log(id)
+    console.log(data)
 
     // for create post
 
@@ -62,7 +62,6 @@ const QueryPosts = (token) => {
                     minHeight: '500px',
                     maxHeight: '1000px',
                     borderRadius: '10px',
-                    borderColor: 'divider',
                     typography: 'body1',
                     display: 'flex',
                     flexDirection: 'column',
@@ -90,7 +89,7 @@ const QueryPosts = (token) => {
                                 </Fab>
                             </TabList>
                         </Box>
-                        <TabPanel value="1" alignItems='center' sx={{overflow: 'auto'}}>
+                        <TabPanel value="1" alignitems='center' sx={{overflow: 'auto'}}>
                             <PostMenu> 
                                 { loading ? 
                                     <h1>loading posts...</h1>:
