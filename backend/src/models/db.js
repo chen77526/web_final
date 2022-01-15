@@ -46,6 +46,7 @@ const PostSchema = new mongoose.Schema({
     tags: String,
     limitations: String,
     duedate: Date,
+    applicants: [String]
 });
 
 const CvModel = mongoose.model("cv", cvSchema);
