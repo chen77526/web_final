@@ -37,13 +37,13 @@ const App = () => {
 	return (
 		<Router>
 			<GlobalStyle />
-			<NavBar login={login} />
+			<NavBar login={login} setLogin={setLogin} />
 			<Routes>
 				<Route path="/" exact element={<Home />} />
 				<Route path="/signup" element={<SignUp displayStatus={displayStatus}/>} />
 				<Route path="/resume/:uid" element={<Resume />} />
 				<Route path="/login" element={<Login setLogin={setLogin} displayStatus={displayStatus}/>} />
-				<Route path='/confirm' element={<Confirm />} />
+				<Route path='/confirm' element={<Confirm setLogin={setLogin} />} />
 				<Route path='/post/:pid' element={<Post />}/>
 				<Route path='/:uid' element={<QueryPosts />}/>
 				<Route path="/verify" element={<Verify />} />
