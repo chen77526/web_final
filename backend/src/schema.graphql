@@ -9,6 +9,7 @@ type Query {
   queryInterested (id: String): [Post!]
   queryApplied (id: String): [Post!]
   queryApplicants (id: String): [Account!]
+  queryOwnPost (id: String): [Post]
 
 }
 

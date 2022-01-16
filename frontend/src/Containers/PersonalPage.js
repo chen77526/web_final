@@ -26,6 +26,7 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
+import { useEffect } from 'react';
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
@@ -61,7 +62,8 @@ const Personalpage = (token) =>{
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
-    console.log(data)
+
+    console.log(data);
 
 
     return(

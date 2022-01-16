@@ -72,7 +72,6 @@ export {
     newCv,
     findAccount,
     findPost,
-    findResume,
     checkAccount,
     checkId,
     validAccount,
