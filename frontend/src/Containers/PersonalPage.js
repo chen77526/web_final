@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import { Link, useSearchParams } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import moment from "moment";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
 
@@ -58,19 +60,8 @@ const Personalpage = (token) =>{
         },
     });
 
-    const { loading: loading4, data: data4, error4} = useQuery(OWNPOST_QUERY, {
-        variables: {
-            id: id 
-        },
-    });
 
-    const { loadingIn, dataIn, errorIn} = useQuery(INTEREST_QUERY, {
-        variables: {
-            id: id 
-        },
-    });
-    
-    const { loadingAp, dataAp, errorAp} = useQuery(APPLIED_QUERY, {
+    const { loading: loading4, data: data4, error4} = useQuery(OWNPOST_QUERY, {
         variables: {
             id: id 
         },
@@ -133,7 +124,6 @@ const Personalpage = (token) =>{
                                     <h1>loading cv...</h1>
                                 : (data1 ? 
                                 <>  
-                                    {console.log(data1.resume)}
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>
@@ -220,7 +210,6 @@ const Personalpage = (token) =>{
                                     }
                                 </PostMenu>
                         </TabPanel>
-
                         <TabPanel value="4" align='center'>
                             <PostMenu>
                                     { loading2 ? 

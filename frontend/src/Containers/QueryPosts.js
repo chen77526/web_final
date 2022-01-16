@@ -100,7 +100,7 @@ const QueryPosts = (token) => {
                         <TabPanel value="1" alignitems='center' sx={{overflow: 'auto'}}>
                             <PostMenu> 
                                 { loading ? 
-                                    <h1>loading posts...</h1>
+                                    <h1 style={{justifyContent: 'center'}}>loading posts...</h1>
                                 : data ? 
                                     data.posts.filter((post) => moment(post.duedate).isAfter(moment())).map(po => (
                                         <PostBloc key={po.id}>
