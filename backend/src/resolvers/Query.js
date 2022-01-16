@@ -24,11 +24,9 @@ const Query = {
     let post = await findPost(db, id);
     return post;
   },
-  resume: async (parent, {id}, {db}) => {
-    
-    let account = await findAccount(db, id);
-    
-    return account.resume;
+  resume: async(parent, {id}, {db}) => {
+    let resume = await findResume(db, id);
+    return resume;
   },
 
   queryInterested: async(parent, {id}, {db}) => {

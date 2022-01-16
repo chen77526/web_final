@@ -40,8 +40,8 @@ export const POSTS_QUERY = gql`
 `;
 
 export const POST_QUERY = gql`
-    query resume($id: String) {
-        resume (id: $id) {
+    query post($id: String) {
+        post (id: $id) {
             id
             owner
             title

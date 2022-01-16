@@ -1,17 +1,15 @@
-import React, { useState } from 'react'
-import { Button } from '../globalStyles';
+import React, { useState, useEffect } from 'react'
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
 import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { Link, useSearchParams } from 'react-router-dom';
-import TextareaAutosize from '@mui/material/TextareaAutosize'
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
-import { RESUME_QUERY } from "../graphql"
+import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION,  } from "../graphql"
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -28,52 +26,42 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
-import { useEffect } from 'react';
-import { RESUME_QUERY } from '../graphql';
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
     const [value, setValue] = useState('1');
-    const [username, setUsername] = useState('');
-    const [name, setName] = useState('');
-    const [major, setMajor] = useState('');
-    const [grade, setGrade] = useState('');
-    const [intro, setIntro] = useState('');
-    const [research, setResearch] = useState('');
-    const [work, setWork] = useState('');
-    const [side, setSide] = useState('');
-    const [others, setOthers] = useState('');
 
     //GET_USER_INFO: TODO: QUERY
     // const id = token.token;
     // console.log(id)
-    const [searchParams, setSearchParams] = useSearchParams();
     const id = token.token
 
-    const { loading, data, error} = useQuery(RESUME_QUERY, {
+    const { loading, data, subscribeToMore} = useQuery(RESUME_QUERY, {
         variables: {
             id: id 
         },
     });
 
+    useEffect(() => {
+        try {
+            subscribeToMore({
+                document: RESUME_UPDATED_SUBSCRIPTION,
+                updateQuery: (prev, {subscriptionData}) => {
+                    if (!subscriptionData.data) return prev;
+                    console.log(subscriptionData)
+                }
+            })
+        } catch(e){}
+    }, [subscribeToMore])
+
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
-    if(!loading) console.log(id, data.resume.cv)
 
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
-
-    const id = token.token;
-
-    const { loading, data, subscribeToMore } = useQuery(RESUME_QUERY, {
-        variables: {
-            id: id
-        }
-    });
-
-    console.log(data);
+    console.log(data)
 
 
     return(
@@ -121,7 +109,8 @@ const Personalpage = (token) =>{
                                 { loading ? 
                                     <h1>loading cv...</h1>
                                 : (data ? 
-                                <>
+                                <>  
+                                    {console.log(data.resume)}
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>

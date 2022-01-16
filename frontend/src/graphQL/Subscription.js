@@ -29,3 +29,21 @@ export const POST_UPDATED_SUBSCRIPTION = gql`
     }
   }
 `;
+
+export const RESUME_UPDATED_SUBSCRIPTION = gql`
+  subscription OnResumeUpdated {
+    resumeUpdated {
+      name
+      username
+      major
+      grade  
+      cv{
+        introduction
+        work_experience
+        research
+        side_project
+        others
+      }
+    }
+  }
+`;

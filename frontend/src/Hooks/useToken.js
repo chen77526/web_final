@@ -7,10 +7,7 @@ export const useToken = () =>{
         const tokenString = localStorage.getItem('token')
         // console.log(tokenString)
         const userToken = JSON.parse(tokenString)
-<<<<<<< HEAD
-=======
         
->>>>>>> 477d13bd2d0e03d21243a4fe58134a560b1a7d74
         return userToken
     }
 

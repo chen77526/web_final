@@ -3,7 +3,7 @@ import { Button } from '../globalStyles';
 import { Link, useLocation, useSearchParams} from 'react-router-dom';
 import { useState } from 'react';
 import TextareaAutosize from '@mui/material/TextareaAutosize'
-import { CREATE_RESUME_MUTATION, CREATE_CV_MUTATION} from "../graphql"
+import { UPDATE_RESUME_MUTATION } from "../graphql"
 import { useMutation } from "@apollo/client";
 import { 
     SignUpSec,
@@ -35,26 +35,17 @@ const ModifyResume = () => {
 
     // info of department can be fetched from the email address?
 
-    const [addResume] = useMutation(CREATE_RESUME_MUTATION);
-    const [addCv] = useMutation(CREATE_CV_MUTATION);
+    const [updateResume] = useMutation(UPDATE_RESUME_MUTATION);
 
-    const handleCreateResume = () => {
-        addResume({
+    const updateResumeHandler = () => {
+        updateResume({
             variables: {
                 id: id,
                 input: {
                     name: name,
                     username: username,
                     major: major,
-                    grade: grade
-                },
-            },
-        });
-        addCv({
-            variables: {
-                id: id,
-                input: {
-                    owner: id,
+                    grade: grade,
                     introduction: intro,
                     research: research,
                     work_experience: work,
@@ -63,7 +54,6 @@ const ModifyResume = () => {
                 },
             },
         });
-
     };
 
     
@@ -125,8 +115,8 @@ const ModifyResume = () => {
                         placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
                         style={{borderRadius: "5px", width: "95%"}}
                     />
-                    <Link to={`/allpost/?id=${id}`} style={{padding: "20px", alignSelf: "center"}}>
-                        <Button onClick={handleCreateResume} primary fontBig big>Modify</Button>
+                    <Link to={'/'} style={{padding: "20px", alignSelf: "center"}}>
+                        <Button onClick={updateResumeHandler} primary fontBig big>Modify</Button>
                     </Link>
                 </CvForm>
             </SignUpSec>

@@ -20,12 +20,13 @@ type Mutation {
   createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
   updateInterested(postid: String!, appid: String!): Account
-
+  updateResume(id: String!, input: updateResumeInput!): Resume
 }
 
 type Subscription {
   postCreated: Post!
   postUpdated: Post!
+  resumeUpdated: Resume!
 }
 
 
@@ -45,6 +46,18 @@ input createCvInput {
     work_experience: String!
     side_project: String!
     others: String!            
+}
+
+input updateResumeInput {
+    name: String
+    username: String
+    major: String
+    grade: String  
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
 }
 
 
@@ -93,26 +106,6 @@ type Post {
     applicants: [ID]
 }
 
-<<<<<<< HEAD
-# type Apps {
-#     name: String!
-#     email: String!
-#     personCV: Cv!
-# }
-
-# input createAppInput {
-#     name: String!
-#     email: String!
-#     personCV: Cv!
-#     title: String
-#     company: String
-#     description: String
-#     tags: String
-#     limitations: String
-# }
-
-=======
->>>>>>> 477d13bd2d0e03d21243a4fe58134a560b1a7d74
 input createPostInput {
     id: ID!
     owner: String!
