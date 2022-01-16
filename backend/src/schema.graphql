@@ -4,7 +4,7 @@ type Query {
   account (email: String, password: String): Account
   checkaccount (email: String): Account
   resume (id: String): Resume
-  posts (id: String): [Post!]!
+  posts (id: String): [Post!]
   post (id: String): Post!
   queryInterested (id: String): [Post!]
   queryApplied (id: String): [Post!]
@@ -31,7 +31,7 @@ type Subscription {
 
 
 type Cv{
-    owner: String
+    owner: ID
     introduction: String
     research: String
     work_experience: String
@@ -40,7 +40,7 @@ type Cv{
 }
 
 input createCvInput {
-    owner: String!
+    owner: ID!
     introduction: String!
     research: String!
     work_experience: String!
@@ -94,6 +94,26 @@ type Post {
     applicants: [ID]
 }
 
+<<<<<<< HEAD
+# type Apps {
+#     name: String!
+#     email: String!
+#     personCV: Cv!
+# }
+
+# input createAppInput {
+#     name: String!
+#     email: String!
+#     personCV: Cv!
+#     title: String
+#     company: String
+#     description: String
+#     tags: String
+#     limitations: String
+# }
+
+=======
+>>>>>>> 477d13bd2d0e03d21243a4fe58134a560b1a7d74
 input createPostInput {
     id: ID!
     owner: String!

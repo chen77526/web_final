@@ -100,7 +100,6 @@ const CreatePost = (token) => {
                             <DateTimePicker
                                 label="Due Date"
                                 value={duedate}
-                                style={{color: 'fff'}}
                                 onChange={(v) => setDuedate(v)}
                                 renderInput={(params) => (
                                 <TextField
@@ -115,7 +114,6 @@ const CreatePost = (token) => {
                     </SignUpWrapper>
                    
                     <Link to={`/allpost/?id=${id}`} style={{padding: "20px", alignSelf: "center"}}>
-
                         <Button onClick={handleCreatePost} primary fontBig big>Create</Button>
                     </Link>
                     

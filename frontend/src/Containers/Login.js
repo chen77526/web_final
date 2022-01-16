@@ -18,9 +18,7 @@ const Login = ({ setToken, displayStatus}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [user, setUser] = useState('');
-
- 
-
+    
     const { loading, data, refetch} = useQuery(ACCOUNT_QUERY, {
         variables: {
             email: email,

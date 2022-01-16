@@ -29,7 +29,6 @@ const Mutation = {
     account.resume.grade = input.grade;
     
     await account.save();
-
   },
 
   async createPost(parent, {id, input}, {db,pubSub}, info) {
