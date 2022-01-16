@@ -1,0 +1,123 @@
+scalar Date
+
+type Query {
+  account (email: String, password: String): Account
+  checkaccount (email: String): Account
+  resume (id: String): Resume
+  posts (id: String): [Post!]
+  post (id: String): Post!
+  queryInterested (id: String): [Post!]
+  queryApplied (id: String): [Post!]
+  queryApplicants (id: String): [Account!]
+  queryOwnPost (id: String): [Post]
+
+}
+
+type Mutation {
+  createAccount(input: createAccountInput!): Account
+  createResume(id: String!, input: createResumeInput!): Resume
+  createCv(id: String!, input: createCvInput!): Cv
+  updatePostApps(postid: String!, appid: String!): Post
+  createPost(id: String!, input: createPostInput!): Post
+  setConfirm(id: String!): Account 
+  updateInterested(postid: String!, appid: String!): Account
+  updateResume(id: String!, input: updateResumeInput!): Resume
+}
+
+type Subscription {
+  postCreated: Post!
+  postUpdated: Post!
+  resumeUpdated: Resume!
+}
+
+
+type Cv{
+    owner: ID
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
+}
+
+input createCvInput {
+    owner: ID!
+    introduction: String!
+    research: String!
+    work_experience: String!
+    side_project: String!
+    others: String!            
+}
+
+input updateResumeInput {
+    name: String
+    username: String
+    major: String
+    grade: String  
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
+}
+
+
+type Resume {
+    name: String
+    username: String
+    major: String
+    grade: String     
+    cv: Cv             
+}
+
+input createResumeInput {
+    name: String
+    username: String
+    major: String
+    grade: String     
+    cv: createCvInput       
+}
+
+type Account {
+    id: ID
+    email: String
+    password: String
+    resume: Resume
+    confirm: Boolean
+    posts: [Post]
+    interested: [ID]
+}
+
+input createAccountInput {
+    id: ID!
+    email: String!
+    password: String! 
+    resume: createResumeInput!
+}
+
+type Post {
+    id: ID
+    owner: String
+    title: String
+    company: String
+    description: String
+    tags: String
+    limitations: String
+    duedate: Date
+    applicants: [ID]
+}
+
+input createPostInput {
+    id: ID!
+    owner: String!
+    title: String!
+    company: String!
+    description: String!
+    tags: String!
+    limitations: String!  
+    duedate: Date!
+}
+
+
+
+
