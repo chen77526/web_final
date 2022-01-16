@@ -76,7 +76,7 @@ const SignUp = ({ setToken, displayStatus }) => {
                     {
                         (!loading)?
                             (!data.checkaccount)?
-                                (email.substring(email.length-10) === "@gmail.com")?
+                                (email.substring(email.length-13) === "@g.ntu.edu.tw")?
                                     <Link to={(inputcorrect)? "/verify": "#"} state={{ email: email }} style={{padding: "10px 20px"}}>
                                         <Button onClick={()=>{
                                             if(!email || !password) {
