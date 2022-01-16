@@ -145,8 +145,8 @@ export const APPLICANT_QUERY = gql`
 export const OWNPOST_QUERY = gql`
     query queryOwnPost($id: String) {
         queryOwnPost (id: $id) {
-            id,
-            title,
+            id
+            title
             duedate
         }
     }

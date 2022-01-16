@@ -7,10 +7,10 @@ import Box from '@mui/material/Box';
 import { Link, useSearchParams } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
-// import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
-import { useQuery , useMutation } from "@apollo/client";
 import moment from "moment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
+// import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
+import { useQuery , useMutation } from "@apollo/client";
 import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION, INTEREST_QUERY, APPLIED_QUERY, OWNPOST_QUERY  } from "../graphql"
 import { 
     SignUpSec,
@@ -28,6 +28,7 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
+
 import { PostHeader, PostText } from '../Components/post_ele';
 import { stringify } from 'uuid';
 
@@ -56,23 +57,12 @@ const Personalpage = (token) =>{
         },
     });
 
+
     const { loading: loading4, data: data4, error4} = useQuery(OWNPOST_QUERY, {
         variables: {
             id: id 
         },
     });
-
-    useEffect(() => {
-        try {
-            subscribeToMore({
-                document: RESUME_UPDATED_SUBSCRIPTION,
-                updateQuery: (prev, {subscriptionData}) => {
-                    if (!subscriptionData.data) return prev;
-                    console.log(subscriptionData)
-                }
-            })
-        } catch(e){}
-    }, [subscribeToMore])
 
     
     // useEffect(()=>{},[dataAp])
@@ -126,7 +116,6 @@ const Personalpage = (token) =>{
                                     <h1>loading cv...</h1>
                                 : (data1 ? 
                                 <>  
-                                    {console.log(data1.resume)}
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>

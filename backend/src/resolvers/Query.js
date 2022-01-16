@@ -44,12 +44,14 @@ const Query = {
   },
 
   queryApplied: async(parent, {id}, {db}) => {
-    var account = await findAccount(db, id)
-    console.log("account.applied" + account.applied)
+    let account = await findAccount(db, id)
+    // console.log(account.applied)
     var posts = []
-    account.applied.map(e => {
-      // console.log(e)
-      posts.push(findPost(db, e))
+    account.applied.map(async(e) => {
+      console.log(e)
+      const p = await findPost(db, e)
+      console.log(p)
+      posts.push(p)
     })
     // console.log(posts)
     return posts
