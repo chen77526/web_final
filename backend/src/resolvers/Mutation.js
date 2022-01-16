@@ -90,8 +90,37 @@ const Mutation = {
       await account.save()
     }
     return account
-  }
+  },
 
+  async updateResume(parent, {id, input}, {db, pubSub}, info) {
+    const account = await findAccount(db, id);
+    if(!account) throw new Error("Account id not found: " + id);
+
+    // const newRe = await newResume(db, input);
+    account.resume.name = input.name;
+    account.resume.username = input.username;
+    account.resume.major = input.major;
+    account.resume.grade = input.grade;
+    let cv = account.resume.cv
+    const filter = {"_id": cv}
+    const update = {
+      introduction: input.introduction,
+      research: input.research,
+      work_experience: input.work_experience,
+      side_project: input.side_project,
+      others: input.others,
+    }
+    await db.CvModel.findOneAndUpdate(filter, update)
+    await account.save();
+
+    pubSub.publish("RESUME_UPDATED", {
+      resumeUpdated: {
+        resume: account.resume,
+        cvT: account.resume.cv
+      }
+    })
+    return(account.resume)
+  },
 };
 
 export default Mutation;

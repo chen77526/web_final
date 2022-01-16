@@ -9,6 +9,7 @@ type Query {
   queryInterested (id: String): [Post!]
   queryApplied (id: String): [Post!]
   queryApplicants (id: String): [Account!]
+  queryOwnPost (id: String): [Post]
 
 }
 
@@ -20,12 +21,13 @@ type Mutation {
   createPost(id: String!, input: createPostInput!): Post
   setConfirm(id: String!): Account 
   updateInterested(postid: String!, appid: String!): Account
-
+  updateResume(id: String!, input: updateResumeInput!): Resume
 }
 
 type Subscription {
   postCreated: Post!
   postUpdated: Post!
+  resumeUpdated: Resume!
 }
 
 
@@ -45,6 +47,18 @@ input createCvInput {
     work_experience: String!
     side_project: String!
     others: String!            
+}
+
+input updateResumeInput {
+    name: String
+    username: String
+    major: String
+    grade: String  
+    introduction: String
+    research: String
+    work_experience: String
+    side_project: String
+    others: String
 }
 
 

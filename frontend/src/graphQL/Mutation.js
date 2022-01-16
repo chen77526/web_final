@@ -102,3 +102,15 @@ export const  SET_ONLINE_MUTATION = gql`
         }
     }
 `
+
+export const UPDATE_RESUME_MUTATION = gql`
+    mutation updateResume($id: String! $input: updateResumeInput!) {
+        updateResume(id: $id input: $input) {
+            name
+            username
+            major
+            grade
+            
+        }
+    }
+`;

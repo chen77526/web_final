@@ -9,6 +9,11 @@ const Subscription = {
       return pubSub.asyncIterator("POST_UPDATED");
     },
   },
+  resumeUpdated: {
+    subscribe: (parent, args, { pubSub }) => {
+      return pubSub.asyncIterator("RESUME_UPDATED");
+    },
+  },
 };
 
 export default Subscription;

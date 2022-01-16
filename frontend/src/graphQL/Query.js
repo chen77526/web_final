@@ -40,8 +40,8 @@ export const POSTS_QUERY = gql`
 `;
 
 export const POST_QUERY = gql`
-    query resume($id: String) {
-        resume (id: $id) {
+    query post($id: String) {
+        post (id: $id) {
             id
             owner
             title
@@ -109,6 +109,24 @@ export const INTEREST_QUERY = gql`
 export const APPLIED_QUERY = gql`
     query queryApplied($id: String) {
         queryApplied (id: $id) {
+            id,
+            title
+        }
+    }
+`;
+
+export const APPLICANT_QUERY = gql`
+    query queryApplicants($id: String) {
+        queryApplicants (id: $id) {
+            id,
+            title
+        }
+    }
+`;
+
+export const OWNPOST_QUERY = gql`
+    query queryOwnPost($id: String) {
+        queryOwnPost (id: $id) {
             id,
             title
         }
