@@ -64,7 +64,6 @@ const checkId = async (db, id) => {
     return db.AccountModel.findOne({ id: id });
 };
 
-
 export {
     newAccount,
     newResume,
