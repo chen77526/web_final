@@ -114,3 +114,21 @@ export const APPLIED_QUERY = gql`
         }
     }
 `;
+
+export const APPLICANT_QUERY = gql`
+    query queryApplicants($id: String) {
+        queryApplicants (id: $id) {
+            id,
+            title
+        }
+    }
+`;
+
+export const OWNPOST_QUERY = gql`
+    query queryOwnPost($id: String) {
+        queryOwnPost (id: $id) {
+            id,
+            title
+        }
+    }
+`;
