@@ -109,8 +109,14 @@ export const INTEREST_QUERY = gql`
 export const APPLIED_QUERY = gql`
     query queryApplied($id: String) {
         queryApplied (id: $id) {
-            id,
-            title,
+            id
+            owner
+            title
+            company
+            description
+            tags
+            limitations
+            duedate
         }
     }
 `;
@@ -129,6 +135,21 @@ export const OWNPOST_QUERY = gql`
         queryOwnPost (id: $id) {
             id,
             title
+        }
+    }
+`;
+
+export const LIMIT_QUERY = gql`
+    query queryLimitPost($uid: String) {
+        queryLimitPost (uid: $uid) {
+            id
+            owner
+            title
+            company
+            description
+            tags
+            limitations
+            duedate
         }
     }
 `;

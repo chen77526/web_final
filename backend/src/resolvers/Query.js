@@ -73,6 +73,13 @@ const Query = {
       ownposts.push(db.PostModel.findOne({"_id": e}))
     })
     return ownposts
+  },
+
+  queryLimitPost: async(parent, {uid}, {db}) => {
+    let account = await findAccount(db, uid)
+    const lim = account.email[3]+account.email[4]+account.email[5]
+    console.log(lim)
+    return db.PostModel.find({ limitations: lim })
   }
 
 };

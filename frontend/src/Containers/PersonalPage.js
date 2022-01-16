@@ -11,6 +11,10 @@ import moment from "moment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
+
+import moment from "moment";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION, INTEREST_QUERY, APPLIED_QUERY, OWNPOST_QUERY  } from "../graphql"
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -28,8 +32,8 @@ import {
     PostMenu
 } from '../Components/posts_ele';
 
-import { RESUME_QUERY, INTEREST_QUERY, APPLIED_QUERY } from '../graphql';
 import { PostHeader, PostText } from '../Components/post_ele';
+import { stringify } from 'uuid';
 
 const Personalpage = (token) =>{
     const [value, setValue] = useState('1');
@@ -39,24 +43,32 @@ const Personalpage = (token) =>{
     // console.log(id)
     const id = token.token
 
-    const { loading, data, subscribeToMore} = useQuery(RESUME_QUERY, {
+    const { loading, data: data1, subscribeToMore} = useQuery(RESUME_QUERY, {
         variables: {
             id: id 
         },
     });
-
-    const { loadingIn, dataIn, errorIn} = useQuery(INTEREST_QUERY, {
+    const { loading: loading2, data:data2, errorIn} = useQuery(INTEREST_QUERY, {
         variables: {
             id: id 
         },
     });
     
-    const { loadingAp, dataAp, errorAp} = useQuery(APPLIED_QUERY, {
+    const { loading: loadingAp, data, errorAp} = useQuery(APPLIED_QUERY, {
         variables: {
             id: id 
         },
     });
 
+
+    const { loading: loading4, data: data4, error4} = useQuery(OWNPOST_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
+
+    
+    // useEffect(()=>{},[dataAp])
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
@@ -65,8 +77,11 @@ const Personalpage = (token) =>{
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
-
-    console.log(data);
+    // if(data){
+    //     console.log(data.queryApplied)
+    // }
+    // console.log(data1);
+    if(data2)console.log(data2)
 
 
     return(
@@ -96,12 +111,6 @@ const Personalpage = (token) =>{
                                 <Tab label="Owned" value='2' />
                                 <Tab label="Applied" value='3' />
                                 <Tab label="Inerested" value='4' />
-                                {/* <Tab label={<AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />} value='5'/> */}
-                                {/* <IconButton color='primary' aria-label='Add'>
-                                    <Link to='/createPost' style={{height: 'inherit', padding: '0', margin: '0'}}>
-                                        <AddIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
-                                    </Link>
-                                </IconButton> */}
                                 <Fab color="primary" aria-label="edit">
                                     <Link component="button" to={`/modifyCV/?id=${id}`} style={{height: '65%'}}>
                                         <EditIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
@@ -113,161 +122,115 @@ const Personalpage = (token) =>{
                             <PostMenu>
                                 { loading ? 
                                     <h1>loading cv...</h1>
-                                : (data ? 
+                                : (data1 ? 
                                 <>  
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>
-                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.name}</SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data1.resume.name}</SignUpSubtitle>
                                         </ul>
                                     </CvForm>
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Username : </SignUpSubtitle>
-                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.username}</SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data1.resume.username}</SignUpSubtitle>
                                         </ul>
                                     </CvForm>
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Major : </SignUpSubtitle>
-                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.major}</SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data1.resume.major}</SignUpSubtitle>
                                         </ul>
                                     </CvForm>
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Grade : </SignUpSubtitle>
-                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data.resume.grade}</SignUpSubtitle>
+                                            <SignUpSubtitle style={{margin: '0 16px'}}>{data1.resume.grade}</SignUpSubtitle>
                                         </ul>
                                     </CvForm>
                                     <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
                                         <PostHeader>introduction</PostHeader>
-                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.introduction}</PostText>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data1.resume.cv.introduction}</PostText>
                                     </PostMenu>
                                     <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
                                         <PostHeader>research</PostHeader>
-                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.research}</PostText>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data1.resume.cv.research}</PostText>
                                     </PostMenu>
                                     <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
                                         <PostHeader>work experience</PostHeader>
-                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.work_experience}</PostText>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data1.resume.cv.work_experience}</PostText>
                                     </PostMenu>
                                     <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
                                         <PostHeader>side project</PostHeader>
-                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.side_project}</PostText>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data1.resume.cv.side_project}</PostText>
                                     </PostMenu>
                                     <PostMenu style={{width: '80%', paddingBottom: '5px'}}>
                                         <PostHeader>others</PostHeader>
-                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data.resume.cv.others}</PostText>
+                                        <PostText style={{border: "2px solid #fff", width: '100%'}}>{data1.resume.cv.others}</PostText>
                                     </PostMenu>
                                 </> : ' ')}
-                                            {/* <CvForm light={true}>
-                                    //         <SignUpWrapper>
-                                    //             <SignUpSubtitle>Name : </SignUpSubtitle>
-                                    //             <SideText>{ele.name}</SideText>
-                                    //         </SignUpWrapper> */}
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="2" align='center'>
-                            <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post' limited={true}><h1>limited</h1></PostLink>
-                                </PostBloc>
-                            </PostMenu>
+                        <PostMenu>
+                                    { loading4 ? 
+                                        <h1>loading posts...</h1>
+                                    : data4 ? 
+                                        data4.queryOwnPost.map(po => (
+                                            <PostBloc key={po.id}>
+                                                    <ul>
+                                                        <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                            <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                            {moment(po.duedate).fromNow()}
+                                                        </div>
+                                                    </ul>
+                                            </PostBloc>
+                                        )) : <h1>no posts yet</h1>
+                                    }
+                                </PostMenu>
                         </TabPanel>
+                        
                         <TabPanel value="3" align='center'>
                             <PostMenu>
-                                { loadingAp ? 
-                                    <h1>loading posts...</h1>
-                                : console.log(dataAp) ? 
-                                    dataAp.posts.map(po => (
-                                        <PostBloc key={po.id}>
-                                            <PostLink to={`/post/?id=${po.id}`} style={{color: '#fff'}}>
-                                                <ul>
-                                                    <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
-                                                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
-                                                        <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
-                                                        {moment(po.duedate).fromNow()}
-                                                    </div>
-                                                </ul>
-                                            </PostLink>
-                                        </PostBloc>
-                                    )) : <h1>no posts yet</h1>
-                                }
-                            </PostMenu>
+                                    { loadingAp ? 
+                                        <h1>loading posts...</h1>
+                                    : data ? 
+                                        data.queryApplied.map(po => (
+                                            <PostBloc key={po.id}>
+                                                    <ul>
+                                                        <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                            <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                            {moment(po.duedate).fromNow()}
+                                                        </div>
+                                                    </ul>
+                                            </PostBloc>
+                                        )) : <h1>no posts yet</h1>
+                                    }
+                                </PostMenu>
                         </TabPanel>
                         <TabPanel value="4" align='center'>
                             <PostMenu>
-                                <PostBloc>
-                                    <PostLink to='/post' closed={true}><h1>Closed</h1></PostLink>
-                                </PostBloc>
+                                    { loading2 ? 
+                                        <h1>loading posts...</h1>
+                                    : data2 ? 
+                                        data2.queryInterested.map(po => (
+                                            <PostBloc key={po.id}>
+                                                    <ul>
+                                                        <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                            <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                            {moment(po.duedate).fromNow()}
+                                                        </div>
+                                                    </ul>
+                                            </PostBloc>
+                                        )) : <h1>no posts yet</h1>
+                                    }
                             </PostMenu>
                         </TabPanel>
-                        {/* <Pagination count={10} color="primary" sx={{alignSelf: 'center', bottom: '5px', position: 'relative'}} /> */}
                     </TabContext>
                 </Box>
-                {/* <CvForm>
-                    <SignUpTitle> Personal Info </SignUpTitle>
-                    <SignUpWrapper>
-                        <SignUpSubtitle>Name</SignUpSubtitle>
-                        <SignUpFormInput value={name} name="name" type="text" placeholder="Name" onChange={e => setName(e.target.value)}/>
-                    </SignUpWrapper>
-                    <SignUpWrapper>
-                        <SignUpSubtitle>Username</SignUpSubtitle>
-                        <SignUpFormInput value={username} name="username" type="text" placeholder="Username" onChange={e => setUsername(e.target.value)}/>
-                    </SignUpWrapper>
-                    <SignUpWrapper>
-                        <SignUpSubtitle>Major</SignUpSubtitle>
-                        <SignUpFormInput value={major} name="major" type="text" placeholder="Major" onChange={e => setMajor(e.target.value)}/>
-                    </SignUpWrapper>
-                    <SignUpWrapper>
-                        <SignUpSubtitle>Grade</SignUpSubtitle>
-                        <SignUpFormInput value={grade} name="grade" type="text" placeholder="Grade" onChange={e => setGrade(e.target.value)}/>
-                    </SignUpWrapper>                         
-                    <SignUpTitle>CV</SignUpTitle>
-                    <SideText>Introduction</SideText>
-                    <TextareaAutosize 
-                        minRows={3}
-                        style={{width: "100%"}}
-                        placeholder="Brief introduction of yourself..." onChange={e => setIntro(e.target.value)}
-                        style={{borderRadius: "5px", width: '95%'}}
-                        value={intro}
-                    />          
-                    <SideText>Research Experience</SideText>
-                    <TextareaAutosize 
-                        minRows={3}
-                        style={{width: "100%"}}
-                        placeholder="Research experiences?" onChange={e => setResearch(e.target.value)}
-                        style={{borderRadius: "5px", width: '95%'}}
-                        value={research}
-                    />
-                    <SideText>Work Experience</SideText>
-                    <TextareaAutosize 
-                        minRows={3}
-                        style={{width: "100%"}}
-                        placeholder="Tell me about the jobs you have done..." onChange={e => setWork(e.target.value)}
-                        style={{borderRadius: "5px", width: '95%'}}
-                        value={work}
-                    />
-                    <SideText>Side Projects</SideText>
-                    <TextareaAutosize 
-                        minRows={3}
-                        style={{width: "100%"}}
-                        placeholder="Any side projects?" onChange={e => setSide(e.target.value)}
-                        style={{borderRadius: "5px", width: '95%'}}
-                        value={side}
-                    />
-                    <SideText>Others</SideText>
-                    <TextareaAutosize 
-                        minRows={3}
-                        style={{width: "100%"}}
-                        placeholder="Anything that makes your CV more competitive..." onChange={e => setOthers(e.target.value)}
-                        style={{borderRadius: "5px", width: '95%'}}
-                        value={others}
-                    />
-                    <Link to="/resume" style={{padding: "20px", alignSelf: "center"}}>
-                        <Button onClick={handleModify} primary fontBig big>Modify</Button>
-                    </Link>
-                </CvForm> */}
             </PostSec>
         </>
     )

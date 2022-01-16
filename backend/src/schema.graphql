@@ -10,6 +10,7 @@ type Query {
   queryApplied (id: String): [Post]
   queryApplicants (id: String): [Account!]
   queryOwnPost (id: String): [Post]
+  queryLimitPost (uid: String): [Post]
 
 }
 

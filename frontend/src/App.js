@@ -16,6 +16,7 @@ import QueryPosts from './Containers/QueryPosts';
 import CreatePost from './Containers/CreatePost';
 import { useToken } from './Hooks/useToken';
 import ModifyResume from './Containers/ModifyResume';
+import Viewapp from './Containers/Viewapp'
 
 
 
@@ -54,6 +55,7 @@ const App = () => {
 				<Route path="/verify" element={token?<Verify />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/createPost" element={token?<CreatePost token={token} />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 				<Route path="/personalpage" element={token?<Personalpage token={token} />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
+				<Route path="/viewapp" element={token?<Viewapp token={token} />:<Login setToken={setToken} displayStatus={displayStatus}/>} />
 			</Routes>
 			<Footer />
 		</Router>
