@@ -9,6 +9,7 @@ import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
+
 import moment from "moment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION, INTEREST_QUERY, APPLIED_QUERY, OWNPOST_QUERY  } from "../graphql"
@@ -28,6 +29,7 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
+
 import { PostHeader, PostText } from '../Components/post_ele';
 import { stringify } from 'uuid';
 
@@ -62,17 +64,17 @@ const Personalpage = (token) =>{
         },
     });
 
-    useEffect(() => {
-        try {
-            subscribeToMore({
-                document: RESUME_UPDATED_SUBSCRIPTION,
-                updateQuery: (prev, {subscriptionData}) => {
-                    if (!subscriptionData.data) return prev;
-                    console.log(subscriptionData)
-                }
-            })
-        } catch(e){}
-    }, [subscribeToMore])
+    const { loadingIn, dataIn, errorIn} = useQuery(INTEREST_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
+    
+    const { loadingAp, dataAp, errorAp} = useQuery(APPLIED_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
 
     
     // useEffect(()=>{},[dataAp])
