@@ -8,7 +8,7 @@ type Query {
   post (id: String): Post!
   queryInterested (id: String): [Post!]
   queryApplied (id: String): [Post!]
-  queryApplicants (id: String): [Account!]
+  queryApplicants (id: String): [Account]
   queryOwnPost (id: String): [Post]
   queryLimitPost (uid: String): [Post]
 
