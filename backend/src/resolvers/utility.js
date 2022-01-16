@@ -75,4 +75,5 @@ export {
     checkAccount,
     checkId,
     validAccount,
+    findResume
 };

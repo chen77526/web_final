@@ -26,7 +26,6 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
-import { useEffect } from 'react';
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
