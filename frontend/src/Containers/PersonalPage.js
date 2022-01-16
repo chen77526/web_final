@@ -9,10 +9,6 @@ import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
-<<<<<<< HEAD
-import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION,  } from "../graphql"
-=======
->>>>>>> ahong
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -30,10 +26,7 @@ import {
     PostMenu
 } from '../Components/posts_ele';
 import { useEffect } from 'react';
-<<<<<<< HEAD
-=======
 import { RESUME_QUERY, INTEREST_QUERY, APPLIED_QUERY } from '../graphql';
->>>>>>> ahong
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
@@ -61,7 +54,6 @@ const Personalpage = (token) =>{
             id: id 
         },
     });
-    
 
     const changeHandler = (event, newValue) => {
         setValue(newValue);
