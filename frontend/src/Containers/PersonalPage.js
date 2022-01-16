@@ -11,9 +11,6 @@ import moment from "moment";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
-
-import moment from "moment";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { RESUME_QUERY, RESUME_UPDATED_SUBSCRIPTION, INTEREST_QUERY, APPLIED_QUERY, OWNPOST_QUERY  } from "../graphql"
 import { 
     SignUpSec,
@@ -111,11 +108,6 @@ const Personalpage = (token) =>{
                                 <Tab label="Owned" value='2' />
                                 <Tab label="Applied" value='3' />
                                 <Tab label="Inerested" value='4' />
-                                <Fab color="primary" aria-label="edit">
-                                    <Link component="button" to={`/modifyCV/?id=${id}`} style={{height: '65%'}}>
-                                        <EditIcon fontSize='large' sx={{fill: 'white', margin: '0'}} />
-                                    </Link>
-                                </Fab>
                             </TabList>
                         </Box>
                         <TabPanel value="1" alignitems='center' sx={{overflow: 'auto'}}>
@@ -171,27 +163,29 @@ const Personalpage = (token) =>{
                                 </> : ' ')}
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="2" align='center'>
+                        <TabPanel value="2" align='center' sx={{overflow: 'auto'}}>
                         <PostMenu>
-                                    { loading4 ? 
-                                        <h1>loading posts...</h1>
-                                    : data4 ? 
-                                        data4.queryOwnPost.map(po => (
-                                            <PostBloc key={po.id}>
-                                                    <ul>
-                                                        <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
-                                                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
-                                                            <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
-                                                            {moment(po.duedate).fromNow()}
-                                                        </div>
-                                                    </ul>
-                                            </PostBloc>
-                                        )) : <h1>no posts yet</h1>
-                                    }
-                                </PostMenu>
+                            { loading4 ? 
+                                <h1>loading posts...</h1>
+                            : data4 ? 
+                                data4.queryOwnPost.map(po => (
+                                    <PostBloc key={po.id}>
+                                        <PostLink to={`/viewapp/?id=${po.id}`}>
+                                            <ul>
+                                                <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                    <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                    {moment(po.duedate).fromNow()}
+                                                </div>
+                                            </ul>
+                                        </PostLink>
+                                    </PostBloc>
+                                )) : <h1>no posts yet</h1>
+                            }
+                            </PostMenu>
                         </TabPanel>
                         
-                        <TabPanel value="3" align='center'>
+                        <TabPanel value="3" align='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                     { loadingAp ? 
                                         <h1>loading posts...</h1>
@@ -210,7 +204,8 @@ const Personalpage = (token) =>{
                                     }
                                 </PostMenu>
                         </TabPanel>
-                        <TabPanel value="4" align='center'>
+
+                        <TabPanel value="4" align='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                     { loading2 ? 
                                         <h1>loading posts...</h1>

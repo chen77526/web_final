@@ -100,8 +100,9 @@ export const RESUME_QUERY = gql`
 export const INTEREST_QUERY = gql`
     query queryInterested($id: String) {
         queryInterested (id: $id) {
-            id,
-            title,
+            id
+            title
+            duedate
         }
     }
 `;
@@ -124,8 +125,19 @@ export const APPLIED_QUERY = gql`
 export const APPLICANT_QUERY = gql`
     query queryApplicants($id: String) {
         queryApplicants (id: $id) {
-            id,
-            title,
+        email
+        resume{
+            name
+            grade
+            major
+            cv{
+                introduction
+                research
+                work_experience
+                side_project
+                others
+            }
+        }
         }
     }
 `;
@@ -133,8 +145,9 @@ export const APPLICANT_QUERY = gql`
 export const OWNPOST_QUERY = gql`
     query queryOwnPost($id: String) {
         queryOwnPost (id: $id) {
-            id,
+            id
             title
+            duedate
         }
     }
 `;

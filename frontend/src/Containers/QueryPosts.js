@@ -118,7 +118,7 @@ const QueryPosts = (token) => {
                                 }
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="2" align='center'>
+                        <TabPanel value="2" align='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                 { loading2 ? 
                                         <h1>loading posts...</h1>
@@ -139,7 +139,7 @@ const QueryPosts = (token) => {
                                     }
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="3" align='center'>
+                        <TabPanel value="3" align='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                 { loading ? 
                                     <h1>loading posts...</h1>
@@ -160,7 +160,7 @@ const QueryPosts = (token) => {
                                 }
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="4" align='center'>
+                        <TabPanel value="4" align='center' sx={{overflow: 'auto'}}>
                             <PostMenu>
                                 { loading ? 
                                     <h1>loading posts...</h1>
