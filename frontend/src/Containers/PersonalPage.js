@@ -29,7 +29,6 @@ import {
     PostMenu
 } from '../Components/posts_ele';
 import { useEffect } from 'react';
-import { RESUME_QUERY } from '../graphql';
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
@@ -64,14 +63,6 @@ const Personalpage = (token) =>{
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
-
-    const id = token.token;
-
-    const { loading, data, subscribeToMore } = useQuery(RESUME_QUERY, {
-        variables: {
-            id: id
-        }
-    });
 
     console.log(data);
 

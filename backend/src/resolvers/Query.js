@@ -36,10 +36,10 @@ const Query = {
     console.log(account.interested)
     var posts = []
     account.interested.map(e => {
-      console.log(e)
+      // console.log(e)
       posts.push(findPost(db, e))
     })
-    console.log(posts)
+    // console.log(posts)
     return posts
   },
 
@@ -48,11 +48,31 @@ const Query = {
     console.log(account.applied)
     var posts = []
     account.applied.map(e => {
-      console.log(e)
+      // console.log(e)
       posts.push(findPost(db, e))
+    })
+    // console.log(posts)
+    return posts
+  },
+
+  queryApplicants: async(parent, {id}, {db}) => {
+    let post = await findPost(db, id)
+    var posts = []
+    post.applicants.map(e => {
+      // console.log(e)
+      posts.push(findAccount(db, e))
     })
     console.log(posts)
     return posts
+  },
+
+  queryOwnPost: async(parent, {id}, {db}) => {
+    let account = await findAccount(db, id)
+    var ownposts = []
+    account.posts.map( async(e) => {
+      ownposts.push(db.PostModel.findOne({"_id": e}))
+    })
+    return ownposts
   }
 
 };
