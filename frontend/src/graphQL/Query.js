@@ -101,7 +101,7 @@ export const INTEREST_QUERY = gql`
     query queryInterested($id: String) {
         queryInterested (id: $id) {
             id,
-            title
+            title,
         }
     }
 `;
@@ -110,7 +110,7 @@ export const APPLIED_QUERY = gql`
     query queryApplied($id: String) {
         queryApplied (id: $id) {
             id,
-            title
+            title,
         }
     }
 `;
@@ -119,7 +119,7 @@ export const APPLICANT_QUERY = gql`
     query queryApplicants($id: String) {
         queryApplicants (id: $id) {
             id,
-            title
+            title,
         }
     }
 `;

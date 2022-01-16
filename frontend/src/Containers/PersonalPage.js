@@ -7,6 +7,8 @@ import Box from '@mui/material/Box';
 import { Link, useSearchParams } from 'react-router-dom';
 import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
+import moment from "moment";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
 import { 
@@ -25,7 +27,6 @@ import {
     PostSec,
     PostMenu
 } from '../Components/posts_ele';
-import { useEffect } from 'react';
 
 import { RESUME_QUERY, INTEREST_QUERY, APPLIED_QUERY } from '../graphql';
 import { PostHeader, PostText } from '../Components/post_ele';
@@ -43,7 +44,6 @@ const Personalpage = (token) =>{
             id: id 
         },
     });
-
 
     const { loadingIn, dataIn, errorIn} = useQuery(INTEREST_QUERY, {
         variables: {
@@ -115,7 +115,6 @@ const Personalpage = (token) =>{
                                     <h1>loading cv...</h1>
                                 : (data ? 
                                 <>  
-                                    {console.log(data.resume)}
                                     <CvForm light={true} style={{margin: '5px 0'}}>
                                         <ul style={{display:'flex', flexDirection:'row', maxHeight: '10%'}}>
                                             <SignUpSubtitle style={{margin: '0 16px'}}>Name : </SignUpSubtitle>
@@ -175,7 +174,27 @@ const Personalpage = (token) =>{
                                 </PostBloc>
                             </PostMenu>
                         </TabPanel>
-                        <TabPanel value="3" align='center'>Ongoing</TabPanel>
+                        <TabPanel value="3" align='center'>
+                            <PostMenu>
+                                { loadingAp ? 
+                                    <h1>loading posts...</h1>
+                                : console.log(dataAp) ? 
+                                    dataAp.posts.map(po => (
+                                        <PostBloc key={po.id}>
+                                            <PostLink to={`/post/?id=${po.id}`} style={{color: '#fff'}}>
+                                                <ul>
+                                                    <h1 style={{marginTop:'16px', color: '#fff'}}>{po.title}</h1>
+                                                    <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                        <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                        {moment(po.duedate).fromNow()}
+                                                    </div>
+                                                </ul>
+                                            </PostLink>
+                                        </PostBloc>
+                                    )) : <h1>no posts yet</h1>
+                                }
+                            </PostMenu>
+                        </TabPanel>
                         <TabPanel value="4" align='center'>
                             <PostMenu>
                                 <PostBloc>
