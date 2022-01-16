@@ -7,7 +7,7 @@ import TabPanel from '@mui/lab/TabPanel';
 import Box from '@mui/material/Box';
 import { useQuery } from "@apollo/client";
 import { useEffect } from 'react';
-import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION} from "../graphql"
+import { POSTS_QUERY, POST_CREATED_SUBSCRIPTION, LIMIT_QUERY} from "../graphql"
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import moment from "moment";
 import Fab from '@mui/material/Fab';
@@ -29,7 +29,14 @@ const QueryPosts = (token) => {
         }
     });
 
+    const { loading: loading2, data: data2 } = useQuery(LIMIT_QUERY, {
+        variables: {
+            uid: id
+        }
+    });
+
     console.log(id)
+    console.log(data)
 
     // for create post
 
@@ -41,7 +48,7 @@ const QueryPosts = (token) => {
                     if (!subscriptionData.data) return prev;
                     console.log(subscriptionData.data)
                     return {
-                        posts: [...prev.posts, subscriptionData.data.postCreated],
+                        posts: [ ...prev.posts, subscriptionData.data.postCreated],
                     };
                 }
             })
@@ -113,7 +120,23 @@ const QueryPosts = (token) => {
                         </TabPanel>
                         <TabPanel value="2" align='center'>
                             <PostMenu>
-
+                                { loading2 ? 
+                                        <h1>loading posts...</h1>
+                                    : data2 ? 
+                                        data2.queryLimitPost.filter((post) => moment(post.duedate).isAfter(moment())).map(po => (
+                                            <PostBloc key={po.id}>
+                                                <PostLink to={`/post/?id=${po.id}`}>
+                                                    <ul>
+                                                        <h1 style={{marginTop:'16px'}}>{po.title}</h1>
+                                                        <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap'}}>
+                                                            <AccessTimeIcon fontSize="small" style={{margin:'0 4px'}}/>
+                                                            {moment(po.duedate).fromNow()}
+                                                        </div>
+                                                    </ul>
+                                                </PostLink>
+                                            </PostBloc>
+                                        )) : <h1>no posts yet</h1>
+                                    }
                             </PostMenu>
                         </TabPanel>
                         <TabPanel value="3" align='center'>
