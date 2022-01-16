@@ -93,26 +93,6 @@ type Post {
     applicants: [ID]
 }
 
-<<<<<<< HEAD
-# type Apps {
-#     name: String!
-#     email: String!
-#     personCV: Cv!
-# }
-
-# input createAppInput {
-#     name: String!
-#     email: String!
-#     personCV: Cv!
-#     title: String
-#     company: String
-#     description: String
-#     tags: String
-#     limitations: String
-# }
-
-=======
->>>>>>> 477d13bd2d0e03d21243a4fe58134a560b1a7d74
 input createPostInput {
     id: ID!
     owner: String!

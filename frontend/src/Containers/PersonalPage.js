@@ -11,7 +11,6 @@ import Fab from '@mui/material/Fab';
 import EditIcon from '@mui/icons-material/Edit';
 // import { GET_USER_INFO ,UPDATE_USER_CONTENT } from "../graphql"
 import { useQuery , useMutation } from "@apollo/client";
-import { RESUME_QUERY } from "../graphql"
 import { 
     SignUpSec,
     SignUpFormInput,
@@ -29,7 +28,7 @@ import {
     PostMenu
 } from '../Components/posts_ele';
 import { useEffect } from 'react';
-import { RESUME_QUERY } from '../graphql';
+import { RESUME_QUERY, INTEREST_QUERY, APPLIED_QUERY } from '../graphql';
 import { PostHeader, PostText } from '../Components/post_ele';
 
 const Personalpage = (token) =>{
@@ -56,22 +55,27 @@ const Personalpage = (token) =>{
         },
     });
 
+    const { loadingIn, dataIn, errorIn} = useQuery(INTEREST_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
+    
+    const { loadingAp, dataAp, errorAp} = useQuery(APPLIED_QUERY, {
+        variables: {
+            id: id 
+        },
+    });
+    
+
     const changeHandler = (event, newValue) => {
         setValue(newValue);
     };
-    if(!loading) console.log(id, data.resume.cv)
 
     const handleModify = () =>{
         // MODIFY_CV_MUTATION TODO: UPDATE_USER_CONTENT 然後把值丟進上面的 變數裡面
     }
 
-    const id = token.token;
-
-    const { loading, data, subscribeToMore } = useQuery(RESUME_QUERY, {
-        variables: {
-            id: id
-        }
-    });
 
     console.log(data);
 

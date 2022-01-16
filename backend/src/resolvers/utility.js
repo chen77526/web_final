@@ -64,11 +64,6 @@ const checkId = async (db, id) => {
     return db.AccountModel.findOne({ id: id });
 };
 
-const findResume = async (db, id) => {
-    const account = await db.AccountModel.findOne({ id: id});
-    return account.resume;
-}
-
 export {
     newAccount,
     newResume,
@@ -80,5 +75,4 @@ export {
     checkAccount,
     checkId,
     validAccount,
-    findResume
 };
