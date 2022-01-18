@@ -150,7 +150,8 @@ Sign Up時只有gsuite可以sign up，並且要去信箱收確認信已完成登
 
 
 
-
+## 功能尚未加入
+footer的許多按鈕目前是無效的，包含subscribe、Social media的部分
 
 
 ## 目前未修正BUG:
